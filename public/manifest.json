@@ -1,0 +1,8 @@
+{
+  "short_name": "Charlie T's",
+  "name": "Charlie T's",
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#0F0D0A",
+  "background_color": "#0F0D0A"
+}
