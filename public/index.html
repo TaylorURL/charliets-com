@@ -2,15 +2,84 @@
 <html lang="en">
 <head>
     <meta charset="utf-8"/>
-    <link href="%PUBLIC_URL%/favicon.ico" rel="icon"/>
-    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <meta content="width=device-width, initial-scale=1, viewport-fit=cover" name="viewport"/>
     <meta content="#E85D26" name="theme-color"/>
-    <meta content="Charlie T's Crawfish Shack — Dayton, Texas. Fresh boiled crawfish and Cajun seafood." name="description"/>
+    <meta content="Charlie T's Crawfish Shack — fresh boiled crawfish, shrimp, and crab in Dayton, Texas. Heavy seasoning, communal tables, no reservations. Catering available." name="description"/>
+
+    <!-- Canonical -->
+    <link rel="canonical" href="https://charliets.com/"/>
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="restaurant.restaurant"/>
+    <meta property="og:site_name" content="Charlie T's Crawfish Shack"/>
+    <meta property="og:title" content="Charlie T's Crawfish Shack — Dayton, TX"/>
+    <meta property="og:description" content="Fresh boiled crawfish, shrimp, and crab. House seasoning, communal tables, no reservations. Catering available."/>
+    <meta property="og:image" content="%PUBLIC_URL%/logo.webp"/>
+    <meta property="og:url" content="https://charliets.com/"/>
+    <meta property="og:locale" content="en_US"/>
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image"/>
+    <meta name="twitter:title" content="Charlie T's Crawfish Shack — Dayton, TX"/>
+    <meta name="twitter:description" content="Fresh boiled crawfish, shrimp, and crab. House seasoning. Dayton, Texas."/>
+    <meta name="twitter:image" content="%PUBLIC_URL%/logo.webp"/>
+
+    <!-- Apple -->
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+    <meta name="apple-mobile-web-app-title" content="Charlie T's"/>
+    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo.webp"/>
+
+    <!-- Favicon (uses logo.webp until a proper favicon set is added) -->
+    <link rel="icon" type="image/webp" href="%PUBLIC_URL%/logo.webp"/>
     <link href="%PUBLIC_URL%/manifest.json" rel="manifest"/>
+
+    <!-- Fonts -->
     <link crossorigin href="https://fonts.googleapis.com" rel="preconnect">
     <link crossorigin href="https://fonts.gstatic.com" rel="preconnect">
     <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
-    <title>Charlie T's</title>
+
+    <title>Charlie T's Crawfish Shack — Dayton, TX</title>
+
+    <!-- LocalBusiness structured data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Restaurant",
+      "name": "Charlie T's Crawfish Shack",
+      "alternateName": "Charlie T's",
+      "description": "Fresh boiled crawfish, shrimp, and crab with Cajun seasoning. Catering available throughout Southeast Texas.",
+      "image": "https://charliets.com/logo.webp",
+      "url": "https://charliets.com",
+      "telephone": "+1-936-555-0193",
+      "priceRange": "$$",
+      "servesCuisine": ["Cajun", "Seafood", "Southern"],
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "20 Private Rd 442",
+        "addressLocality": "Dayton",
+        "addressRegion": "TX",
+        "postalCode": "77535",
+        "addressCountry": "US"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 30.046,
+        "longitude": -94.9005
+      },
+      "openingHoursSpecification": [
+        { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Tuesday","Wednesday","Thursday"], "opens": "11:00", "closes": "21:00" },
+        { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Friday","Saturday"], "opens": "11:00", "closes": "22:00" },
+        { "@type": "OpeningHoursSpecification", "dayOfWeek": "Sunday", "opens": "11:00", "closes": "20:00" }
+      ],
+      "sameAs": [
+        "https://instagram.com/charlietscrawfish",
+        "https://facebook.com/charlietscrawfish",
+        "https://tiktok.com/@charlietscrawfish"
+      ],
+      "acceptsReservations": "False"
+    }
+    </script>
 </head>
 <body>
 <noscript>You need to enable JavaScript to run this app.</noscript>

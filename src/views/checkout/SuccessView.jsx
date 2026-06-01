@@ -1,13 +1,20 @@
 import React from 'react'
 import { Link, useLocation } from 'react-router-dom'
+import { ADDRESS, PHONE } from '../../app/constants/site'
+
+const PICKUP_LABELS = {
+    asap: '20 – 30 minutes',
+    '45min': 'About 45 minutes',
+    '1hr': 'About 1 hour'
+}
 
 function SuccessView() {
     const { state } = useLocation()
-    const customerName = state?.customerName || 'there'
+    const customerName = state?.customerName?.trim() || 'there'
+    const pickupLabel = PICKUP_LABELS[state?.pickupTime] || '20 – 30 minutes'
 
     return (
         <>
-            {/* Hero */}
             <section className="border-b border-surface-300 bg-ink-900 pb-16 pt-32 lg:pb-24 lg:pt-40">
                 <div className="mx-auto max-w-7xl px-6 lg:px-10">
                     <p className="text-xs font-semibold uppercase tracking-[0.3em] text-crawfish">Order Confirmed</p>
@@ -19,10 +26,9 @@ function SuccessView() {
                 </div>
             </section>
 
-            {/* Confirmation */}
             <section className="bg-surface-100 py-24 lg:py-32">
                 <div className="mx-auto max-w-2xl px-6 text-center lg:px-10">
-                    <div className="mx-auto flex h-20 w-20 items-center justify-center rounded-full bg-crawfish-light">
+                    <div className="mx-auto flex h-20 w-20 items-center justify-center rounded-full bg-crawfish-light ring-8 ring-crawfish/5">
                         <svg
                             width="36"
                             height="36"
@@ -32,6 +38,7 @@ function SuccessView() {
                             strokeWidth="2.5"
                             strokeLinecap="round"
                             strokeLinejoin="round"
+                            aria-hidden="true"
                         >
                             <polyline points="20 6 9 17 4 12" />
                         </svg>
@@ -40,38 +47,69 @@ function SuccessView() {
                     <h2 className="mt-8 font-display text-2xl uppercase tracking-wide text-ink-900 md:text-3xl">
                         Thanks, {customerName}.
                     </h2>
-                    <p className="mt-4 text-base leading-relaxed text-ink-500">
+                    <p className="mt-4 text-base leading-relaxed text-ink-600">
                         Your order has been placed. We'll have it ready when you arrive. You should receive a
-                        confirmation at <span className="font-medium text-ink-700">{state?.email || 'your email'}</span>{' '}
+                        confirmation at <span className="font-medium text-ink-800">{state?.email || 'your email'}</span>{' '}
                         shortly.
                     </p>
 
-                    <div className="mt-6 rounded-xl border border-surface-300 bg-white px-6 py-5 text-left shadow-sm">
-                        <div className="flex items-center justify-between">
-                            <div>
-                                <p className="text-xs uppercase tracking-wider text-ink-400">Pickup Location</p>
-                                <p className="mt-1 text-sm font-medium text-ink-900">20 Private Rd 442</p>
-                                <p className="text-sm text-ink-500">Dayton, TX 77535</p>
-                            </div>
-                            <div className="text-right">
-                                <p className="text-xs uppercase tracking-wider text-ink-400">Estimated Pickup</p>
-                                <p className="mt-1 text-sm font-medium text-ink-900">20 - 30 minutes</p>
-                            </div>
+                    <div className="mt-8 grid gap-px overflow-hidden rounded-xl border border-surface-300 bg-surface-300 text-left shadow-sm sm:grid-cols-2">
+                        <div className="bg-white p-5">
+                            <p className="text-[10px] font-semibold uppercase tracking-[0.25em] text-ink-400">
+                                Pickup at
+                            </p>
+                            <p className="mt-2 font-display text-sm uppercase tracking-wide text-ink-900">
+                                {ADDRESS.street}
+                            </p>
+                            <p className="text-sm text-ink-600">
+                                {ADDRESS.city}, {ADDRESS.state} {ADDRESS.zip}
+                            </p>
+                            <a
+                                href={ADDRESS.mapsUrl}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="mt-3 inline-flex items-center gap-1 text-xs font-medium text-crawfish underline decoration-crawfish/30 underline-offset-2 transition-colors duration-200 hover:decoration-crawfish"
+                            >
+                                Get directions <span aria-hidden="true">&rarr;</span>
+                            </a>
+                        </div>
+                        <div className="bg-white p-5">
+                            <p className="text-[10px] font-semibold uppercase tracking-[0.25em] text-ink-400">
+                                Estimated ready
+                            </p>
+                            <p className="mt-2 font-display text-sm uppercase tracking-wide text-ink-900">
+                                {pickupLabel}
+                            </p>
+                            <a
+                                href={PHONE.href}
+                                className="mt-3 inline-flex items-center gap-1 text-xs font-medium text-crawfish underline decoration-crawfish/30 underline-offset-2 transition-colors duration-200 hover:decoration-crawfish"
+                            >
+                                {PHONE.display}
+                            </a>
                         </div>
                     </div>
+
+                    {state?.notes ? (
+                        <div className="mt-4 rounded-xl border border-surface-300 bg-white px-5 py-4 text-left shadow-sm">
+                            <p className="text-[10px] font-semibold uppercase tracking-[0.25em] text-ink-400">
+                                Special instructions
+                            </p>
+                            <p className="mt-2 text-sm text-ink-700">{state.notes}</p>
+                        </div>
+                    ) : null}
 
                     <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
                         <Link
                             to="/menu"
-                            className="inline-flex items-center justify-center rounded-lg bg-crawfish px-8 py-4 font-display text-sm uppercase tracking-wider text-white transition-colors hover:bg-crawfish-dark"
+                            className="inline-flex items-center justify-center rounded-lg bg-crawfish px-8 py-4 font-display text-sm uppercase tracking-wider text-white transition-[background-color,box-shadow,transform] duration-200 hover:bg-crawfish-dark hover:shadow-[0_8px_30px_-8px_rgba(232,93,38,0.5)] active:scale-[0.97]"
                         >
-                            Order More
+                            Order more
                         </Link>
                         <Link
                             to="/"
-                            className="text-sm font-medium text-ink-500 underline decoration-surface-400 underline-offset-4 transition-colors hover:text-crawfish hover:decoration-crawfish"
+                            className="text-sm font-medium text-ink-600 underline decoration-surface-400 underline-offset-4 transition-colors duration-200 hover:text-crawfish hover:decoration-crawfish"
                         >
-                            Back to Home
+                            Back to home
                         </Link>
                     </div>
                 </div>

@@ -36,8 +36,8 @@ module.exports = {
                 'section': ['clamp(2rem, 5vw, 4rem)', { lineHeight: '1', letterSpacing: '-0.02em' }],
             },
             animation: {
-                'fade-in': 'fadeIn 0.6s ease-out both',
-                'slide-up': 'slideUp 0.7s ease-out both',
+                'fade-in': 'fadeIn 0.7s cubic-bezier(0.23, 1, 0.32, 1) both',
+                'slide-up': 'slideUp 0.8s cubic-bezier(0.23, 1, 0.32, 1) both',
                 'slow-pulse': 'slowPulse 4s ease-in-out infinite',
             },
             keyframes: {
@@ -46,13 +46,18 @@ module.exports = {
                     '100%': { opacity: '1' },
                 },
                 slideUp: {
-                    '0%': { opacity: '0', transform: 'translateY(40px)' },
+                    '0%': { opacity: '0', transform: 'translateY(28px)' },
                     '100%': { opacity: '1', transform: 'translateY(0)' },
                 },
                 slowPulse: {
                     '0%, 100%': { opacity: '0.4' },
                     '50%': { opacity: '0.7' },
                 },
+            },
+            transitionTimingFunction: {
+                'out-strong': 'cubic-bezier(0.23, 1, 0.32, 1)',
+                'in-out-strong': 'cubic-bezier(0.77, 0, 0.175, 1)',
+                'drawer': 'cubic-bezier(0.32, 0.72, 0, 1)',
             },
         },
     },

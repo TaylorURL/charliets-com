@@ -1,18 +1,9 @@
 import React, { useCallback, useState } from 'react'
+import { ADDRESS, BUSINESS, CATERING, EMAIL, HOURS, PHONE, SOCIAL } from '../../app/constants/site'
 
 /* ──────────────────────────────────────────────
    Data
    ────────────────────────────────────────────── */
-
-const HOURS = [
-    { day: 'Tuesday', time: '11:00 AM - 9:00 PM' },
-    { day: 'Wednesday', time: '11:00 AM - 9:00 PM' },
-    { day: 'Thursday', time: '11:00 AM - 9:00 PM' },
-    { day: 'Friday', time: '11:00 AM - 10:00 PM' },
-    { day: 'Saturday', time: '11:00 AM - 10:00 PM' },
-    { day: 'Sunday', time: '11:00 AM - 8:00 PM' },
-    { day: 'Monday', time: 'Closed' }
-]
 
 const FAQ_ITEMS = [
     {
@@ -25,7 +16,7 @@ const FAQ_ITEMS = [
     },
     {
         question: 'Do you cater?',
-        answer: "Yes. We'll bring the pot, the propane, and the crawfish to your location. Minimum 50 pounds. Call us at least two weeks in advance. We'll handle everything except the paper towels."
+        answer: `Yes. We'll bring the pot, the propane, and the crawfish to your location. Minimum ${CATERING.minHeadcount} people. Call us at least ${CATERING.minLeadTimeDays} days in advance. We'll handle everything except the paper towels.`
     },
     {
         question: 'Is there outdoor seating?',
@@ -38,10 +29,16 @@ const FAQ_ITEMS = [
     {
         question: 'Can I bring my own beer?',
         answer: 'No. We have plenty. See the drinks section of the menu.'
+    },
+    {
+        question: 'Are you pet-friendly?',
+        answer: "Well-behaved dogs are welcome on the patio. Bring a water bowl, mind your tableside neighbors, and please don't feed them crawfish — the shells are bad for them."
+    },
+    {
+        question: 'What forms of payment do you accept?',
+        answer: 'Cash, all major credit cards, Apple Pay, and Google Pay. The ATM up the road in Dayton has a $3 fee — fair warning.'
     }
 ]
-
-const GOOGLE_MAPS_URL = 'https://maps.google.com/?q=20+Private+Rd+442+Dayton+TX+77535'
 
 /* ──────────────────────────────────────────────
    Components
@@ -55,19 +52,60 @@ function FAQItem({ question, answer }) {
         <div className="border-b border-surface-300">
             <button
                 onClick={toggle}
-                className="flex w-full items-center justify-between py-6 text-left transition-colors hover:text-crawfish"
+                className="flex w-full items-center justify-between gap-6 py-6 text-left transition-colors duration-200 hover:text-crawfish"
                 aria-expanded={isOpen}
             >
                 <span className="pr-4 font-display text-base uppercase tracking-wide text-ink-900">{question}</span>
-                <span className={`shrink-0 text-lg text-crawfish transition-transform ${isOpen ? 'rotate-45' : ''}`}>
+                <span
+                    className={`shrink-0 text-lg text-crawfish transition-transform duration-300 ${isOpen ? 'rotate-45' : ''}`}
+                    aria-hidden="true"
+                >
                     +
                 </span>
             </button>
-            {isOpen && (
-                <div className="pb-6">
-                    <p className="max-w-2xl text-sm leading-relaxed text-ink-500">{answer}</p>
+            <div
+                className={`grid transition-[grid-template-rows] duration-300 ease-out ${
+                    isOpen ? 'grid-rows-[1fr]' : 'grid-rows-[0fr]'
+                }`}
+            >
+                <div className="overflow-hidden">
+                    <p className="max-w-2xl pb-6 text-sm leading-relaxed text-ink-600">{answer}</p>
                 </div>
-            )}
+            </div>
+        </div>
+    )
+}
+
+function SocialBlock() {
+    return (
+        <div className="rounded-xl border border-surface-300 bg-white p-6 lg:p-8">
+            <p className="text-[10px] font-semibold uppercase tracking-[0.3em] text-crawfish/70">Follow Along</p>
+            <p className="mt-3 font-display text-lg uppercase tracking-wide text-ink-900">
+                Boils, specials, behind-the-pot.
+            </p>
+            <ul className="mt-6 space-y-3">
+                {SOCIAL.map(({ label, handle, href }) => (
+                    <li key={label}>
+                        <a
+                            href={href}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="group flex items-center justify-between gap-4 rounded-lg border border-surface-300 px-4 py-3 transition-[border-color,background-color,transform] duration-200 hover:border-crawfish/40 hover:bg-crawfish-light active:scale-[0.99]"
+                        >
+                            <div>
+                                <p className="font-display text-sm uppercase tracking-wide text-ink-900">{label}</p>
+                                <p className="text-xs text-ink-500">{handle}</p>
+                            </div>
+                            <span
+                                className="text-crawfish transition-transform duration-200 group-hover:translate-x-1"
+                                aria-hidden="true"
+                            >
+                                &rarr;
+                            </span>
+                        </a>
+                    </li>
+                ))}
+            </ul>
         </div>
     )
 }
@@ -86,9 +124,9 @@ function HeroSection() {
                     <br />
                     hungry.
                 </h1>
-                <p className="mt-6 max-w-xl text-base leading-relaxed text-white/60">
-                    We're at 20 Private Rd 442 in Dayton, Texas. You'll smell us before you see us. Plenty of parking, a
-                    patio out back, and a line that moves fast.
+                <p className="mt-6 max-w-xl text-base leading-relaxed text-white/65">
+                    We're at {ADDRESS.street} in {ADDRESS.city}, Texas. You'll smell us before you see us. Plenty of
+                    parking, a patio out back, and a line that moves fast.
                 </p>
             </div>
         </section>
@@ -99,78 +137,92 @@ function LocationSection() {
     return (
         <section className="bg-surface-100 py-24 lg:py-32">
             <div className="mx-auto max-w-7xl px-6 lg:px-10">
-                <div className="grid gap-16 lg:grid-cols-2">
-                    <div>
+                <div className="grid gap-16 lg:grid-cols-12">
+                    <div className="lg:col-span-7">
                         <p className="text-xs font-semibold uppercase tracking-[0.3em] text-crawfish">Location</p>
                         <h2 className="mt-4 font-display text-section uppercase text-ink-900">The Shack</h2>
 
-                        <address className="mt-8 space-y-4 not-italic">
+                        <address className="mt-8 grid gap-6 not-italic sm:grid-cols-2">
                             <div>
-                                <p className="text-sm uppercase tracking-wider text-ink-400">Address</p>
-                                <p className="mt-1 text-lg text-ink-900">20 Private Rd 442</p>
-                                <p className="text-lg text-ink-900">Dayton, TX 77535</p>
+                                <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-ink-400">
+                                    Address
+                                </p>
+                                <p className="mt-2 text-lg text-ink-900">{ADDRESS.street}</p>
+                                <p className="text-lg text-ink-900">
+                                    {ADDRESS.city}, {ADDRESS.state} {ADDRESS.zip}
+                                </p>
                             </div>
                             <div>
-                                <p className="text-sm uppercase tracking-wider text-ink-400">Phone</p>
+                                <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-ink-400">
+                                    Phone
+                                </p>
                                 <a
-                                    href="tel:+15551234567"
-                                    className="mt-1 block text-lg text-ink-900 transition-colors hover:text-crawfish"
+                                    href={PHONE.href}
+                                    className="mt-2 block text-lg text-ink-900 transition-colors duration-200 hover:text-crawfish"
                                 >
-                                    (555) 123-4567
+                                    {PHONE.display}
                                 </a>
                             </div>
                             <div>
-                                <p className="text-sm uppercase tracking-wider text-ink-400">Email</p>
+                                <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-ink-400">
+                                    General email
+                                </p>
                                 <a
-                                    href="mailto:eat@charliets.com"
-                                    className="mt-1 block text-lg text-ink-900 transition-colors hover:text-crawfish"
+                                    href={EMAIL.href}
+                                    className="mt-2 block text-lg text-ink-900 transition-colors duration-200 hover:text-crawfish"
                                 >
-                                    eat@charliets.com
+                                    {EMAIL.primary}
+                                </a>
+                            </div>
+                            <div>
+                                <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-ink-400">
+                                    Catering email
+                                </p>
+                                <a
+                                    href={`mailto:${EMAIL.catering}`}
+                                    className="mt-2 block text-lg text-ink-900 transition-colors duration-200 hover:text-crawfish"
+                                >
+                                    {EMAIL.catering}
                                 </a>
                             </div>
                         </address>
 
-                        <div className="mt-10 flex flex-col gap-4 sm:flex-row">
+                        <div className="mt-10 flex flex-col gap-3 sm:flex-row">
                             <a
-                                href={GOOGLE_MAPS_URL}
+                                href={ADDRESS.mapsUrl}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="inline-flex items-center justify-center rounded-lg bg-crawfish px-8 py-4 font-display text-sm uppercase tracking-wider text-white transition-colors hover:bg-crawfish-dark"
+                                className="inline-flex items-center justify-center rounded-lg bg-crawfish px-8 py-4 font-display text-sm uppercase tracking-wider text-white transition-[background-color,box-shadow,transform] duration-200 hover:bg-crawfish-dark hover:shadow-[0_8px_30px_-8px_rgba(232,93,38,0.5)] active:scale-[0.97]"
                             >
                                 Get Directions
                             </a>
                             <a
-                                href="tel:+15551234567"
-                                className="inline-flex items-center justify-center rounded-lg border border-surface-400 px-8 py-4 text-sm font-medium tracking-wide text-ink-600 transition-colors hover:border-crawfish hover:text-crawfish"
+                                href={PHONE.href}
+                                className="inline-flex items-center justify-center rounded-lg border border-surface-400 px-8 py-4 text-sm font-medium tracking-wide text-ink-700 transition-[border-color,color,transform] duration-200 hover:border-crawfish hover:text-crawfish active:scale-[0.97]"
                             >
                                 Call Ahead
                             </a>
                         </div>
                     </div>
 
-                    <div>
+                    <div className="lg:col-span-5">
                         <p className="text-xs font-semibold uppercase tracking-[0.3em] text-crawfish">Hours</p>
                         <h2 className="mt-4 font-display text-section uppercase text-ink-900">When we're open</h2>
 
-                        <dl className="mt-8 divide-y divide-surface-300">
-                            {HOURS.map(({ day, time }) => {
-                                const isClosed = time === 'Closed'
-                                return (
-                                    <div key={day} className="flex items-center justify-between py-4">
-                                        <dt className={`text-sm ${isClosed ? 'text-ink-400' : 'text-ink-600'}`}>
-                                            {day}
-                                        </dt>
-                                        <dd
-                                            className={`text-sm font-medium ${isClosed ? 'text-ink-400' : 'text-ink-900'}`}
-                                        >
-                                            {time}
-                                        </dd>
-                                    </div>
-                                )
-                            })}
+                        <dl className="mt-8 divide-y divide-surface-300 border-y border-surface-300">
+                            {HOURS.map(({ day, time, closed }) => (
+                                <div key={day} className="flex items-center justify-between py-4">
+                                    <dt className={`text-sm ${closed ? 'text-ink-400' : 'text-ink-700'}`}>{day}</dt>
+                                    <dd
+                                        className={`text-sm font-medium tabular-nums ${closed ? 'text-ink-400' : 'text-ink-900'}`}
+                                    >
+                                        {time}
+                                    </dd>
+                                </div>
+                            ))}
                         </dl>
 
-                        <p className="mt-6 text-xs text-ink-400">
+                        <p className="mt-6 text-xs text-ink-500">
                             * Kitchen closes 30 minutes before close. Last boil order 45 minutes before close.
                         </p>
                     </div>
@@ -180,20 +232,29 @@ function LocationSection() {
     )
 }
 
-function MapPlaceholderSection() {
+function MapSection() {
     return (
         <section className="border-y border-surface-300">
-            <div className="flex min-h-[400px] items-center justify-center bg-surface-200">
-                <div className="text-center">
-                    <p className="font-display text-xl uppercase tracking-wider text-ink-300">Map</p>
-                    <p className="mt-2 text-sm text-ink-400">20 Private Rd 442, Dayton, TX 77535</p>
+            <div className="relative">
+                <iframe
+                    title={`${BUSINESS.fullName} location`}
+                    src="https://www.openstreetmap.org/export/embed.html?bbox=-94.9100%2C30.0350%2C-94.8900%2C30.0550&layer=mapnik&marker=30.0460%2C-94.9005"
+                    className="h-[400px] w-full border-0 grayscale-[30%] lg:h-[500px]"
+                    loading="lazy"
+                    referrerPolicy="no-referrer"
+                />
+                <div className="absolute bottom-4 left-4 max-w-[260px] rounded-lg bg-white/95 px-4 py-3 shadow-lg backdrop-blur-sm">
+                    <p className="font-display text-sm uppercase tracking-wide text-ink-900">{ADDRESS.street}</p>
+                    <p className="text-xs text-ink-500">
+                        {ADDRESS.city}, {ADDRESS.state} {ADDRESS.zip}
+                    </p>
                     <a
-                        href={GOOGLE_MAPS_URL}
+                        href={ADDRESS.mapsUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="mt-4 inline-block text-sm text-crawfish underline decoration-crawfish/30 underline-offset-4 transition-colors hover:decoration-crawfish"
+                        className="mt-2 inline-flex items-center gap-1 text-xs font-medium text-crawfish underline decoration-crawfish/30 underline-offset-2 transition-colors duration-200 hover:decoration-crawfish"
                     >
-                        Open in Google Maps &#8594;
+                        Get Directions <span aria-hidden="true">&rarr;</span>
                     </a>
                 </div>
             </div>
@@ -208,30 +269,294 @@ function ParkingSection() {
                 <div className="lg:col-span-5">
                     <p className="text-xs font-semibold uppercase tracking-[0.3em] text-crawfish">Getting Here</p>
                     <h2 className="mt-4 font-display text-section uppercase text-ink-900">
-                        Parking &
+                        Parking &amp;
                         <br />
                         directions
                     </h2>
                 </div>
 
-                <div className="space-y-6 text-base leading-relaxed text-ink-500 lg:col-span-7">
+                <div className="space-y-6 text-base leading-relaxed text-ink-600 lg:col-span-7">
                     <p>
-                        We're at 20 Private Rd 442 in Dayton, just off the highway. If you're coming from Houston, it's
-                        about 45 minutes east on US-90. Look for the sign with the crawfish on a dirt bike. You can't
-                        miss it.
+                        We're at {ADDRESS.street} in {ADDRESS.city}, just off the highway. If you're coming from
+                        Houston, it's about 45 minutes east on US-90. Look for the sign with the crawfish on a dirt
+                        bike. You can't miss it.
                     </p>
                     <p>
-                        <span className="text-ink-700">Parking lot</span> is gravel, right out front. Plenty of space.
+                        <span className="text-ink-800">Parking lot</span> is gravel, right out front. Plenty of space.
                         Pull in, park, walk up. It's not complicated.
                     </p>
                     <p>
-                        <span className="text-ink-700">Big trucks and trailers</span> &mdash; you're in Dayton, we've
-                        got room. Pull around to the side lot if you need extra space.
+                        <span className="text-ink-800">Big trucks and trailers</span> &mdash; you're in {ADDRESS.city},
+                        we've got room. Pull around to the side lot if you need extra space.
                     </p>
                     <p>
-                        <span className="text-ink-700">The patio</span> is out back. Covered, picnic tables, string
+                        <span className="text-ink-800">The patio</span> is out back. Covered, picnic tables, string
                         lights. Where most of the boils happen when the weather isn't trying to kill you.
                     </p>
+                </div>
+            </div>
+        </section>
+    )
+}
+
+function CateringSection() {
+    return (
+        <section id="catering" className="scroll-mt-32 border-t border-surface-300 bg-ink-900 py-24 lg:py-32">
+            <div className="mx-auto max-w-7xl px-6 lg:px-10">
+                <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
+                    <div className="lg:col-span-5">
+                        <p className="text-xs font-semibold uppercase tracking-[0.3em] text-crawfish">Catering</p>
+                        <h2 className="mt-4 font-display text-section uppercase text-white">
+                            We'll bring the pot
+                            <br />
+                            to you.
+                        </h2>
+                        <p className="mt-6 max-w-md text-base leading-relaxed text-white/65">
+                            We do birthdays, tailgates, wedding rehearsals, company outings, crawfish-and-beer
+                            fundraisers. If there's a parking lot and a crowd, we'll be there with the propane.
+                        </p>
+                    </div>
+
+                    <div className="lg:col-span-7">
+                        <dl className="grid gap-px overflow-hidden rounded-xl bg-white/5 sm:grid-cols-2">
+                            <div className="bg-ink-900 p-6 lg:p-8">
+                                <dt className="text-[10px] font-semibold uppercase tracking-[0.3em] text-crawfish/70">
+                                    Headcount
+                                </dt>
+                                <dd className="mt-2 font-display text-2xl text-white">
+                                    {CATERING.minHeadcount}+ people
+                                </dd>
+                                <p className="mt-2 text-sm text-white/55">
+                                    Smaller groups, give us a call and we'll work something out.
+                                </p>
+                            </div>
+                            <div className="bg-ink-900 p-6 lg:p-8">
+                                <dt className="text-[10px] font-semibold uppercase tracking-[0.3em] text-crawfish/70">
+                                    Lead time
+                                </dt>
+                                <dd className="mt-2 font-display text-2xl text-white">
+                                    {CATERING.minLeadTimeDays} days
+                                </dd>
+                                <p className="mt-2 text-sm text-white/55">
+                                    Live boils require planning. The further out, the better.
+                                </p>
+                            </div>
+                            <div className="bg-ink-900 p-6 lg:p-8">
+                                <dt className="text-[10px] font-semibold uppercase tracking-[0.3em] text-crawfish/70">
+                                    Service radius
+                                </dt>
+                                <dd className="mt-2 font-display text-2xl text-white">
+                                    {CATERING.deliveryRadiusMiles} miles
+                                </dd>
+                                <p className="mt-2 text-sm text-white/55">
+                                    Dayton, Liberty, Baytown, Houston, Beaumont, anywhere in between.
+                                </p>
+                            </div>
+                            <div className="bg-ink-900 p-6 lg:p-8">
+                                <dt className="text-[10px] font-semibold uppercase tracking-[0.3em] text-crawfish/70">
+                                    Crawfish minimum
+                                </dt>
+                                <dd className="mt-2 font-display text-2xl text-white">
+                                    {CATERING.minCrawfishPounds} lbs
+                                </dd>
+                                <p className="mt-2 text-sm text-white/55">
+                                    In season. Off-season we'll do shrimp boils.
+                                </p>
+                            </div>
+                        </dl>
+
+                        <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+                            <a
+                                href={PHONE.href}
+                                className="inline-flex items-center justify-center rounded-lg bg-crawfish px-7 py-3.5 font-display text-[13px] uppercase tracking-wider text-white transition-[background-color,box-shadow,transform] duration-200 hover:bg-crawfish-dark hover:shadow-[0_8px_30px_-8px_rgba(232,93,38,0.5)] active:scale-[0.97]"
+                            >
+                                Call to book
+                            </a>
+                            <a
+                                href={`mailto:${EMAIL.catering}?subject=Catering%20inquiry`}
+                                className="inline-flex items-center justify-center rounded-lg border border-white/15 px-7 py-3.5 text-[13px] font-medium uppercase tracking-wider text-white/70 transition-[border-color,color,transform] duration-200 hover:border-white/35 hover:text-white active:scale-[0.97]"
+                            >
+                                Email the catering desk
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    )
+}
+
+function ContactFormSection() {
+    const [formState, setFormState] = useState({ name: '', email: '', phone: '', topic: 'general', message: '' })
+    const [submitted, setSubmitted] = useState(false)
+    const [submitting, setSubmitting] = useState(false)
+
+    const handleFieldChange = useCallback((event) => {
+        const { name, value } = event.target
+        setFormState((prev) => ({ ...prev, [name]: value }))
+    }, [])
+
+    const handleSubmit = useCallback(
+        (event) => {
+            event.preventDefault()
+            setSubmitting(true)
+            const recipient = formState.topic === 'catering' ? EMAIL.catering : EMAIL.primary
+            const subject = encodeURIComponent(
+                `[${BUSINESS.name}] ${formState.topic === 'catering' ? 'Catering inquiry' : 'Website message'} from ${formState.name}`
+            )
+            const body = encodeURIComponent(
+                `Name: ${formState.name}\nEmail: ${formState.email}\nPhone: ${formState.phone}\n\n${formState.message}`
+            )
+            window.location.href = `mailto:${recipient}?subject=${subject}&body=${body}`
+            setTimeout(() => {
+                setSubmitting(false)
+                setSubmitted(true)
+            }, 400)
+        },
+        [formState]
+    )
+
+    return (
+        <section className="border-t border-surface-300 bg-surface-100 py-24 lg:py-32">
+            <div className="mx-auto max-w-7xl px-6 lg:px-10">
+                <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
+                    <div className="lg:col-span-5">
+                        <p className="text-xs font-semibold uppercase tracking-[0.3em] text-crawfish">Send a Message</p>
+                        <h2 className="mt-4 font-display text-section uppercase text-ink-900">
+                            Got a question?
+                            <br />
+                            Drop us a line.
+                        </h2>
+                        <p className="mt-6 max-w-md text-base leading-relaxed text-ink-600">
+                            For the fastest reply, just call us &mdash; we pick up between{' '}
+                            {HOURS[1].time.split('–')[0].trim()} and close. Otherwise, this form will open your email
+                            app with our address pre-filled.
+                        </p>
+
+                        <div className="mt-10">
+                            <SocialBlock />
+                        </div>
+                    </div>
+
+                    <div className="lg:col-span-7">
+                        {submitted ? (
+                            <div className="rounded-xl border border-crawfish/20 bg-crawfish-light p-8 text-center lg:p-10">
+                                <p className="font-display text-xl uppercase tracking-wide text-ink-900">
+                                    Email opened.
+                                </p>
+                                <p className="mt-3 text-sm text-ink-600">
+                                    We just opened your email app with the message ready to send. If it didn't pop up,
+                                    just write us directly at{' '}
+                                    <a
+                                        href={EMAIL.href}
+                                        className="font-medium text-crawfish underline decoration-crawfish/30 underline-offset-2"
+                                    >
+                                        {EMAIL.primary}
+                                    </a>
+                                    .
+                                </p>
+                            </div>
+                        ) : (
+                            <form
+                                onSubmit={handleSubmit}
+                                className="space-y-5 rounded-xl border border-surface-300 bg-white p-6 lg:p-8"
+                            >
+                                <div className="grid gap-5 sm:grid-cols-2">
+                                    <label className="block">
+                                        <span className="text-[10px] font-semibold uppercase tracking-[0.2em] text-ink-500">
+                                            Name
+                                        </span>
+                                        <input
+                                            type="text"
+                                            name="name"
+                                            autoComplete="name"
+                                            required
+                                            value={formState.name}
+                                            onChange={handleFieldChange}
+                                            className="mt-1 block w-full rounded-lg border border-surface-400 bg-white px-4 py-3 text-sm text-ink-900 placeholder:text-ink-400 transition-[border-color,box-shadow] duration-200 focus:border-crawfish focus:outline-none focus:ring-1 focus:ring-crawfish"
+                                            placeholder="Your name"
+                                        />
+                                    </label>
+                                    <label className="block">
+                                        <span className="text-[10px] font-semibold uppercase tracking-[0.2em] text-ink-500">
+                                            Email
+                                        </span>
+                                        <input
+                                            type="email"
+                                            name="email"
+                                            autoComplete="email"
+                                            required
+                                            value={formState.email}
+                                            onChange={handleFieldChange}
+                                            className="mt-1 block w-full rounded-lg border border-surface-400 bg-white px-4 py-3 text-sm text-ink-900 placeholder:text-ink-400 transition-[border-color,box-shadow] duration-200 focus:border-crawfish focus:outline-none focus:ring-1 focus:ring-crawfish"
+                                            placeholder="you@example.com"
+                                        />
+                                    </label>
+                                </div>
+
+                                <div className="grid gap-5 sm:grid-cols-2">
+                                    <label className="block">
+                                        <span className="text-[10px] font-semibold uppercase tracking-[0.2em] text-ink-500">
+                                            Phone (optional)
+                                        </span>
+                                        <input
+                                            type="tel"
+                                            name="phone"
+                                            autoComplete="tel"
+                                            value={formState.phone}
+                                            onChange={handleFieldChange}
+                                            className="mt-1 block w-full rounded-lg border border-surface-400 bg-white px-4 py-3 text-sm text-ink-900 placeholder:text-ink-400 transition-[border-color,box-shadow] duration-200 focus:border-crawfish focus:outline-none focus:ring-1 focus:ring-crawfish"
+                                            placeholder="(936) 555-0123"
+                                        />
+                                    </label>
+                                    <label className="block">
+                                        <span className="text-[10px] font-semibold uppercase tracking-[0.2em] text-ink-500">
+                                            Topic
+                                        </span>
+                                        <select
+                                            name="topic"
+                                            value={formState.topic}
+                                            onChange={handleFieldChange}
+                                            className="mt-1 block w-full appearance-none rounded-lg border border-surface-400 bg-white px-4 py-3 text-sm text-ink-900 transition-[border-color,box-shadow] duration-200 focus:border-crawfish focus:outline-none focus:ring-1 focus:ring-crawfish"
+                                        >
+                                            <option value="general">General question</option>
+                                            <option value="catering">Catering inquiry</option>
+                                            <option value="large-order">Large takeout / call ahead</option>
+                                            <option value="feedback">Feedback / press</option>
+                                        </select>
+                                    </label>
+                                </div>
+
+                                <label className="block">
+                                    <span className="text-[10px] font-semibold uppercase tracking-[0.2em] text-ink-500">
+                                        Message
+                                    </span>
+                                    <textarea
+                                        name="message"
+                                        required
+                                        rows={5}
+                                        value={formState.message}
+                                        onChange={handleFieldChange}
+                                        className="mt-1 block w-full resize-y rounded-lg border border-surface-400 bg-white px-4 py-3 text-sm text-ink-900 placeholder:text-ink-400 transition-[border-color,box-shadow] duration-200 focus:border-crawfish focus:outline-none focus:ring-1 focus:ring-crawfish"
+                                        placeholder="Tell us what you need — headcount, date, anything else we should know."
+                                    />
+                                </label>
+
+                                <div className="flex flex-col items-start gap-3 pt-2 sm:flex-row sm:items-center sm:justify-between">
+                                    <p className="text-xs text-ink-500">
+                                        We'll respond within one business day, usually faster.
+                                    </p>
+                                    <button
+                                        type="submit"
+                                        disabled={submitting}
+                                        className="inline-flex items-center justify-center rounded-lg bg-crawfish px-7 py-3.5 font-display text-[13px] uppercase tracking-wider text-white transition-[background-color,box-shadow,transform] duration-200 hover:bg-crawfish-dark hover:shadow-[0_8px_30px_-8px_rgba(232,93,38,0.5)] active:scale-[0.97] disabled:cursor-not-allowed disabled:opacity-60"
+                                    >
+                                        {submitting ? 'Opening…' : 'Send Message'}
+                                    </button>
+                                </div>
+                            </form>
+                        )}
+                    </div>
                 </div>
             </div>
         </section>
@@ -247,33 +572,11 @@ function FAQSection() {
                     <h2 className="mt-4 font-display text-section uppercase text-ink-900">Before you ask</h2>
                 </div>
 
-                <div className="max-w-3xl">
+                <div className="max-w-3xl border-t border-surface-300">
                     {FAQ_ITEMS.map(({ question, answer }) => (
                         <FAQItem key={question} question={question} answer={answer} />
                     ))}
                 </div>
-            </div>
-        </section>
-    )
-}
-
-function CateringCTASection() {
-    return (
-        <section className="border-t border-surface-300 bg-surface-100 py-20">
-            <div className="mx-auto max-w-3xl px-6 text-center">
-                <h2 className="font-display text-2xl uppercase tracking-wide text-ink-900 md:text-3xl">
-                    Need us to bring the boil to you?
-                </h2>
-                <p className="mt-4 text-sm text-ink-500">
-                    We cater events of 50 people or more. We bring everything: crawfish, seasoning, the pots, the
-                    propane, the paper towels. You just provide the people and the parking lot.
-                </p>
-                <a
-                    href="tel:+15551234567"
-                    className="mt-8 inline-flex items-center justify-center rounded-lg bg-crawfish px-8 py-4 font-display text-sm uppercase tracking-wider text-white transition-colors hover:bg-crawfish-dark"
-                >
-                    Call to Book Catering
-                </a>
             </div>
         </section>
     )
@@ -288,10 +591,11 @@ function ContactView() {
         <>
             <HeroSection />
             <LocationSection />
-            <MapPlaceholderSection />
+            <MapSection />
             <ParkingSection />
+            <CateringSection />
+            <ContactFormSection />
             <FAQSection />
-            <CateringCTASection />
         </>
     )
 }

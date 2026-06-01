@@ -11,6 +11,7 @@ import AboutView from '../views/about/AboutView'
 import ContactView from '../views/contact/ContactView'
 import CheckoutView from '../views/checkout/CheckoutView'
 import SuccessView from '../views/checkout/SuccessView'
+import NotFoundView from '../views/not-found/NotFoundView'
 
 function App() {
     return (
@@ -26,6 +27,7 @@ function App() {
                         <Route path="/contact" element={<ContactView />} />
                         <Route path="/checkout" element={<CheckoutView />} />
                         <Route path="/order-success" element={<SuccessView />} />
+                        <Route path="*" element={<NotFoundView />} />
                     </Routes>
                 </main>
                 <Footer />

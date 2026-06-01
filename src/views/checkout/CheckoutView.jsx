@@ -1,7 +1,8 @@
 import React, { useCallback, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { CardElement, Elements, useElements, useStripe } from '@stripe/react-stripe-js'
 import { loadStripe } from '@stripe/stripe-js'
+import { ADDRESS, PHONE } from '../../app/constants/site'
 import { useCart } from '../../app/context/CartContext'
 import { formatCents } from '../../app/utils/FormatUtility'
 
@@ -26,6 +27,12 @@ const CARD_ELEMENT_OPTIONS = {
 
 const TAX_RATE = 0.0825
 
+const PICKUP_OPTIONS = [
+    { value: 'asap', label: 'ASAP', detail: '20 – 30 minutes' },
+    { value: '45min', label: '45 min', detail: 'Less rush' },
+    { value: '1hr', label: '1 hour', detail: 'Plan it out' }
+]
+
 /* ──────────────────────────────────────────────
    Order Summary
    ────────────────────────────────────────────── */
@@ -36,35 +43,91 @@ function OrderSummary({ items, totalCents }) {
 
     return (
         <div className="rounded-xl border border-surface-300 bg-white p-6 shadow-sm lg:p-8">
-            <h2 className="font-display text-lg uppercase tracking-wide text-ink-900">Your Order</h2>
+            <p className="text-[10px] font-semibold uppercase tracking-[0.25em] text-crawfish">Order Summary</p>
+            <h2 className="mt-2 font-display text-lg uppercase tracking-wide text-ink-900">Your pickup order</h2>
 
-            <div className="mt-6 divide-y divide-surface-300">
+            <div className="mt-6 divide-y divide-surface-300 border-y border-surface-300">
                 {items.map(({ id, name, priceCents, quantity }) => (
-                    <div key={id} className="flex items-start justify-between py-3">
-                        <div>
-                            <p className="text-sm text-ink-900">{name}</p>
-                            <p className="text-xs text-ink-400">Qty: {quantity}</p>
+                    <div key={id} className="flex items-start justify-between gap-4 py-3">
+                        <div className="min-w-0 flex-1">
+                            <p className="truncate text-sm text-ink-900">{name}</p>
+                            <p className="text-xs text-ink-500">
+                                Qty {quantity} · {formatCents(priceCents)} each
+                            </p>
                         </div>
-                        <span className="text-sm font-medium text-ink-900">{formatCents(priceCents * quantity)}</span>
+                        <span className="shrink-0 text-sm font-medium tabular-nums text-ink-900">
+                            {formatCents(priceCents * quantity)}
+                        </span>
                     </div>
                 ))}
             </div>
 
-            <div className="mt-4 space-y-2 border-t border-surface-300 pt-4">
-                <div className="flex justify-between text-sm text-ink-500">
+            <div className="mt-5 space-y-2">
+                <div className="flex justify-between text-sm text-ink-600">
                     <span>Subtotal</span>
-                    <span>{formatCents(totalCents)}</span>
+                    <span className="tabular-nums">{formatCents(totalCents)}</span>
                 </div>
-                <div className="flex justify-between text-sm text-ink-500">
+                <div className="flex justify-between text-sm text-ink-600">
                     <span>Tax (8.25%)</span>
-                    <span>{formatCents(taxCents)}</span>
+                    <span className="tabular-nums">{formatCents(taxCents)}</span>
                 </div>
                 <div className="flex justify-between border-t border-surface-300 pt-3 font-display text-lg text-ink-900">
                     <span>Total</span>
-                    <span>{formatCents(grandTotalCents)}</span>
+                    <span className="tabular-nums">{formatCents(grandTotalCents)}</span>
                 </div>
             </div>
+
+            <div className="mt-6 rounded-lg bg-surface-100 p-4 text-xs leading-relaxed text-ink-600">
+                <p className="font-display uppercase tracking-wide text-ink-900">Pickup only</p>
+                <p className="mt-1">
+                    {ADDRESS.street}, {ADDRESS.city}, {ADDRESS.state} {ADDRESS.zip}. Show your name at the counter.
+                </p>
+            </div>
         </div>
+    )
+}
+
+/* ──────────────────────────────────────────────
+   Pickup time picker
+   ────────────────────────────────────────────── */
+
+function PickupTimePicker({ value, onChange }) {
+    return (
+        <fieldset>
+            <legend className="text-[10px] font-semibold uppercase tracking-[0.2em] text-ink-500">Pickup time</legend>
+            <div className="mt-2 grid gap-2 sm:grid-cols-3">
+                {PICKUP_OPTIONS.map(({ value: optionValue, label, detail }) => {
+                    const isActive = value === optionValue
+                    return (
+                        <label
+                            key={optionValue}
+                            className={`group flex cursor-pointer flex-col rounded-lg border px-4 py-3 transition-[border-color,background-color,transform] duration-200 active:scale-[0.98] ${
+                                isActive
+                                    ? 'border-crawfish bg-crawfish-light'
+                                    : 'border-surface-400 bg-white hover:border-crawfish/40'
+                            }`}
+                        >
+                            <input
+                                type="radio"
+                                name="pickupTime"
+                                value={optionValue}
+                                checked={isActive}
+                                onChange={() => onChange(optionValue)}
+                                className="sr-only"
+                            />
+                            <span
+                                className={`font-display text-sm uppercase tracking-wide ${
+                                    isActive ? 'text-crawfish' : 'text-ink-900'
+                                }`}
+                            >
+                                {label}
+                            </span>
+                            <span className="mt-0.5 text-xs text-ink-500">{detail}</span>
+                        </label>
+                    )
+                })}
+            </div>
+        </fieldset>
     )
 }
 
@@ -79,7 +142,9 @@ function CheckoutForm({ totalCents, onSuccess }) {
         firstName: '',
         lastName: '',
         email: '',
-        phone: ''
+        phone: '',
+        pickupTime: 'asap',
+        notes: ''
     })
     const [processing, setProcessing] = useState(false)
     const [errorMessage, setErrorMessage] = useState('')
@@ -87,6 +152,10 @@ function CheckoutForm({ totalCents, onSuccess }) {
     const handleFieldChange = useCallback((event) => {
         const { name, value } = event.target
         setFormState((prev) => ({ ...prev, [name]: value }))
+    }, [])
+
+    const handlePickupTime = useCallback((pickupTime) => {
+        setFormState((prev) => ({ ...prev, pickupTime }))
     }, [])
 
     const handleSubmit = useCallback(
@@ -114,13 +183,12 @@ function CheckoutForm({ totalCents, onSuccess }) {
                 return
             }
 
-            // In production, send paymentMethod.id + order details to your backend
-            // to create a PaymentIntent and confirm it server-side.
-            // For now, simulate success after payment method creation.
             onSuccess({
                 paymentMethodId: paymentMethod.id,
                 customerName: `${formState.firstName} ${formState.lastName}`,
-                email: formState.email
+                email: formState.email,
+                pickupTime: formState.pickupTime,
+                notes: formState.notes
             })
         },
         [stripe, elements, formState, onSuccess]
@@ -130,72 +198,109 @@ function CheckoutForm({ totalCents, onSuccess }) {
     const grandTotalCents = totalCents + taxCents
 
     return (
-        <form onSubmit={handleSubmit} className="space-y-6">
-            <div>
-                <h2 className="font-display text-lg uppercase tracking-wide text-ink-900">Contact Info</h2>
-                <div className="mt-4 grid gap-4 sm:grid-cols-2">
+        <form onSubmit={handleSubmit} className="space-y-8">
+            <div className="rounded-xl border border-surface-300 bg-white p-6 lg:p-8">
+                <p className="text-[10px] font-semibold uppercase tracking-[0.25em] text-crawfish">Step 1</p>
+                <h2 className="mt-1 font-display text-lg uppercase tracking-wide text-ink-900">Contact info</h2>
+                <div className="mt-5 grid gap-4 sm:grid-cols-2">
                     <label className="block">
-                        <span className="text-xs uppercase tracking-wider text-ink-400">First Name</span>
+                        <span className="text-[10px] font-semibold uppercase tracking-[0.2em] text-ink-500">
+                            First Name
+                        </span>
                         <input
                             type="text"
                             name="firstName"
+                            autoComplete="given-name"
                             required
                             value={formState.firstName}
                             onChange={handleFieldChange}
-                            className="mt-1 block w-full rounded-lg border border-surface-400 bg-white px-4 py-3 text-sm text-ink-900 placeholder:text-ink-400 focus:border-crawfish focus:outline-none focus:ring-1 focus:ring-crawfish"
+                            className="mt-1 block w-full rounded-lg border border-surface-400 bg-white px-4 py-3 text-sm text-ink-900 placeholder:text-ink-400 transition-[border-color,box-shadow] duration-200 focus:border-crawfish focus:outline-none focus:ring-1 focus:ring-crawfish"
                             placeholder="Charlie"
                         />
                     </label>
                     <label className="block">
-                        <span className="text-xs uppercase tracking-wider text-ink-400">Last Name</span>
+                        <span className="text-[10px] font-semibold uppercase tracking-[0.2em] text-ink-500">
+                            Last Name
+                        </span>
                         <input
                             type="text"
                             name="lastName"
+                            autoComplete="family-name"
                             required
                             value={formState.lastName}
                             onChange={handleFieldChange}
-                            className="mt-1 block w-full rounded-lg border border-surface-400 bg-white px-4 py-3 text-sm text-ink-900 placeholder:text-ink-400 focus:border-crawfish focus:outline-none focus:ring-1 focus:ring-crawfish"
+                            className="mt-1 block w-full rounded-lg border border-surface-400 bg-white px-4 py-3 text-sm text-ink-900 placeholder:text-ink-400 transition-[border-color,box-shadow] duration-200 focus:border-crawfish focus:outline-none focus:ring-1 focus:ring-crawfish"
                             placeholder="Thompson"
                         />
                     </label>
                 </div>
                 <div className="mt-4 grid gap-4 sm:grid-cols-2">
                     <label className="block">
-                        <span className="text-xs uppercase tracking-wider text-ink-400">Email</span>
+                        <span className="text-[10px] font-semibold uppercase tracking-[0.2em] text-ink-500">Email</span>
                         <input
                             type="email"
                             name="email"
+                            autoComplete="email"
                             required
                             value={formState.email}
                             onChange={handleFieldChange}
-                            className="mt-1 block w-full rounded-lg border border-surface-400 bg-white px-4 py-3 text-sm text-ink-900 placeholder:text-ink-400 focus:border-crawfish focus:outline-none focus:ring-1 focus:ring-crawfish"
+                            className="mt-1 block w-full rounded-lg border border-surface-400 bg-white px-4 py-3 text-sm text-ink-900 placeholder:text-ink-400 transition-[border-color,box-shadow] duration-200 focus:border-crawfish focus:outline-none focus:ring-1 focus:ring-crawfish"
                             placeholder="charlie@example.com"
                         />
                     </label>
                     <label className="block">
-                        <span className="text-xs uppercase tracking-wider text-ink-400">Phone</span>
+                        <span className="text-[10px] font-semibold uppercase tracking-[0.2em] text-ink-500">Phone</span>
                         <input
                             type="tel"
                             name="phone"
+                            autoComplete="tel"
                             required
                             value={formState.phone}
                             onChange={handleFieldChange}
-                            className="mt-1 block w-full rounded-lg border border-surface-400 bg-white px-4 py-3 text-sm text-ink-900 placeholder:text-ink-400 focus:border-crawfish focus:outline-none focus:ring-1 focus:ring-crawfish"
-                            placeholder="(555) 123-4567"
+                            className="mt-1 block w-full rounded-lg border border-surface-400 bg-white px-4 py-3 text-sm text-ink-900 placeholder:text-ink-400 transition-[border-color,box-shadow] duration-200 focus:border-crawfish focus:outline-none focus:ring-1 focus:ring-crawfish"
+                            placeholder="(936) 555-0123"
                         />
                     </label>
                 </div>
             </div>
 
-            <div>
-                <h2 className="font-display text-lg uppercase tracking-wide text-ink-900">Payment</h2>
-                <div className="mt-4 rounded-lg border border-surface-400 bg-white px-4 py-3.5">
+            <div className="rounded-xl border border-surface-300 bg-white p-6 lg:p-8">
+                <p className="text-[10px] font-semibold uppercase tracking-[0.25em] text-crawfish">Step 2</p>
+                <h2 className="mt-1 font-display text-lg uppercase tracking-wide text-ink-900">Pickup details</h2>
+                <div className="mt-5">
+                    <PickupTimePicker value={formState.pickupTime} onChange={handlePickupTime} />
+                </div>
+                <label className="mt-4 block">
+                    <span className="text-[10px] font-semibold uppercase tracking-[0.2em] text-ink-500">
+                        Special instructions (optional)
+                    </span>
+                    <textarea
+                        name="notes"
+                        rows={3}
+                        value={formState.notes}
+                        onChange={handleFieldChange}
+                        className="mt-1 block w-full resize-y rounded-lg border border-surface-400 bg-white px-4 py-3 text-sm text-ink-900 placeholder:text-ink-400 transition-[border-color,box-shadow] duration-200 focus:border-crawfish focus:outline-none focus:ring-1 focus:ring-crawfish"
+                        placeholder="Allergies, light on the seasoning, no shells in the bag — let us know."
+                    />
+                </label>
+            </div>
+
+            <div className="rounded-xl border border-surface-300 bg-white p-6 lg:p-8">
+                <p className="text-[10px] font-semibold uppercase tracking-[0.25em] text-crawfish">Step 3</p>
+                <h2 className="mt-1 font-display text-lg uppercase tracking-wide text-ink-900">Payment</h2>
+                <div className="mt-5 rounded-lg border border-surface-400 bg-white px-4 py-3.5 transition-[border-color] duration-200 focus-within:border-crawfish">
                     <CardElement options={CARD_ELEMENT_OPTIONS} />
                 </div>
+                <p className="mt-3 text-xs text-ink-500">
+                    Card is charged securely via Stripe. We never see or store your card number.
+                </p>
             </div>
 
             {errorMessage && (
-                <div className="rounded-lg border border-crawfish/30 bg-crawfish-light px-4 py-3 text-sm text-crawfish-dark">
+                <div
+                    role="alert"
+                    className="rounded-lg border border-crawfish/30 bg-crawfish-light px-4 py-3 text-sm text-crawfish-dark"
+                >
                     {errorMessage}
                 </div>
             )}
@@ -203,10 +308,21 @@ function CheckoutForm({ totalCents, onSuccess }) {
             <button
                 type="submit"
                 disabled={!stripe || processing}
-                className="w-full rounded-lg bg-crawfish py-4 font-display text-sm uppercase tracking-wider text-white transition-colors hover:bg-crawfish-dark disabled:cursor-not-allowed disabled:opacity-50"
+                className="w-full rounded-lg bg-crawfish py-4 font-display text-sm uppercase tracking-wider text-white transition-[background-color,box-shadow,transform] duration-200 hover:bg-crawfish-dark hover:shadow-[0_8px_30px_-8px_rgba(232,93,38,0.5)] active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-60 disabled:hover:bg-crawfish disabled:hover:shadow-none"
             >
-                {processing ? 'Processing...' : `Pay ${formatCents(grandTotalCents)}`}
+                {processing ? 'Processing…' : `Pay ${formatCents(grandTotalCents)}`}
             </button>
+
+            <p className="text-center text-xs text-ink-500">
+                Questions before you order? Call us at{' '}
+                <a
+                    href={PHONE.href}
+                    className="font-medium text-ink-700 underline decoration-surface-400 underline-offset-2 transition-colors duration-200 hover:text-crawfish hover:decoration-crawfish/40"
+                >
+                    {PHONE.display}
+                </a>
+                .
+            </p>
         </form>
     )
 }
@@ -244,28 +360,28 @@ function CheckoutView() {
                 <div className="mx-auto max-w-7xl px-6 lg:px-10">
                     {!hasItems ? (
                         <div className="mx-auto max-w-md text-center">
-                            <p className="font-display text-xl uppercase tracking-wide text-ink-400">
+                            <p className="font-display text-xl uppercase tracking-wide text-ink-500">
                                 Your cart is empty
                             </p>
-                            <p className="mt-3 text-sm text-ink-400">
+                            <p className="mt-3 text-sm text-ink-500">
                                 Head back to the menu and add some items before checking out.
                             </p>
-                            <a
-                                href="/menu"
-                                className="mt-8 inline-flex items-center justify-center rounded-lg bg-crawfish px-8 py-4 font-display text-sm uppercase tracking-wider text-white transition-colors hover:bg-crawfish-dark"
+                            <Link
+                                to="/menu"
+                                className="mt-8 inline-flex items-center justify-center rounded-lg bg-crawfish px-8 py-4 font-display text-sm uppercase tracking-wider text-white transition-[background-color,box-shadow,transform] duration-200 hover:bg-crawfish-dark hover:shadow-[0_8px_30px_-8px_rgba(232,93,38,0.5)] active:scale-[0.97]"
                             >
                                 Back to Menu
-                            </a>
+                            </Link>
                         </div>
                     ) : (
-                        <div className="grid gap-12 lg:grid-cols-12">
+                        <div className="grid gap-10 lg:grid-cols-12 lg:gap-12">
                             <div className="lg:col-span-7">
                                 <Elements stripe={stripePromise}>
                                     <CheckoutForm totalCents={totalCents} onSuccess={handlePaymentSuccess} />
                                 </Elements>
                             </div>
                             <div className="lg:col-span-5">
-                                <div className="lg:sticky lg:top-24">
+                                <div className="lg:sticky lg:top-28">
                                     <OrderSummary items={items} totalCents={totalCents} />
                                 </div>
                             </div>
