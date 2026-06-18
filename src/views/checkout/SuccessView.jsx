@@ -102,12 +102,9 @@ function SuccessView() {
                     ) : null}
 
                     <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
-                        <Link
-                            to="/menu"
-                            className="inline-flex items-center justify-center rounded-lg bg-crawfish px-8 py-4 font-display text-sm uppercase tracking-wider text-white transition-[background-color,box-shadow,transform] duration-200 hover:bg-crawfish-dark hover:shadow-[0_8px_30px_-8px_rgba(232,93,38,0.5)] active:scale-[0.97]"
-                        >
+                        <Button to="/menu" size="lg">
                             Order more
-                        </Link>
+                        </Button>
                         <Link
                             to="/"
                             className="text-sm font-medium text-ink-600 underline decoration-surface-400 underline-offset-4 transition-colors duration-200 hover:text-crawfish hover:decoration-crawfish"
