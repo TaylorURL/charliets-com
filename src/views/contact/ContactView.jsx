@@ -229,7 +229,7 @@ function LocationSection() {
 
 function MapSection() {
     return (
-        <section className="border-y border-surface-300">
+        <section className="border-y-2 border-ink-900">
             <div className="relative">
                 <iframe
                     title={`${BUSINESS.fullName} location`}
