@@ -103,12 +103,9 @@ function CartDrawer({ isOpen, onClose }) {
 
             {/* Drawer */}
             <aside
-                className={`absolute bottom-0 right-0 top-0 flex w-full max-w-md flex-col bg-white shadow-2xl will-change-transform ${
+                className={`absolute bottom-0 right-0 top-0 flex w-full max-w-md flex-col bg-surface-50 shadow-2xl transition-transform duration-[320ms] ease-drawer will-change-transform ${
                     animating ? 'translate-x-0' : 'translate-x-full'
                 }`}
-                style={{
-                    transition: 'transform 320ms cubic-bezier(0.32, 0.72, 0, 1)'
-                }}
             >
                 {/* Header */}
                 <div className="flex items-center justify-between border-b border-surface-300 px-6 py-5">
