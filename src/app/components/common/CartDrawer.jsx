@@ -195,12 +195,9 @@ function CartDrawer({ isOpen, onClose }) {
                         </div>
                         <p className="mt-1 text-xs text-ink-500">Tax calculated at checkout. Pickup only.</p>
 
-                        <button
-                            onClick={handleCheckout}
-                            className="mt-4 w-full rounded-lg bg-crawfish py-4 font-display text-sm uppercase tracking-wider text-white transition-[background-color,box-shadow,transform] duration-200 hover:bg-crawfish-dark hover:shadow-[0_8px_30px_-8px_rgba(232,93,38,0.5)] active:scale-[0.98]"
-                        >
+                        <Button onClick={handleCheckout} size="block" className="mt-4">
                             Proceed to Checkout
-                        </button>
+                        </Button>
                         <button
                             onClick={clearCart}
                             className="mt-2 w-full py-2 text-xs text-ink-400 underline decoration-surface-400 underline-offset-2 transition-colors duration-200 hover:text-crawfish hover:decoration-crawfish/40"
