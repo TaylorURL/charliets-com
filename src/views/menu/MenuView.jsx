@@ -236,7 +236,7 @@ function MenuView() {
             </section>
 
             {/* Bottom CTA */}
-            <section className="border-t border-surface-300 bg-surface-200 py-20">
+            <section className="border-t-2 border-ink-900 bg-surface-200 py-20">
                 <div className="mx-auto max-w-3xl px-6 text-center">
                     <h2 className="font-display text-2xl uppercase tracking-wide text-ink-900 md:text-3xl">
                         Big party? Call ahead.
@@ -246,12 +246,9 @@ function MenuView() {
                         you arrive.
                     </p>
                     <div className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
-                        <a
-                            href={PHONE.href}
-                            className="inline-flex items-center justify-center rounded-lg bg-crawfish px-8 py-4 font-display text-sm uppercase tracking-wider text-white transition-[background-color,box-shadow,transform] duration-200 hover:bg-crawfish-dark hover:shadow-[0_8px_30px_-8px_rgba(232,93,38,0.5)] active:scale-[0.97]"
-                        >
+                        <Button href={PHONE.href} size="lg">
                             Call {PHONE.display}
-                        </a>
+                        </Button>
                         <a
                             href="/contact"
                             className="text-sm font-medium text-ink-600 underline decoration-surface-400 underline-offset-4 transition-colors duration-200 hover:text-crawfish hover:decoration-crawfish"
