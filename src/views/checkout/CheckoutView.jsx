@@ -365,12 +365,9 @@ function CheckoutView() {
                             <p className="mt-3 text-sm text-ink-500">
                                 Head back to the menu and add some items before checking out.
                             </p>
-                            <Link
-                                to="/menu"
-                                className="mt-8 inline-flex items-center justify-center rounded-lg bg-crawfish px-8 py-4 font-display text-sm uppercase tracking-wider text-white transition-[background-color,box-shadow,transform] duration-200 hover:bg-crawfish-dark hover:shadow-[0_8px_30px_-8px_rgba(232,93,38,0.5)] active:scale-[0.97]"
-                            >
+                            <Button to="/menu" size="lg" className="mt-8">
                                 Back to Menu
-                            </Link>
+                            </Button>
                         </div>
                     ) : (
                         <div className="grid gap-10 lg:grid-cols-12 lg:gap-12">
