@@ -2,6 +2,7 @@ import React, { useCallback, useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useCart } from '../../context/CartContext'
 import { formatCents } from '../../utils/FormatUtility'
+import Button from '../ui/Button'
 
 function CartLineItem({ id, name, priceCents, quantity, onSetQuantity, onRemove }) {
     const decrement = useCallback(() => onSetQuantity(id, quantity - 1), [id, quantity, onSetQuantity])
