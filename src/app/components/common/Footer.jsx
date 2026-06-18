@@ -93,9 +93,8 @@ function Footer() {
                         >
                             <img src="/logo.webp" alt={BUSINESS.fullName} className="h-24 w-auto" />
                         </Link>
-                        <p className="mb-6 max-w-sm text-sm leading-relaxed text-ink-600">
-                            {BUSINESS.tagline} Seasoning heavy, beer cold, napkins useless.
-                        </p>
+                        <p className="mb-3 max-w-sm text-sm leading-relaxed text-ink-600">{BUSINESS.tagline}</p>
+                        <p className="mb-6 font-paint text-lg text-crawfish">Seasoning heavy, beer cold, napkins useless.</p>
                         <address className="not-italic space-y-2">
                             <a
                                 href={ADDRESS.mapsUrl}
