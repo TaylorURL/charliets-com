@@ -120,11 +120,11 @@ function HeroSection() {
     return (
         <section className="border-b border-surface-300 bg-ink-900 pb-16 pt-32 lg:pb-24 lg:pt-40">
             <div className="mx-auto max-w-7xl px-6 lg:px-10">
-                <p className="text-xs font-semibold uppercase tracking-[0.3em] text-crawfish">Find Us</p>
+                <Eyebrow>Find Us</Eyebrow>
                 <h1 className="mt-4 font-display text-hero uppercase text-white">
                     Come
                     <br />
-                    hungry.
+                    <span className="text-crawfish">hungry.</span>
                 </h1>
                 <p className="mt-6 max-w-xl text-base leading-relaxed text-white/65">
                     We're at {ADDRESS.street} in {ADDRESS.city}, Texas. You'll smell us before you see us. Plenty of
