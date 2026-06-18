@@ -114,14 +114,14 @@ function MenuCategory({ category, registerRef }) {
             aria-labelledby={`heading-${category.id}`}
         >
             <div className="mb-10">
-                <p className="text-[10px] font-semibold uppercase tracking-[0.3em] text-crawfish">Section</p>
+                <Eyebrow>Section</Eyebrow>
                 <h2 id={`heading-${category.id}`} className="mt-3 font-display text-section uppercase text-ink-900">
                     {category.label}
                 </h2>
                 <p className="mt-3 max-w-2xl text-sm leading-relaxed text-ink-600">{category.description}</p>
             </div>
 
-            <div className="divide-y divide-surface-300 border-t border-surface-300">
+            <div className="divide-y divide-surface-300 border-t-2 border-ink-900">
                 {category.items.map((item) => (
                     <MenuItem key={item.id} item={item} />
                 ))}
