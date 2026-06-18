@@ -347,18 +347,7 @@ function MenuSection() {
                         <Eyebrow>The Menu</Eyebrow>
                         <h2 className="mt-4 font-display text-section uppercase text-ink-900">Worth ordering</h2>
                     </div>
-                    <Link
-                        to="/menu"
-                        className="group inline-flex items-center gap-2 text-sm font-medium text-ink-600 underline decoration-surface-400 underline-offset-4 transition-colors duration-200 hover:text-crawfish hover:decoration-crawfish"
-                    >
-                        Full menu
-                        <span
-                            className="transition-transform duration-200 group-hover:translate-x-1"
-                            aria-hidden="true"
-                        >
-                            &rarr;
-                        </span>
-                    </Link>
+                    <ArrowLink to="/menu">Full menu</ArrowLink>
                 </div>
 
                 <div className="mt-14 grid gap-px overflow-hidden rounded-xl border-2 border-ink-900 bg-ink-900 sm:grid-cols-2 lg:grid-cols-3">
