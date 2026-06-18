@@ -2,6 +2,8 @@ import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import MENU_CATEGORIES from '../../app/constants/menu'
 import { PHONE } from '../../app/constants/site'
 import { useCart } from '../../app/context/CartContext'
+import Button from '../../app/components/ui/Button'
+import Eyebrow from '../../app/components/ui/Eyebrow'
 
 /* ──────────────────────────────────────────────
    Components
@@ -17,10 +19,10 @@ function CategoryNav({ categories, activeCategoryId, onSelect }) {
                         key={id}
                         onClick={() => onSelect(id)}
                         aria-current={isActive ? 'true' : undefined}
-                        className={`shrink-0 rounded-lg px-5 py-2.5 font-display text-[11px] uppercase tracking-[0.18em] transition-[background-color,color,border-color,transform] duration-200 active:scale-[0.97] ${
+                        className={`shrink-0 rounded-lg border-2 px-5 py-2.5 font-display text-[12px] uppercase tracking-[0.16em] transition-[background-color,color,border-color,transform] duration-200 active:scale-[0.97] ${
                             isActive
-                                ? 'bg-crawfish text-white shadow-[0_6px_20px_-8px_rgba(232,93,38,0.5)]'
-                                : 'border border-surface-400 bg-white text-ink-700 hover:border-crawfish/40 hover:text-crawfish'
+                                ? 'border-ink-900 bg-crawfish text-white shadow-[3px_3px_0_0_rgba(22,17,11,0.9)]'
+                                : 'border-surface-400 bg-surface-50 text-ink-700 hover:border-crawfish hover:text-crawfish'
                         }`}
                     >
                         {label}
@@ -44,7 +46,7 @@ function AddToCartButton({ item }) {
         return (
             <button
                 onClick={handleAdd}
-                className="shrink-0 rounded-lg border border-crawfish/30 bg-crawfish-light px-4 py-2 font-display text-[11px] uppercase tracking-[0.15em] text-crawfish transition-[background-color,color,border-color,transform] duration-200 hover:border-crawfish hover:bg-crawfish hover:text-white active:scale-[0.96]"
+                className="shrink-0 rounded-lg border-2 border-crawfish bg-crawfish-light px-4 py-2 font-display text-[12px] uppercase tracking-[0.14em] text-crawfish transition-[background-color,color,transform] duration-200 hover:bg-crawfish hover:text-white active:scale-[0.96]"
                 aria-label={`Add ${item.name} to cart`}
             >
                 Add
@@ -112,14 +114,14 @@ function MenuCategory({ category, registerRef }) {
             aria-labelledby={`heading-${category.id}`}
         >
             <div className="mb-10">
-                <p className="text-[10px] font-semibold uppercase tracking-[0.3em] text-crawfish">Section</p>
+                <Eyebrow>Section</Eyebrow>
                 <h2 id={`heading-${category.id}`} className="mt-3 font-display text-section uppercase text-ink-900">
                     {category.label}
                 </h2>
                 <p className="mt-3 max-w-2xl text-sm leading-relaxed text-ink-600">{category.description}</p>
             </div>
 
-            <div className="divide-y divide-surface-300 border-t border-surface-300">
+            <div className="divide-y divide-surface-300 border-t-2 border-ink-900">
                 {category.items.map((item) => (
                     <MenuItem key={item.id} item={item} />
                 ))}
@@ -178,28 +180,34 @@ function MenuView() {
         <>
             {/* Hero */}
             <section className="border-b border-surface-300 bg-ink-900 pb-16 pt-32 lg:pb-20 lg:pt-40">
-                <div className="mx-auto max-w-7xl px-6 lg:px-10">
-                    <p className="text-xs font-semibold uppercase tracking-[0.3em] text-crawfish">The Menu</p>
-                    <h1 className="mt-4 font-display text-hero uppercase text-white">
-                        What we
-                        <br />
-                        serve.
-                    </h1>
-                    <p className="mt-6 max-w-xl text-base leading-relaxed text-white/65">
-                        Prices are straightforward. Portions are generous. If you can't decide, get the crawfish. That's
-                        why you're here.
-                    </p>
+                <div className="relative mx-auto max-w-7xl px-6 lg:px-10">
+                    <div className="mud-texture pointer-events-none absolute inset-0" aria-hidden="true" />
+                    <div className="relative">
+                        <Eyebrow>The Menu</Eyebrow>
+                        <h1 className="mt-4 font-display text-hero uppercase text-white">
+                            What we
+                            <br />
+                            serve.
+                        </h1>
+                        <p className="mt-6 max-w-xl text-base leading-relaxed text-white/65">
+                            Prices are straightforward. Portions are generous. If you can't decide, get the crawfish.
+                            That's why you're here.
+                        </p>
 
-                    <div className="mt-10 flex flex-wrap gap-6 text-sm text-white/45">
-                        <span>
-                            <span className="font-display text-white">{itemSummary}+</span> items
-                        </span>
-                        <span>
-                            <span className="font-display text-white">{MENU_CATEGORIES.length}</span> sections
-                        </span>
-                        <span>
-                            <span className="font-display text-white">Tax</span> not included
-                        </span>
+                        <div className="mt-10 flex flex-wrap gap-3">
+                            {[
+                                { value: `${itemSummary}+`, label: 'items' },
+                                { value: MENU_CATEGORIES.length, label: 'sections' },
+                                { value: 'Tax', label: 'not included' },
+                            ].map(({ value, label }) => (
+                                <span
+                                    key={label}
+                                    className="inline-flex items-baseline gap-2 rounded-md border border-white/15 bg-white/[0.04] px-4 py-2 text-sm text-white/50"
+                                >
+                                    <span className="font-display text-base text-caution">{value}</span> {label}
+                                </span>
+                            ))}
+                        </div>
                     </div>
                 </div>
             </section>
@@ -228,7 +236,7 @@ function MenuView() {
             </section>
 
             {/* Bottom CTA */}
-            <section className="border-t border-surface-300 bg-surface-200 py-20">
+            <section className="border-t-2 border-ink-900 bg-surface-200 py-20">
                 <div className="mx-auto max-w-3xl px-6 text-center">
                     <h2 className="font-display text-2xl uppercase tracking-wide text-ink-900 md:text-3xl">
                         Big party? Call ahead.
@@ -238,12 +246,9 @@ function MenuView() {
                         you arrive.
                     </p>
                     <div className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
-                        <a
-                            href={PHONE.href}
-                            className="inline-flex items-center justify-center rounded-lg bg-crawfish px-8 py-4 font-display text-sm uppercase tracking-wider text-white transition-[background-color,box-shadow,transform] duration-200 hover:bg-crawfish-dark hover:shadow-[0_8px_30px_-8px_rgba(232,93,38,0.5)] active:scale-[0.97]"
-                        >
+                        <Button href={PHONE.href} size="lg">
                             Call {PHONE.display}
-                        </a>
+                        </Button>
                         <a
                             href="/contact"
                             className="text-sm font-medium text-ink-600 underline decoration-surface-400 underline-offset-4 transition-colors duration-200 hover:text-crawfish hover:decoration-crawfish"

@@ -113,16 +113,18 @@ function Header() {
                           : 'bg-ink-900 text-white/55'
                 }`}
             >
-                <span className="whitespace-nowrap">
+                <span className="whitespace-nowrap font-display tracking-[0.18em]">
                     {ADDRESS.city.toUpperCase()}, {ADDRESS.state}
                 </span>
-                <span className="text-crawfish/40" aria-hidden="true">
-                    |
-                </span>
+                <span
+                    className="checker-band h-2 w-3.5 bg-[length:5px_5px] text-current opacity-50"
+                    aria-hidden="true"
+                />
                 <span className="hidden whitespace-nowrap sm:inline">{HOURS_SUMMARY}</span>
-                <span className="text-crawfish/40 sm:hidden" aria-hidden="true">
-                    |
-                </span>
+                <span
+                    className="checker-band h-2 w-3.5 bg-[length:5px_5px] text-current opacity-50 sm:hidden"
+                    aria-hidden="true"
+                />
                 <a href={PHONE.href} className="whitespace-nowrap transition-colors duration-200 hover:text-crawfish">
                     {PHONE.display}
                 </a>
@@ -180,7 +182,7 @@ function Header() {
 
                         <a
                             href={PHONE.href}
-                            className="ml-3 inline-flex items-center gap-2 rounded-full border border-crawfish/80 bg-crawfish/10 px-5 py-2 font-display text-[12px] uppercase tracking-[0.12em] text-crawfish transition-[background-color,color,box-shadow,transform] duration-200 hover:bg-crawfish hover:text-white hover:shadow-[0_0_20px_rgba(232,93,38,0.3)] active:scale-[0.97]"
+                            className="ml-3 inline-flex items-center gap-2 rounded-full border border-crawfish/80 bg-crawfish/10 px-5 py-2 font-display text-[12px] uppercase tracking-[0.12em] text-crawfish transition-[background-color,color,box-shadow,transform] duration-200 hover:bg-crawfish hover:text-white hover:shadow-[0_0_20px_rgba(255,90,31,0.35)] active:scale-[0.97]"
                         >
                             <PhoneIcon className="h-3.5 w-3.5" />
                             Call to Order
@@ -216,6 +218,14 @@ function Header() {
                         </button>
                     </div>
                 </div>
+
+                {/* Finish-line seam — only on the solid bar */}
+                <span
+                    className={`checker-band absolute inset-x-0 bottom-0 h-1 bg-[length:8px_8px] text-white/15 transition-opacity duration-500 ${
+                        isTransparent ? 'opacity-0' : 'opacity-100'
+                    }`}
+                    aria-hidden="true"
+                />
             </header>
 
             {/* ── Mobile fullscreen menu ── */}

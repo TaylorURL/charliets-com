@@ -1,5 +1,7 @@
 import React, { useCallback, useState } from 'react'
 import { ADDRESS, BUSINESS, CATERING, EMAIL, HOURS, PHONE, SOCIAL } from '../../app/constants/site'
+import Button from '../../app/components/ui/Button'
+import Eyebrow from '../../app/components/ui/Eyebrow'
 
 /* ──────────────────────────────────────────────
    Data
@@ -78,8 +80,8 @@ function FAQItem({ question, answer }) {
 
 function SocialBlock() {
     return (
-        <div className="rounded-xl border border-surface-300 bg-white p-6 lg:p-8">
-            <p className="text-[10px] font-semibold uppercase tracking-[0.3em] text-crawfish/70">Follow Along</p>
+        <div className="rounded-xl border-2 border-ink-900 bg-surface-50 p-6 shadow-[5px_5px_0_0_rgba(22,17,11,0.9)] lg:p-8">
+            <p className="text-[10px] font-semibold uppercase tracking-[0.3em] text-crawfish">Follow Along</p>
             <p className="mt-3 font-display text-lg uppercase tracking-wide text-ink-900">
                 Boils, specials, behind-the-pot.
             </p>
@@ -116,13 +118,14 @@ function SocialBlock() {
 
 function HeroSection() {
     return (
-        <section className="border-b border-surface-300 bg-ink-900 pb-16 pt-32 lg:pb-24 lg:pt-40">
-            <div className="mx-auto max-w-7xl px-6 lg:px-10">
-                <p className="text-xs font-semibold uppercase tracking-[0.3em] text-crawfish">Find Us</p>
+        <section className="relative overflow-hidden border-b-2 border-ink-900 bg-ink-900 pb-16 pt-32 lg:pb-24 lg:pt-40">
+            <div className="mud-texture pointer-events-none absolute inset-0" aria-hidden="true" />
+            <div className="relative mx-auto max-w-7xl px-6 lg:px-10">
+                <Eyebrow>Find Us</Eyebrow>
                 <h1 className="mt-4 font-display text-hero uppercase text-white">
                     Come
                     <br />
-                    hungry.
+                    <span className="text-crawfish">hungry.</span>
                 </h1>
                 <p className="mt-6 max-w-xl text-base leading-relaxed text-white/65">
                     We're at {ADDRESS.street} in {ADDRESS.city}, Texas. You'll smell us before you see us. Plenty of
@@ -139,7 +142,7 @@ function LocationSection() {
             <div className="mx-auto max-w-7xl px-6 lg:px-10">
                 <div className="grid gap-16 lg:grid-cols-12">
                     <div className="lg:col-span-7">
-                        <p className="text-xs font-semibold uppercase tracking-[0.3em] text-crawfish">Location</p>
+                        <Eyebrow>Location</Eyebrow>
                         <h2 className="mt-4 font-display text-section uppercase text-ink-900">The Shack</h2>
 
                         <address className="mt-8 grid gap-6 not-italic sm:grid-cols-2">
@@ -188,25 +191,17 @@ function LocationSection() {
                         </address>
 
                         <div className="mt-10 flex flex-col gap-3 sm:flex-row">
-                            <a
-                                href={ADDRESS.mapsUrl}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="inline-flex items-center justify-center rounded-lg bg-crawfish px-8 py-4 font-display text-sm uppercase tracking-wider text-white transition-[background-color,box-shadow,transform] duration-200 hover:bg-crawfish-dark hover:shadow-[0_8px_30px_-8px_rgba(232,93,38,0.5)] active:scale-[0.97]"
-                            >
+                            <Button href={ADDRESS.mapsUrl} target="_blank" rel="noopener noreferrer" size="lg">
                                 Get Directions
-                            </a>
-                            <a
-                                href={PHONE.href}
-                                className="inline-flex items-center justify-center rounded-lg border border-surface-400 px-8 py-4 text-sm font-medium tracking-wide text-ink-700 transition-[border-color,color,transform] duration-200 hover:border-crawfish hover:text-crawfish active:scale-[0.97]"
-                            >
+                            </Button>
+                            <Button href={PHONE.href} variant="outline-light" size="lg">
                                 Call Ahead
-                            </a>
+                            </Button>
                         </div>
                     </div>
 
                     <div className="lg:col-span-5">
-                        <p className="text-xs font-semibold uppercase tracking-[0.3em] text-crawfish">Hours</p>
+                        <Eyebrow>Hours</Eyebrow>
                         <h2 className="mt-4 font-display text-section uppercase text-ink-900">When we're open</h2>
 
                         <dl className="mt-8 divide-y divide-surface-300 border-y border-surface-300">
@@ -234,7 +229,7 @@ function LocationSection() {
 
 function MapSection() {
     return (
-        <section className="border-y border-surface-300">
+        <section className="border-y-2 border-ink-900">
             <div className="relative">
                 <iframe
                     title={`${BUSINESS.fullName} location`}
@@ -267,7 +262,7 @@ function ParkingSection() {
         <section className="bg-surface-100 py-24 lg:py-32">
             <div className="mx-auto grid max-w-7xl gap-16 px-6 lg:grid-cols-12 lg:px-10">
                 <div className="lg:col-span-5">
-                    <p className="text-xs font-semibold uppercase tracking-[0.3em] text-crawfish">Getting Here</p>
+                    <Eyebrow>Getting Here</Eyebrow>
                     <h2 className="mt-4 font-display text-section uppercase text-ink-900">
                         Parking &amp;
                         <br />
@@ -301,11 +296,15 @@ function ParkingSection() {
 
 function CateringSection() {
     return (
-        <section id="catering" className="scroll-mt-32 border-t border-surface-300 bg-ink-900 py-24 lg:py-32">
-            <div className="mx-auto max-w-7xl px-6 lg:px-10">
+        <section
+            id="catering"
+            className="relative scroll-mt-32 overflow-hidden border-t-2 border-ink-900 bg-ink-900 py-24 lg:py-32"
+        >
+            <div className="mud-texture pointer-events-none absolute inset-0" aria-hidden="true" />
+            <div className="relative mx-auto max-w-7xl px-6 lg:px-10">
                 <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
                     <div className="lg:col-span-5">
-                        <p className="text-xs font-semibold uppercase tracking-[0.3em] text-crawfish">Catering</p>
+                        <Eyebrow>Catering</Eyebrow>
                         <h2 className="mt-4 font-display text-section uppercase text-white">
                             We'll bring the pot
                             <br />
@@ -318,9 +317,10 @@ function CateringSection() {
                     </div>
 
                     <div className="lg:col-span-7">
-                        <dl className="grid gap-px overflow-hidden rounded-xl bg-white/5 sm:grid-cols-2">
+                        <div className="hazard-stripes mb-px h-2.5 w-full rounded-t-xl text-caution/70" aria-hidden="true" />
+                        <dl className="grid gap-px overflow-hidden rounded-b-xl border border-white/10 bg-white/10 sm:grid-cols-2">
                             <div className="bg-ink-900 p-6 lg:p-8">
-                                <dt className="text-[10px] font-semibold uppercase tracking-[0.3em] text-crawfish/70">
+                                <dt className="text-[10px] font-semibold uppercase tracking-[0.3em] text-caution">
                                     Headcount
                                 </dt>
                                 <dd className="mt-2 font-display text-2xl text-white">
@@ -331,7 +331,7 @@ function CateringSection() {
                                 </p>
                             </div>
                             <div className="bg-ink-900 p-6 lg:p-8">
-                                <dt className="text-[10px] font-semibold uppercase tracking-[0.3em] text-crawfish/70">
+                                <dt className="text-[10px] font-semibold uppercase tracking-[0.3em] text-caution">
                                     Lead time
                                 </dt>
                                 <dd className="mt-2 font-display text-2xl text-white">
@@ -342,7 +342,7 @@ function CateringSection() {
                                 </p>
                             </div>
                             <div className="bg-ink-900 p-6 lg:p-8">
-                                <dt className="text-[10px] font-semibold uppercase tracking-[0.3em] text-crawfish/70">
+                                <dt className="text-[10px] font-semibold uppercase tracking-[0.3em] text-caution">
                                     Service radius
                                 </dt>
                                 <dd className="mt-2 font-display text-2xl text-white">
@@ -353,7 +353,7 @@ function CateringSection() {
                                 </p>
                             </div>
                             <div className="bg-ink-900 p-6 lg:p-8">
-                                <dt className="text-[10px] font-semibold uppercase tracking-[0.3em] text-crawfish/70">
+                                <dt className="text-[10px] font-semibold uppercase tracking-[0.3em] text-caution">
                                     Crawfish minimum
                                 </dt>
                                 <dd className="mt-2 font-display text-2xl text-white">
@@ -366,18 +366,10 @@ function CateringSection() {
                         </dl>
 
                         <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-                            <a
-                                href={PHONE.href}
-                                className="inline-flex items-center justify-center rounded-lg bg-crawfish px-7 py-3.5 font-display text-[13px] uppercase tracking-wider text-white transition-[background-color,box-shadow,transform] duration-200 hover:bg-crawfish-dark hover:shadow-[0_8px_30px_-8px_rgba(232,93,38,0.5)] active:scale-[0.97]"
-                            >
-                                Call to book
-                            </a>
-                            <a
-                                href={`mailto:${EMAIL.catering}?subject=Catering%20inquiry`}
-                                className="inline-flex items-center justify-center rounded-lg border border-white/15 px-7 py-3.5 text-[13px] font-medium uppercase tracking-wider text-white/70 transition-[border-color,color,transform] duration-200 hover:border-white/35 hover:text-white active:scale-[0.97]"
-                            >
+                            <Button href={PHONE.href}>Call to book</Button>
+                            <Button href={`mailto:${EMAIL.catering}?subject=Catering%20inquiry`} variant="outline-dark">
                                 Email the catering desk
-                            </a>
+                            </Button>
                         </div>
                     </div>
                 </div>
@@ -417,11 +409,11 @@ function ContactFormSection() {
     )
 
     return (
-        <section className="border-t border-surface-300 bg-surface-100 py-24 lg:py-32">
+        <section className="border-t-2 border-ink-900 bg-surface-100 py-24 lg:py-32">
             <div className="mx-auto max-w-7xl px-6 lg:px-10">
                 <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
                     <div className="lg:col-span-5">
-                        <p className="text-xs font-semibold uppercase tracking-[0.3em] text-crawfish">Send a Message</p>
+                        <Eyebrow>Send a Message</Eyebrow>
                         <h2 className="mt-4 font-display text-section uppercase text-ink-900">
                             Got a question?
                             <br />
@@ -459,7 +451,7 @@ function ContactFormSection() {
                         ) : (
                             <form
                                 onSubmit={handleSubmit}
-                                className="space-y-5 rounded-xl border border-surface-300 bg-white p-6 lg:p-8"
+                                className="space-y-5 rounded-xl border-2 border-ink-900 bg-surface-50 p-6 shadow-[6px_6px_0_0_rgba(22,17,11,0.9)] lg:p-8"
                             >
                                 <div className="grid gap-5 sm:grid-cols-2">
                                     <label className="block">
@@ -546,13 +538,9 @@ function ContactFormSection() {
                                     <p className="text-xs text-ink-500">
                                         We'll respond within one business day, usually faster.
                                     </p>
-                                    <button
-                                        type="submit"
-                                        disabled={submitting}
-                                        className="inline-flex items-center justify-center rounded-lg bg-crawfish px-7 py-3.5 font-display text-[13px] uppercase tracking-wider text-white transition-[background-color,box-shadow,transform] duration-200 hover:bg-crawfish-dark hover:shadow-[0_8px_30px_-8px_rgba(232,93,38,0.5)] active:scale-[0.97] disabled:cursor-not-allowed disabled:opacity-60"
-                                    >
+                                    <Button type="submit" disabled={submitting}>
                                         {submitting ? 'Opening…' : 'Send Message'}
-                                    </button>
+                                    </Button>
                                 </div>
                             </form>
                         )}
@@ -565,10 +553,10 @@ function ContactFormSection() {
 
 function FAQSection() {
     return (
-        <section className="border-t border-surface-300 bg-surface-200 py-24 lg:py-32">
+        <section className="border-t-2 border-ink-900 bg-surface-200 py-24 lg:py-32">
             <div className="mx-auto max-w-7xl px-6 lg:px-10">
                 <div className="mb-16 max-w-xl">
-                    <p className="text-xs font-semibold uppercase tracking-[0.3em] text-crawfish">FAQ</p>
+                    <Eyebrow>FAQ</Eyebrow>
                     <h2 className="mt-4 font-display text-section uppercase text-ink-900">Before you ask</h2>
                 </div>
 

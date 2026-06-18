@@ -1,6 +1,8 @@
 import React from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { ADDRESS, PHONE } from '../../app/constants/site'
+import Button from '../../app/components/ui/Button'
+import Eyebrow from '../../app/components/ui/Eyebrow'
 
 const PICKUP_LABELS = {
     asap: '20 – 30 minutes',
@@ -15,9 +17,10 @@ function SuccessView() {
 
     return (
         <>
-            <section className="border-b border-surface-300 bg-ink-900 pb-16 pt-32 lg:pb-24 lg:pt-40">
-                <div className="mx-auto max-w-7xl px-6 lg:px-10">
-                    <p className="text-xs font-semibold uppercase tracking-[0.3em] text-crawfish">Order Confirmed</p>
+            <section className="relative overflow-hidden border-b-2 border-ink-900 bg-ink-900 pb-16 pt-32 lg:pb-24 lg:pt-40">
+                <div className="mud-texture pointer-events-none absolute inset-0" aria-hidden="true" />
+                <div className="relative mx-auto max-w-7xl px-6 lg:px-10">
+                    <Eyebrow>Order Confirmed — Checkered Flag</Eyebrow>
                     <h1 className="mt-4 font-display text-hero uppercase text-white">
                         You're
                         <br />
@@ -28,14 +31,14 @@ function SuccessView() {
 
             <section className="bg-surface-100 py-24 lg:py-32">
                 <div className="mx-auto max-w-2xl px-6 text-center lg:px-10">
-                    <div className="mx-auto flex h-20 w-20 items-center justify-center rounded-full bg-crawfish-light ring-8 ring-crawfish/5">
+                    <div className="number-plate mx-auto flex h-20 w-20 -rotate-3 items-center justify-center rounded-xl">
                         <svg
-                            width="36"
-                            height="36"
+                            width="38"
+                            height="38"
                             viewBox="0 0 24 24"
                             fill="none"
-                            stroke="#E85D26"
-                            strokeWidth="2.5"
+                            stroke="#16110B"
+                            strokeWidth="3"
                             strokeLinecap="round"
                             strokeLinejoin="round"
                             aria-hidden="true"
@@ -53,8 +56,8 @@ function SuccessView() {
                         shortly.
                     </p>
 
-                    <div className="mt-8 grid gap-px overflow-hidden rounded-xl border border-surface-300 bg-surface-300 text-left shadow-sm sm:grid-cols-2">
-                        <div className="bg-white p-5">
+                    <div className="mt-8 grid gap-px overflow-hidden rounded-xl border-2 border-ink-900 bg-ink-900 text-left shadow-[6px_6px_0_0_rgba(22,17,11,0.9)] sm:grid-cols-2">
+                        <div className="bg-surface-50 p-5">
                             <p className="text-[10px] font-semibold uppercase tracking-[0.25em] text-ink-400">
                                 Pickup at
                             </p>
@@ -73,7 +76,7 @@ function SuccessView() {
                                 Get directions <span aria-hidden="true">&rarr;</span>
                             </a>
                         </div>
-                        <div className="bg-white p-5">
+                        <div className="bg-surface-50 p-5">
                             <p className="text-[10px] font-semibold uppercase tracking-[0.25em] text-ink-400">
                                 Estimated ready
                             </p>
@@ -90,7 +93,7 @@ function SuccessView() {
                     </div>
 
                     {state?.notes ? (
-                        <div className="mt-4 rounded-xl border border-surface-300 bg-white px-5 py-4 text-left shadow-sm">
+                        <div className="mt-4 rounded-xl border-2 border-ink-900 bg-surface-50 px-5 py-4 text-left">
                             <p className="text-[10px] font-semibold uppercase tracking-[0.25em] text-ink-400">
                                 Special instructions
                             </p>
@@ -99,12 +102,9 @@ function SuccessView() {
                     ) : null}
 
                     <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
-                        <Link
-                            to="/menu"
-                            className="inline-flex items-center justify-center rounded-lg bg-crawfish px-8 py-4 font-display text-sm uppercase tracking-wider text-white transition-[background-color,box-shadow,transform] duration-200 hover:bg-crawfish-dark hover:shadow-[0_8px_30px_-8px_rgba(232,93,38,0.5)] active:scale-[0.97]"
-                        >
+                        <Button to="/menu" size="lg">
                             Order more
-                        </Link>
+                        </Button>
                         <Link
                             to="/"
                             className="text-sm font-medium text-ink-600 underline decoration-surface-400 underline-offset-4 transition-colors duration-200 hover:text-crawfish hover:decoration-crawfish"

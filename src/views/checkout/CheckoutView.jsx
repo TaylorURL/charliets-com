@@ -1,10 +1,12 @@
 import React, { useCallback, useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { CardElement, Elements, useElements, useStripe } from '@stripe/react-stripe-js'
 import { loadStripe } from '@stripe/stripe-js'
 import { ADDRESS, PHONE } from '../../app/constants/site'
 import { useCart } from '../../app/context/CartContext'
 import { formatCents } from '../../app/utils/FormatUtility'
+import Button from '../../app/components/ui/Button'
+import Eyebrow from '../../app/components/ui/Eyebrow'
 
 /* ──────────────────────────────────────────────
    Stripe Setup
@@ -18,10 +20,10 @@ const CARD_ELEMENT_OPTIONS = {
         base: {
             fontSize: '16px',
             fontFamily: '"DM Sans", sans-serif',
-            color: '#1A1816',
-            '::placeholder': { color: '#9C9791' }
+            color: '#16110B',
+            '::placeholder': { color: '#98826A' }
         },
-        invalid: { color: '#E85D26' }
+        invalid: { color: '#E01E2B' }
     }
 }
 
@@ -42,7 +44,7 @@ function OrderSummary({ items, totalCents }) {
     const grandTotalCents = totalCents + taxCents
 
     return (
-        <div className="rounded-xl border border-surface-300 bg-white p-6 shadow-sm lg:p-8">
+        <div className="rounded-xl border-2 border-ink-900 bg-surface-50 p-6 shadow-[6px_6px_0_0_rgba(22,17,11,0.9)] lg:p-8">
             <p className="text-[10px] font-semibold uppercase tracking-[0.25em] text-crawfish">Order Summary</p>
             <h2 className="mt-2 font-display text-lg uppercase tracking-wide text-ink-900">Your pickup order</h2>
 
@@ -199,7 +201,7 @@ function CheckoutForm({ totalCents, onSuccess }) {
 
     return (
         <form onSubmit={handleSubmit} className="space-y-8">
-            <div className="rounded-xl border border-surface-300 bg-white p-6 lg:p-8">
+            <div className="rounded-xl border-2 border-ink-900 bg-surface-50 p-6 shadow-[5px_5px_0_0_rgba(22,17,11,0.9)] lg:p-8">
                 <p className="text-[10px] font-semibold uppercase tracking-[0.25em] text-crawfish">Step 1</p>
                 <h2 className="mt-1 font-display text-lg uppercase tracking-wide text-ink-900">Contact info</h2>
                 <div className="mt-5 grid gap-4 sm:grid-cols-2">
@@ -264,7 +266,7 @@ function CheckoutForm({ totalCents, onSuccess }) {
                 </div>
             </div>
 
-            <div className="rounded-xl border border-surface-300 bg-white p-6 lg:p-8">
+            <div className="rounded-xl border-2 border-ink-900 bg-surface-50 p-6 shadow-[5px_5px_0_0_rgba(22,17,11,0.9)] lg:p-8">
                 <p className="text-[10px] font-semibold uppercase tracking-[0.25em] text-crawfish">Step 2</p>
                 <h2 className="mt-1 font-display text-lg uppercase tracking-wide text-ink-900">Pickup details</h2>
                 <div className="mt-5">
@@ -285,7 +287,7 @@ function CheckoutForm({ totalCents, onSuccess }) {
                 </label>
             </div>
 
-            <div className="rounded-xl border border-surface-300 bg-white p-6 lg:p-8">
+            <div className="rounded-xl border-2 border-ink-900 bg-surface-50 p-6 shadow-[5px_5px_0_0_rgba(22,17,11,0.9)] lg:p-8">
                 <p className="text-[10px] font-semibold uppercase tracking-[0.25em] text-crawfish">Step 3</p>
                 <h2 className="mt-1 font-display text-lg uppercase tracking-wide text-ink-900">Payment</h2>
                 <div className="mt-5 rounded-lg border border-surface-400 bg-white px-4 py-3.5 transition-[border-color] duration-200 focus-within:border-crawfish">
@@ -305,13 +307,9 @@ function CheckoutForm({ totalCents, onSuccess }) {
                 </div>
             )}
 
-            <button
-                type="submit"
-                disabled={!stripe || processing}
-                className="w-full rounded-lg bg-crawfish py-4 font-display text-sm uppercase tracking-wider text-white transition-[background-color,box-shadow,transform] duration-200 hover:bg-crawfish-dark hover:shadow-[0_8px_30px_-8px_rgba(232,93,38,0.5)] active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-60 disabled:hover:bg-crawfish disabled:hover:shadow-none"
-            >
+            <Button type="submit" size="block" disabled={!stripe || processing}>
                 {processing ? 'Processing…' : `Pay ${formatCents(grandTotalCents)}`}
-            </button>
+            </Button>
 
             <p className="text-center text-xs text-ink-500">
                 Questions before you order? Call us at{' '}
@@ -348,9 +346,10 @@ function CheckoutView() {
     return (
         <>
             {/* Hero */}
-            <section className="border-b border-surface-300 bg-ink-900 pb-12 pt-32 lg:pb-16 lg:pt-40">
-                <div className="mx-auto max-w-7xl px-6 lg:px-10">
-                    <p className="text-xs font-semibold uppercase tracking-[0.3em] text-crawfish">Checkout</p>
+            <section className="relative overflow-hidden border-b-2 border-ink-900 bg-ink-900 pb-12 pt-32 lg:pb-16 lg:pt-40">
+                <div className="mud-texture pointer-events-none absolute inset-0" aria-hidden="true" />
+                <div className="relative mx-auto max-w-7xl px-6 lg:px-10">
+                    <Eyebrow>Checkout</Eyebrow>
                     <h1 className="mt-4 font-display text-section uppercase text-white">Almost there.</h1>
                 </div>
             </section>
@@ -366,12 +365,9 @@ function CheckoutView() {
                             <p className="mt-3 text-sm text-ink-500">
                                 Head back to the menu and add some items before checking out.
                             </p>
-                            <Link
-                                to="/menu"
-                                className="mt-8 inline-flex items-center justify-center rounded-lg bg-crawfish px-8 py-4 font-display text-sm uppercase tracking-wider text-white transition-[background-color,box-shadow,transform] duration-200 hover:bg-crawfish-dark hover:shadow-[0_8px_30px_-8px_rgba(232,93,38,0.5)] active:scale-[0.97]"
-                            >
+                            <Button to="/menu" size="lg" className="mt-8">
                                 Back to Menu
-                            </Link>
+                            </Button>
                         </div>
                     ) : (
                         <div className="grid gap-10 lg:grid-cols-12 lg:gap-12">

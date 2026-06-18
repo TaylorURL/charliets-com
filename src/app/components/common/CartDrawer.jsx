@@ -2,6 +2,7 @@ import React, { useCallback, useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useCart } from '../../context/CartContext'
 import { formatCents } from '../../utils/FormatUtility'
+import Button from '../ui/Button'
 
 function CartLineItem({ id, name, priceCents, quantity, onSetQuantity, onRemove }) {
     const decrement = useCallback(() => onSetQuantity(id, quantity - 1), [id, quantity, onSetQuantity])
@@ -102,12 +103,9 @@ function CartDrawer({ isOpen, onClose }) {
 
             {/* Drawer */}
             <aside
-                className={`absolute bottom-0 right-0 top-0 flex w-full max-w-md flex-col bg-white shadow-2xl will-change-transform ${
+                className={`absolute bottom-0 right-0 top-0 flex w-full max-w-md flex-col bg-surface-50 shadow-2xl transition-transform duration-[320ms] ease-drawer will-change-transform ${
                     animating ? 'translate-x-0' : 'translate-x-full'
                 }`}
-                style={{
-                    transition: 'transform 320ms cubic-bezier(0.32, 0.72, 0, 1)'
-                }}
             >
                 {/* Header */}
                 <div className="flex items-center justify-between border-b border-surface-300 px-6 py-5">
@@ -165,12 +163,9 @@ function CartDrawer({ isOpen, onClose }) {
                             <p className="mt-2 max-w-xs text-sm text-ink-500">
                                 Add something from the menu and your order will show up here.
                             </p>
-                            <button
-                                onClick={onClose}
-                                className="mt-6 inline-flex items-center justify-center rounded-lg border border-surface-400 px-5 py-2.5 font-display text-[11px] uppercase tracking-[0.15em] text-ink-700 transition-[border-color,color,transform] duration-200 hover:border-crawfish hover:text-crawfish active:scale-[0.97]"
-                            >
+                            <Button onClick={onClose} variant="outline-light" size="sm" className="mt-6">
                                 Browse menu
-                            </button>
+                            </Button>
                         </div>
                     ) : (
                         <div className="divide-y divide-surface-300">
@@ -197,12 +192,9 @@ function CartDrawer({ isOpen, onClose }) {
                         </div>
                         <p className="mt-1 text-xs text-ink-500">Tax calculated at checkout. Pickup only.</p>
 
-                        <button
-                            onClick={handleCheckout}
-                            className="mt-4 w-full rounded-lg bg-crawfish py-4 font-display text-sm uppercase tracking-wider text-white transition-[background-color,box-shadow,transform] duration-200 hover:bg-crawfish-dark hover:shadow-[0_8px_30px_-8px_rgba(232,93,38,0.5)] active:scale-[0.98]"
-                        >
+                        <Button onClick={handleCheckout} size="block" className="mt-4">
                             Proceed to Checkout
-                        </button>
+                        </Button>
                         <button
                             onClick={clearCart}
                             className="mt-2 w-full py-2 text-xs text-ink-400 underline decoration-surface-400 underline-offset-2 transition-colors duration-200 hover:text-crawfish hover:decoration-crawfish/40"
