@@ -360,18 +360,10 @@ function CateringSection() {
                         </dl>
 
                         <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-                            <a
-                                href={PHONE.href}
-                                className="inline-flex items-center justify-center rounded-lg bg-crawfish px-7 py-3.5 font-display text-[13px] uppercase tracking-wider text-white transition-[background-color,box-shadow,transform] duration-200 hover:bg-crawfish-dark hover:shadow-[0_8px_30px_-8px_rgba(232,93,38,0.5)] active:scale-[0.97]"
-                            >
-                                Call to book
-                            </a>
-                            <a
-                                href={`mailto:${EMAIL.catering}?subject=Catering%20inquiry`}
-                                className="inline-flex items-center justify-center rounded-lg border border-white/15 px-7 py-3.5 text-[13px] font-medium uppercase tracking-wider text-white/70 transition-[border-color,color,transform] duration-200 hover:border-white/35 hover:text-white active:scale-[0.97]"
-                            >
+                            <Button href={PHONE.href}>Call to book</Button>
+                            <Button href={`mailto:${EMAIL.catering}?subject=Catering%20inquiry`} variant="outline-dark">
                                 Email the catering desk
-                            </a>
+                            </Button>
                         </div>
                     </div>
                 </div>
