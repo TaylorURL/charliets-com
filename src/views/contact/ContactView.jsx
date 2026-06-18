@@ -190,20 +190,12 @@ function LocationSection() {
                         </address>
 
                         <div className="mt-10 flex flex-col gap-3 sm:flex-row">
-                            <a
-                                href={ADDRESS.mapsUrl}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="inline-flex items-center justify-center rounded-lg bg-crawfish px-8 py-4 font-display text-sm uppercase tracking-wider text-white transition-[background-color,box-shadow,transform] duration-200 hover:bg-crawfish-dark hover:shadow-[0_8px_30px_-8px_rgba(232,93,38,0.5)] active:scale-[0.97]"
-                            >
+                            <Button href={ADDRESS.mapsUrl} target="_blank" rel="noopener noreferrer" size="lg">
                                 Get Directions
-                            </a>
-                            <a
-                                href={PHONE.href}
-                                className="inline-flex items-center justify-center rounded-lg border border-surface-400 px-8 py-4 text-sm font-medium tracking-wide text-ink-700 transition-[border-color,color,transform] duration-200 hover:border-crawfish hover:text-crawfish active:scale-[0.97]"
-                            >
+                            </Button>
+                            <Button href={PHONE.href} variant="outline-light" size="lg">
                                 Call Ahead
-                            </a>
+                            </Button>
                         </div>
                     </div>
 
@@ -322,7 +314,7 @@ function CateringSection() {
                     <div className="lg:col-span-7">
                         <dl className="grid gap-px overflow-hidden rounded-xl bg-white/5 sm:grid-cols-2">
                             <div className="bg-ink-900 p-6 lg:p-8">
-                                <dt className="text-[10px] font-semibold uppercase tracking-[0.3em] text-crawfish/70">
+                                <dt className="text-[10px] font-semibold uppercase tracking-[0.3em] text-caution">
                                     Headcount
                                 </dt>
                                 <dd className="mt-2 font-display text-2xl text-white">
@@ -333,7 +325,7 @@ function CateringSection() {
                                 </p>
                             </div>
                             <div className="bg-ink-900 p-6 lg:p-8">
-                                <dt className="text-[10px] font-semibold uppercase tracking-[0.3em] text-crawfish/70">
+                                <dt className="text-[10px] font-semibold uppercase tracking-[0.3em] text-caution">
                                     Lead time
                                 </dt>
                                 <dd className="mt-2 font-display text-2xl text-white">
@@ -344,7 +336,7 @@ function CateringSection() {
                                 </p>
                             </div>
                             <div className="bg-ink-900 p-6 lg:p-8">
-                                <dt className="text-[10px] font-semibold uppercase tracking-[0.3em] text-crawfish/70">
+                                <dt className="text-[10px] font-semibold uppercase tracking-[0.3em] text-caution">
                                     Service radius
                                 </dt>
                                 <dd className="mt-2 font-display text-2xl text-white">
@@ -355,7 +347,7 @@ function CateringSection() {
                                 </p>
                             </div>
                             <div className="bg-ink-900 p-6 lg:p-8">
-                                <dt className="text-[10px] font-semibold uppercase tracking-[0.3em] text-crawfish/70">
+                                <dt className="text-[10px] font-semibold uppercase tracking-[0.3em] text-caution">
                                     Crawfish minimum
                                 </dt>
                                 <dd className="mt-2 font-display text-2xl text-white">
