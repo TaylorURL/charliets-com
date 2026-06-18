@@ -76,7 +76,7 @@ function SuccessView() {
                                 Get directions <span aria-hidden="true">&rarr;</span>
                             </a>
                         </div>
-                        <div className="bg-white p-5">
+                        <div className="bg-surface-50 p-5">
                             <p className="text-[10px] font-semibold uppercase tracking-[0.25em] text-ink-400">
                                 Estimated ready
                             </p>
