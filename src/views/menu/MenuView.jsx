@@ -46,7 +46,7 @@ function AddToCartButton({ item }) {
         return (
             <button
                 onClick={handleAdd}
-                className="shrink-0 rounded-lg border border-crawfish/30 bg-crawfish-light px-4 py-2 font-display text-[11px] uppercase tracking-[0.15em] text-crawfish transition-[background-color,color,border-color,transform] duration-200 hover:border-crawfish hover:bg-crawfish hover:text-white active:scale-[0.96]"
+                className="shrink-0 rounded-lg border-2 border-crawfish bg-crawfish-light px-4 py-2 font-display text-[12px] uppercase tracking-[0.14em] text-crawfish transition-[background-color,color,transform] duration-200 hover:bg-crawfish hover:text-white active:scale-[0.96]"
                 aria-label={`Add ${item.name} to cart`}
             >
                 Add
