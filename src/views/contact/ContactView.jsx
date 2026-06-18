@@ -532,13 +532,9 @@ function ContactFormSection() {
                                     <p className="text-xs text-ink-500">
                                         We'll respond within one business day, usually faster.
                                     </p>
-                                    <button
-                                        type="submit"
-                                        disabled={submitting}
-                                        className="inline-flex items-center justify-center rounded-lg bg-crawfish px-7 py-3.5 font-display text-[13px] uppercase tracking-wider text-white transition-[background-color,box-shadow,transform] duration-200 hover:bg-crawfish-dark hover:shadow-[0_8px_30px_-8px_rgba(232,93,38,0.5)] active:scale-[0.97] disabled:cursor-not-allowed disabled:opacity-60"
-                                    >
+                                    <Button type="submit" disabled={submitting}>
                                         {submitting ? 'Opening…' : 'Send Message'}
-                                    </button>
+                                    </Button>
                                 </div>
                             </form>
                         )}
