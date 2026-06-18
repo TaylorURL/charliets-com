@@ -31,14 +31,14 @@ function SuccessView() {
 
             <section className="bg-surface-100 py-24 lg:py-32">
                 <div className="mx-auto max-w-2xl px-6 text-center lg:px-10">
-                    <div className="mx-auto flex h-20 w-20 items-center justify-center rounded-full bg-crawfish-light ring-8 ring-crawfish/5">
+                    <div className="number-plate mx-auto flex h-20 w-20 -rotate-3 items-center justify-center rounded-xl">
                         <svg
-                            width="36"
-                            height="36"
+                            width="38"
+                            height="38"
                             viewBox="0 0 24 24"
                             fill="none"
-                            stroke="#E85D26"
-                            strokeWidth="2.5"
+                            stroke="#16110B"
+                            strokeWidth="3"
                             strokeLinecap="round"
                             strokeLinejoin="round"
                             aria-hidden="true"
