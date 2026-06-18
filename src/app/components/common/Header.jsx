@@ -189,6 +189,15 @@ function Header() {
                         </a>
                     </nav>
 
+                    {/* Finish-line seam — only on the solid bar */}
+                    <span
+                        className={`checker-band absolute inset-x-0 bottom-0 h-1 bg-[length:8px_8px] text-white/15 transition-opacity duration-500 ${
+                            isTransparent ? 'opacity-0' : 'opacity-100'
+                        }`}
+                        aria-hidden="true"
+                    />
+                </div>
+
                     {/* Mobile controls */}
                     <div className="ml-auto flex items-center gap-2 md:hidden">
                         <CartButton count={itemCount} onClick={openCart} variant="light" />
