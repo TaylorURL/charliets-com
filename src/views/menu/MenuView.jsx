@@ -19,10 +19,10 @@ function CategoryNav({ categories, activeCategoryId, onSelect }) {
                         key={id}
                         onClick={() => onSelect(id)}
                         aria-current={isActive ? 'true' : undefined}
-                        className={`shrink-0 rounded-lg px-5 py-2.5 font-display text-[11px] uppercase tracking-[0.18em] transition-[background-color,color,border-color,transform] duration-200 active:scale-[0.97] ${
+                        className={`shrink-0 rounded-lg border-2 px-5 py-2.5 font-display text-[12px] uppercase tracking-[0.16em] transition-[background-color,color,border-color,transform] duration-200 active:scale-[0.97] ${
                             isActive
-                                ? 'bg-crawfish text-white shadow-[0_6px_20px_-8px_rgba(232,93,38,0.5)]'
-                                : 'border border-surface-400 bg-white text-ink-700 hover:border-crawfish/40 hover:text-crawfish'
+                                ? 'border-ink-900 bg-crawfish text-white shadow-[3px_3px_0_0_rgba(22,17,11,0.9)]'
+                                : 'border-surface-400 bg-surface-50 text-ink-700 hover:border-crawfish hover:text-crawfish'
                         }`}
                     >
                         {label}
