@@ -1,5 +1,7 @@
 import React, { useCallback, useState } from 'react'
 import { ADDRESS, BUSINESS, CATERING, EMAIL, HOURS, PHONE, SOCIAL } from '../../app/constants/site'
+import Button from '../../app/components/ui/Button'
+import Eyebrow from '../../app/components/ui/Eyebrow'
 
 /* ──────────────────────────────────────────────
    Data
