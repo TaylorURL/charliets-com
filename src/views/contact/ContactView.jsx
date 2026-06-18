@@ -296,8 +296,12 @@ function ParkingSection() {
 
 function CateringSection() {
     return (
-        <section id="catering" className="scroll-mt-32 border-t border-surface-300 bg-ink-900 py-24 lg:py-32">
-            <div className="mx-auto max-w-7xl px-6 lg:px-10">
+        <section
+            id="catering"
+            className="relative scroll-mt-32 overflow-hidden border-t-2 border-ink-900 bg-ink-900 py-24 lg:py-32"
+        >
+            <div className="mud-texture pointer-events-none absolute inset-0" aria-hidden="true" />
+            <div className="relative mx-auto max-w-7xl px-6 lg:px-10">
                 <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
                     <div className="lg:col-span-5">
                         <Eyebrow>Catering</Eyebrow>
