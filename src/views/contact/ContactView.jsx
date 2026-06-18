@@ -570,7 +570,7 @@ function FAQSection() {
         <section className="border-t border-surface-300 bg-surface-200 py-24 lg:py-32">
             <div className="mx-auto max-w-7xl px-6 lg:px-10">
                 <div className="mb-16 max-w-xl">
-                    <p className="text-xs font-semibold uppercase tracking-[0.3em] text-crawfish">FAQ</p>
+                    <Eyebrow>FAQ</Eyebrow>
                     <h2 className="mt-4 font-display text-section uppercase text-ink-900">Before you ask</h2>
                 </div>
 
