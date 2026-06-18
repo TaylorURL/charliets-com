@@ -56,8 +56,8 @@ function SuccessView() {
                         shortly.
                     </p>
 
-                    <div className="mt-8 grid gap-px overflow-hidden rounded-xl border border-surface-300 bg-surface-300 text-left shadow-sm sm:grid-cols-2">
-                        <div className="bg-white p-5">
+                    <div className="mt-8 grid gap-px overflow-hidden rounded-xl border-2 border-ink-900 bg-ink-900 text-left shadow-[6px_6px_0_0_rgba(22,17,11,0.9)] sm:grid-cols-2">
+                        <div className="bg-surface-50 p-5">
                             <p className="text-[10px] font-semibold uppercase tracking-[0.25em] text-ink-400">
                                 Pickup at
                             </p>
