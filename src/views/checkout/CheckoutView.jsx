@@ -307,13 +307,9 @@ function CheckoutForm({ totalCents, onSuccess }) {
                 </div>
             )}
 
-            <button
-                type="submit"
-                disabled={!stripe || processing}
-                className="w-full rounded-lg bg-crawfish py-4 font-display text-sm uppercase tracking-wider text-white transition-[background-color,box-shadow,transform] duration-200 hover:bg-crawfish-dark hover:shadow-[0_8px_30px_-8px_rgba(232,93,38,0.5)] active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-60 disabled:hover:bg-crawfish disabled:hover:shadow-none"
-            >
+            <Button type="submit" size="block" disabled={!stripe || processing}>
                 {processing ? 'Processing…' : `Pay ${formatCents(grandTotalCents)}`}
-            </button>
+            </Button>
 
             <p className="text-center text-xs text-ink-500">
                 Questions before you order? Call us at{' '}
