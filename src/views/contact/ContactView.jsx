@@ -141,7 +141,7 @@ function LocationSection() {
             <div className="mx-auto max-w-7xl px-6 lg:px-10">
                 <div className="grid gap-16 lg:grid-cols-12">
                     <div className="lg:col-span-7">
-                        <p className="text-xs font-semibold uppercase tracking-[0.3em] text-crawfish">Location</p>
+                        <Eyebrow>Location</Eyebrow>
                         <h2 className="mt-4 font-display text-section uppercase text-ink-900">The Shack</h2>
 
                         <address className="mt-8 grid gap-6 not-italic sm:grid-cols-2">
