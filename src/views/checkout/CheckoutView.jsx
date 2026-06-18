@@ -1,5 +1,5 @@
 import React, { useCallback, useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { CardElement, Elements, useElements, useStripe } from '@stripe/react-stripe-js'
 import { loadStripe } from '@stripe/stripe-js'
 import { ADDRESS, PHONE } from '../../app/constants/site'
@@ -201,7 +201,7 @@ function CheckoutForm({ totalCents, onSuccess }) {
 
     return (
         <form onSubmit={handleSubmit} className="space-y-8">
-            <div className="rounded-xl border border-surface-300 bg-white p-6 lg:p-8">
+            <div className="rounded-xl border-2 border-ink-900 bg-surface-50 p-6 shadow-[5px_5px_0_0_rgba(22,17,11,0.9)] lg:p-8">
                 <p className="text-[10px] font-semibold uppercase tracking-[0.25em] text-crawfish">Step 1</p>
                 <h2 className="mt-1 font-display text-lg uppercase tracking-wide text-ink-900">Contact info</h2>
                 <div className="mt-5 grid gap-4 sm:grid-cols-2">
@@ -266,7 +266,7 @@ function CheckoutForm({ totalCents, onSuccess }) {
                 </div>
             </div>
 
-            <div className="rounded-xl border border-surface-300 bg-white p-6 lg:p-8">
+            <div className="rounded-xl border-2 border-ink-900 bg-surface-50 p-6 shadow-[5px_5px_0_0_rgba(22,17,11,0.9)] lg:p-8">
                 <p className="text-[10px] font-semibold uppercase tracking-[0.25em] text-crawfish">Step 2</p>
                 <h2 className="mt-1 font-display text-lg uppercase tracking-wide text-ink-900">Pickup details</h2>
                 <div className="mt-5">
@@ -287,7 +287,7 @@ function CheckoutForm({ totalCents, onSuccess }) {
                 </label>
             </div>
 
-            <div className="rounded-xl border border-surface-300 bg-white p-6 lg:p-8">
+            <div className="rounded-xl border-2 border-ink-900 bg-surface-50 p-6 shadow-[5px_5px_0_0_rgba(22,17,11,0.9)] lg:p-8">
                 <p className="text-[10px] font-semibold uppercase tracking-[0.25em] text-crawfish">Step 3</p>
                 <h2 className="mt-1 font-display text-lg uppercase tracking-wide text-ink-900">Payment</h2>
                 <div className="mt-5 rounded-lg border border-surface-400 bg-white px-4 py-3.5 transition-[border-color] duration-200 focus-within:border-crawfish">
