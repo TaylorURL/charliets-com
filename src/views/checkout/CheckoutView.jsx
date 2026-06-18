@@ -5,6 +5,8 @@ import { loadStripe } from '@stripe/stripe-js'
 import { ADDRESS, PHONE } from '../../app/constants/site'
 import { useCart } from '../../app/context/CartContext'
 import { formatCents } from '../../app/utils/FormatUtility'
+import Button from '../../app/components/ui/Button'
+import Eyebrow from '../../app/components/ui/Eyebrow'
 
 /* ──────────────────────────────────────────────
    Stripe Setup
