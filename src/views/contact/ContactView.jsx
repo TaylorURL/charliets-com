@@ -451,7 +451,7 @@ function ContactFormSection() {
                         ) : (
                             <form
                                 onSubmit={handleSubmit}
-                                className="space-y-5 rounded-xl border border-surface-300 bg-white p-6 lg:p-8"
+                                className="space-y-5 rounded-xl border-2 border-ink-900 bg-surface-50 p-6 shadow-[6px_6px_0_0_rgba(22,17,11,0.9)] lg:p-8"
                             >
                                 <div className="grid gap-5 sm:grid-cols-2">
                                     <label className="block">
