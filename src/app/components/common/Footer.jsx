@@ -79,8 +79,9 @@ function Footer() {
     const currentYear = new Date().getFullYear()
 
     return (
-        <footer className="border-t border-surface-300 bg-surface-200 px-4 pb-8 pt-16 md:px-6">
-            <div className="mx-auto max-w-7xl">
+        <footer className="bg-surface-200">
+            <div className="checker-band h-3 w-full bg-[length:16px_16px] text-ink-900/85" aria-hidden="true" />
+            <div className="mx-auto max-w-7xl px-4 pb-8 pt-16 md:px-6">
                 <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-12">
                     {/* Logo & info */}
                     <div className="lg:col-span-5">
