@@ -477,18 +477,9 @@ function AboutSection() {
                             Started in
                             <br />a backyard.
                         </h2>
-                        <Link
-                            to="/about"
-                            className="group mt-8 inline-flex items-center gap-2 text-sm font-medium text-ink-600 underline decoration-surface-400 underline-offset-4 transition-colors duration-200 hover:text-crawfish hover:decoration-crawfish"
-                        >
+                        <ArrowLink to="/about" className="mt-8">
                             Read the full story
-                            <span
-                                className="transition-transform duration-200 group-hover:translate-x-1"
-                                aria-hidden="true"
-                            >
-                                &rarr;
-                            </span>
-                        </Link>
+                        </ArrowLink>
                     </div>
                     <div className="space-y-6 text-base leading-relaxed text-ink-600 lg:col-span-7">
                         <p>
