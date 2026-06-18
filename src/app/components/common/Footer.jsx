@@ -179,12 +179,9 @@ function Footer() {
                                 </div>
                             ))}
                         </dl>
-                        <a
-                            href={PHONE.href}
-                            className="mt-6 inline-flex items-center gap-2 rounded-lg bg-crawfish px-5 py-2.5 font-display text-xs uppercase tracking-wider text-white transition-[background-color,transform] duration-200 hover:bg-crawfish-dark active:scale-[0.97]"
-                        >
+                        <Button href={PHONE.href} size="sm" className="mt-6">
                             Call to Order
-                        </a>
+                        </Button>
                     </div>
                 </div>
 
