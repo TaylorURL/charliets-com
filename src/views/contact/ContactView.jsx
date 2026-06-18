@@ -269,7 +269,7 @@ function ParkingSection() {
         <section className="bg-surface-100 py-24 lg:py-32">
             <div className="mx-auto grid max-w-7xl gap-16 px-6 lg:grid-cols-12 lg:px-10">
                 <div className="lg:col-span-5">
-                    <p className="text-xs font-semibold uppercase tracking-[0.3em] text-crawfish">Getting Here</p>
+                    <Eyebrow>Getting Here</Eyebrow>
                     <h2 className="mt-4 font-display text-section uppercase text-ink-900">
                         Parking &amp;
                         <br />
