@@ -80,8 +80,8 @@ function FAQItem({ question, answer }) {
 
 function SocialBlock() {
     return (
-        <div className="rounded-xl border border-surface-300 bg-white p-6 lg:p-8">
-            <p className="text-[10px] font-semibold uppercase tracking-[0.3em] text-crawfish/70">Follow Along</p>
+        <div className="rounded-xl border-2 border-ink-900 bg-surface-50 p-6 shadow-[5px_5px_0_0_rgba(22,17,11,0.9)] lg:p-8">
+            <p className="text-[10px] font-semibold uppercase tracking-[0.3em] text-crawfish">Follow Along</p>
             <p className="mt-3 font-display text-lg uppercase tracking-wide text-ink-900">
                 Boils, specials, behind-the-pot.
             </p>
