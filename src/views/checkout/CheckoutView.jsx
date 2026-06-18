@@ -44,7 +44,7 @@ function OrderSummary({ items, totalCents }) {
     const grandTotalCents = totalCents + taxCents
 
     return (
-        <div className="rounded-xl border border-surface-300 bg-white p-6 shadow-sm lg:p-8">
+        <div className="rounded-xl border-2 border-ink-900 bg-surface-50 p-6 shadow-[6px_6px_0_0_rgba(22,17,11,0.9)] lg:p-8">
             <p className="text-[10px] font-semibold uppercase tracking-[0.25em] text-crawfish">Order Summary</p>
             <h2 className="mt-2 font-display text-lg uppercase tracking-wide text-ink-900">Your pickup order</h2>
 
