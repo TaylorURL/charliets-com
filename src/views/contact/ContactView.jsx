@@ -423,7 +423,7 @@ function ContactFormSection() {
             <div className="mx-auto max-w-7xl px-6 lg:px-10">
                 <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
                     <div className="lg:col-span-5">
-                        <p className="text-xs font-semibold uppercase tracking-[0.3em] text-crawfish">Send a Message</p>
+                        <Eyebrow>Send a Message</Eyebrow>
                         <h2 className="mt-4 font-display text-section uppercase text-ink-900">
                             Got a question?
                             <br />
