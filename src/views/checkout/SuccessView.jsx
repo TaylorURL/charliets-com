@@ -93,7 +93,7 @@ function SuccessView() {
                     </div>
 
                     {state?.notes ? (
-                        <div className="mt-4 rounded-xl border border-surface-300 bg-white px-5 py-4 text-left shadow-sm">
+                        <div className="mt-4 rounded-xl border-2 border-ink-900 bg-surface-50 px-5 py-4 text-left">
                             <p className="text-[10px] font-semibold uppercase tracking-[0.25em] text-ink-400">
                                 Special instructions
                             </p>
