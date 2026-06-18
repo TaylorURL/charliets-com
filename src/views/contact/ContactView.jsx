@@ -317,7 +317,8 @@ function CateringSection() {
                     </div>
 
                     <div className="lg:col-span-7">
-                        <dl className="grid gap-px overflow-hidden rounded-xl bg-white/5 sm:grid-cols-2">
+                        <div className="hazard-stripes mb-px h-2.5 w-full rounded-t-xl text-caution/70" aria-hidden="true" />
+                        <dl className="grid gap-px overflow-hidden rounded-b-xl border border-white/10 bg-white/10 sm:grid-cols-2">
                             <div className="bg-ink-900 p-6 lg:p-8">
                                 <dt className="text-[10px] font-semibold uppercase tracking-[0.3em] text-caution">
                                     Headcount
