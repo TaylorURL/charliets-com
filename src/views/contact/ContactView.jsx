@@ -208,7 +208,7 @@ function LocationSection() {
                     </div>
 
                     <div className="lg:col-span-5">
-                        <p className="text-xs font-semibold uppercase tracking-[0.3em] text-crawfish">Hours</p>
+                        <Eyebrow>Hours</Eyebrow>
                         <h2 className="mt-4 font-display text-section uppercase text-ink-900">When we're open</h2>
 
                         <dl className="mt-8 divide-y divide-surface-300 border-y border-surface-300">
