@@ -180,28 +180,34 @@ function MenuView() {
         <>
             {/* Hero */}
             <section className="border-b border-surface-300 bg-ink-900 pb-16 pt-32 lg:pb-20 lg:pt-40">
-                <div className="mx-auto max-w-7xl px-6 lg:px-10">
-                    <p className="text-xs font-semibold uppercase tracking-[0.3em] text-crawfish">The Menu</p>
-                    <h1 className="mt-4 font-display text-hero uppercase text-white">
-                        What we
-                        <br />
-                        serve.
-                    </h1>
-                    <p className="mt-6 max-w-xl text-base leading-relaxed text-white/65">
-                        Prices are straightforward. Portions are generous. If you can't decide, get the crawfish. That's
-                        why you're here.
-                    </p>
+                <div className="relative mx-auto max-w-7xl px-6 lg:px-10">
+                    <div className="mud-texture pointer-events-none absolute inset-0" aria-hidden="true" />
+                    <div className="relative">
+                        <Eyebrow>The Menu</Eyebrow>
+                        <h1 className="mt-4 font-display text-hero uppercase text-white">
+                            What we
+                            <br />
+                            serve.
+                        </h1>
+                        <p className="mt-6 max-w-xl text-base leading-relaxed text-white/65">
+                            Prices are straightforward. Portions are generous. If you can't decide, get the crawfish.
+                            That's why you're here.
+                        </p>
 
-                    <div className="mt-10 flex flex-wrap gap-6 text-sm text-white/45">
-                        <span>
-                            <span className="font-display text-white">{itemSummary}+</span> items
-                        </span>
-                        <span>
-                            <span className="font-display text-white">{MENU_CATEGORIES.length}</span> sections
-                        </span>
-                        <span>
-                            <span className="font-display text-white">Tax</span> not included
-                        </span>
+                        <div className="mt-10 flex flex-wrap gap-3">
+                            {[
+                                { value: `${itemSummary}+`, label: 'items' },
+                                { value: MENU_CATEGORIES.length, label: 'sections' },
+                                { value: 'Tax', label: 'not included' },
+                            ].map(({ value, label }) => (
+                                <span
+                                    key={label}
+                                    className="inline-flex items-baseline gap-2 rounded-md border border-white/15 bg-white/[0.04] px-4 py-2 text-sm text-white/50"
+                                >
+                                    <span className="font-display text-base text-caution">{value}</span> {label}
+                                </span>
+                            ))}
+                        </div>
                     </div>
                 </div>
             </section>
