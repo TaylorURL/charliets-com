@@ -1,5 +1,5 @@
 import React from 'react'
-import { useLocation } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import { ADDRESS, PHONE } from '../../app/constants/site'
 import Button from '../../app/components/ui/Button'
 import Eyebrow from '../../app/components/ui/Eyebrow'
