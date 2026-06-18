@@ -113,16 +113,18 @@ function Header() {
                           : 'bg-ink-900 text-white/55'
                 }`}
             >
-                <span className="whitespace-nowrap">
+                <span className="whitespace-nowrap font-display tracking-[0.18em]">
                     {ADDRESS.city.toUpperCase()}, {ADDRESS.state}
                 </span>
-                <span className="text-crawfish/40" aria-hidden="true">
-                    |
-                </span>
+                <span
+                    className="checker-band h-2 w-3.5 bg-[length:5px_5px] text-current opacity-50"
+                    aria-hidden="true"
+                />
                 <span className="hidden whitespace-nowrap sm:inline">{HOURS_SUMMARY}</span>
-                <span className="text-crawfish/40 sm:hidden" aria-hidden="true">
-                    |
-                </span>
+                <span
+                    className="checker-band h-2 w-3.5 bg-[length:5px_5px] text-current opacity-50 sm:hidden"
+                    aria-hidden="true"
+                />
                 <a href={PHONE.href} className="whitespace-nowrap transition-colors duration-200 hover:text-crawfish">
                     {PHONE.display}
                 </a>
