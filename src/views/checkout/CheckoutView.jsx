@@ -346,9 +346,10 @@ function CheckoutView() {
     return (
         <>
             {/* Hero */}
-            <section className="border-b border-surface-300 bg-ink-900 pb-12 pt-32 lg:pb-16 lg:pt-40">
-                <div className="mx-auto max-w-7xl px-6 lg:px-10">
-                    <p className="text-xs font-semibold uppercase tracking-[0.3em] text-crawfish">Checkout</p>
+            <section className="relative overflow-hidden border-b-2 border-ink-900 bg-ink-900 pb-12 pt-32 lg:pb-16 lg:pt-40">
+                <div className="mud-texture pointer-events-none absolute inset-0" aria-hidden="true" />
+                <div className="relative mx-auto max-w-7xl px-6 lg:px-10">
+                    <Eyebrow>Checkout</Eyebrow>
                     <h1 className="mt-4 font-display text-section uppercase text-white">Almost there.</h1>
                 </div>
             </section>
