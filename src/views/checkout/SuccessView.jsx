@@ -17,9 +17,10 @@ function SuccessView() {
 
     return (
         <>
-            <section className="border-b border-surface-300 bg-ink-900 pb-16 pt-32 lg:pb-24 lg:pt-40">
-                <div className="mx-auto max-w-7xl px-6 lg:px-10">
-                    <p className="text-xs font-semibold uppercase tracking-[0.3em] text-crawfish">Order Confirmed</p>
+            <section className="relative overflow-hidden border-b-2 border-ink-900 bg-ink-900 pb-16 pt-32 lg:pb-24 lg:pt-40">
+                <div className="mud-texture pointer-events-none absolute inset-0" aria-hidden="true" />
+                <div className="relative mx-auto max-w-7xl px-6 lg:px-10">
+                    <Eyebrow>Order Confirmed — Checkered Flag</Eyebrow>
                     <h1 className="mt-4 font-display text-hero uppercase text-white">
                         You're
                         <br />
