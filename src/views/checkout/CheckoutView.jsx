@@ -20,10 +20,10 @@ const CARD_ELEMENT_OPTIONS = {
         base: {
             fontSize: '16px',
             fontFamily: '"DM Sans", sans-serif',
-            color: '#1A1816',
-            '::placeholder': { color: '#9C9791' }
+            color: '#16110B',
+            '::placeholder': { color: '#98826A' }
         },
-        invalid: { color: '#E85D26' }
+        invalid: { color: '#E01E2B' }
     }
 }
 
