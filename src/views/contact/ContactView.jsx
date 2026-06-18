@@ -409,7 +409,7 @@ function ContactFormSection() {
     )
 
     return (
-        <section className="border-t border-surface-300 bg-surface-100 py-24 lg:py-32">
+        <section className="border-t-2 border-ink-900 bg-surface-100 py-24 lg:py-32">
             <div className="mx-auto max-w-7xl px-6 lg:px-10">
                 <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
                     <div className="lg:col-span-5">
