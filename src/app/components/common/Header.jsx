@@ -182,7 +182,7 @@ function Header() {
 
                         <a
                             href={PHONE.href}
-                            className="ml-3 inline-flex items-center gap-2 rounded-full border border-crawfish/80 bg-crawfish/10 px-5 py-2 font-display text-[12px] uppercase tracking-[0.12em] text-crawfish transition-[background-color,color,box-shadow,transform] duration-200 hover:bg-crawfish hover:text-white hover:shadow-[0_0_20px_rgba(232,93,38,0.3)] active:scale-[0.97]"
+                            className="ml-3 inline-flex items-center gap-2 rounded-full border border-crawfish/80 bg-crawfish/10 px-5 py-2 font-display text-[12px] uppercase tracking-[0.12em] text-crawfish transition-[background-color,color,box-shadow,transform] duration-200 hover:bg-crawfish hover:text-white hover:shadow-[0_0_20px_rgba(255,90,31,0.35)] active:scale-[0.97]"
                         >
                             <PhoneIcon className="h-3.5 w-3.5" />
                             Call to Order
