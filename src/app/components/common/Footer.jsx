@@ -189,6 +189,17 @@ function Footer() {
                     <p className="text-xs text-ink-400">
                         &copy; {currentYear} {BUSINESS.fullName}. All rights reserved.
                     </p>
+                    <p className="mt-2 text-[10px] text-ink-400/60">
+                        Site made by{' '}
+                        <a
+                            href="https://taylorurl.com"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="underline transition-colors duration-200 hover:text-ink-400"
+                        >
+                            TaylorURL.com
+                        </a>
+                    </p>
                 </div>
             </div>
         </footer>
