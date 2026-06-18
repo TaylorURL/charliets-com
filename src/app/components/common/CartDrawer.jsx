@@ -166,12 +166,9 @@ function CartDrawer({ isOpen, onClose }) {
                             <p className="mt-2 max-w-xs text-sm text-ink-500">
                                 Add something from the menu and your order will show up here.
                             </p>
-                            <button
-                                onClick={onClose}
-                                className="mt-6 inline-flex items-center justify-center rounded-lg border border-surface-400 px-5 py-2.5 font-display text-[11px] uppercase tracking-[0.15em] text-ink-700 transition-[border-color,color,transform] duration-200 hover:border-crawfish hover:text-crawfish active:scale-[0.97]"
-                            >
+                            <Button onClick={onClose} variant="outline-light" size="sm" className="mt-6">
                                 Browse menu
-                            </button>
+                            </Button>
                         </div>
                     ) : (
                         <div className="divide-y divide-surface-300">
