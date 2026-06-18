@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { ADDRESS, BUSINESS, EMAIL, HOURS, PHONE, SOCIAL } from '../../constants/site'
+import Button from '../ui/Button'
 
 const FOOTER_NAV = [
     { label: 'Menu', path: '/menu' },
@@ -79,8 +80,9 @@ function Footer() {
     const currentYear = new Date().getFullYear()
 
     return (
-        <footer className="border-t border-surface-300 bg-surface-200 px-4 pb-8 pt-16 md:px-6">
-            <div className="mx-auto max-w-7xl">
+        <footer className="bg-surface-200">
+            <div className="checker-band h-3 w-full bg-[length:16px_16px] text-ink-900/85" aria-hidden="true" />
+            <div className="mx-auto max-w-7xl px-4 pb-8 pt-16 md:px-6">
                 <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-12">
                     {/* Logo & info */}
                     <div className="lg:col-span-5">
@@ -91,9 +93,8 @@ function Footer() {
                         >
                             <img src="/logo.webp" alt={BUSINESS.fullName} className="h-24 w-auto" />
                         </Link>
-                        <p className="mb-6 max-w-sm text-sm leading-relaxed text-ink-600">
-                            {BUSINESS.tagline} Seasoning heavy, beer cold, napkins useless.
-                        </p>
+                        <p className="mb-3 max-w-sm text-sm leading-relaxed text-ink-600">{BUSINESS.tagline}</p>
+                        <p className="mb-6 font-paint text-lg text-crawfish">Seasoning heavy, beer cold, napkins useless.</p>
                         <address className="not-italic space-y-2">
                             <a
                                 href={ADDRESS.mapsUrl}
@@ -177,12 +178,9 @@ function Footer() {
                                 </div>
                             ))}
                         </dl>
-                        <a
-                            href={PHONE.href}
-                            className="mt-6 inline-flex items-center gap-2 rounded-lg bg-crawfish px-5 py-2.5 font-display text-xs uppercase tracking-wider text-white transition-[background-color,transform] duration-200 hover:bg-crawfish-dark active:scale-[0.97]"
-                        >
+                        <Button href={PHONE.href} size="sm" className="mt-6">
                             Call to Order
-                        </a>
+                        </Button>
                     </div>
                 </div>
 

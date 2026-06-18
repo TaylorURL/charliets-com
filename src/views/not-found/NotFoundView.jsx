@@ -1,21 +1,31 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
 import { PHONE } from '../../app/constants/site'
+import Button from '../../app/components/ui/Button'
+import Eyebrow from '../../app/components/ui/Eyebrow'
 
 function NotFoundView() {
     return (
         <section className="relative flex min-h-[100svh] items-center overflow-hidden bg-ink-900">
             <div className="pointer-events-none absolute inset-0">
-                <div className="absolute -right-40 top-0 h-[800px] w-[800px] rounded-full bg-crawfish/[0.04] blur-[120px]" />
-                <div className="absolute -left-32 bottom-0 h-[500px] w-[500px] rounded-full bg-crawfish/[0.05] blur-[120px]" />
+                <div className="mud-texture absolute inset-0" />
+                <div className="absolute -right-40 top-0 h-[800px] w-[800px] rounded-full bg-crawfish/[0.05] blur-[120px]" />
+                <div className="absolute -left-32 bottom-0 h-[500px] w-[500px] rounded-full bg-racing/[0.05] blur-[120px]" />
             </div>
 
+            {/* Caution tape across a dead end */}
+            <div
+                className="hazard-stripes pointer-events-none absolute inset-x-0 top-1/2 hidden h-8 -translate-y-1/2 -rotate-2 text-caution/15 sm:block"
+                aria-hidden="true"
+            />
+
             <div className="relative z-10 mx-auto w-full max-w-3xl px-6 py-32 text-center lg:px-10">
-                <p className="text-[10px] font-semibold uppercase tracking-[0.3em] text-crawfish">404 — Not Found</p>
-                <h1 className="mt-6 font-display text-[clamp(4rem,15vw,11rem)] uppercase leading-[0.85] tracking-tight text-white">
+                <div className="flex justify-center">
+                    <Eyebrow tick={false}>404 — Red Flag</Eyebrow>
+                </div>
+                <h1 className="mt-6 font-display text-[clamp(4rem,15vw,11rem)] uppercase leading-[0.85] text-white">
                     Wrong
                     <br />
-                    pot.
+                    <span className="text-crawfish">pot.</span>
                 </h1>
                 <p className="mx-auto mt-8 max-w-md text-base leading-relaxed text-white/65">
                     The page you're looking for boiled off somewhere. Try the menu, the story, or come find us in
@@ -23,18 +33,10 @@ function NotFoundView() {
                 </p>
 
                 <div className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
-                    <Link
-                        to="/"
-                        className="inline-flex items-center justify-center rounded-lg bg-crawfish px-7 py-3.5 font-display text-[13px] uppercase tracking-wider text-white transition-[background-color,box-shadow,transform] duration-200 hover:bg-crawfish-dark hover:shadow-[0_8px_30px_-8px_rgba(232,93,38,0.5)] active:scale-[0.97]"
-                    >
-                        Back to Home
-                    </Link>
-                    <Link
-                        to="/menu"
-                        className="inline-flex items-center justify-center rounded-lg border border-white/15 px-7 py-3.5 text-[13px] font-medium uppercase tracking-wider text-white/70 transition-[border-color,color,transform] duration-200 hover:border-white/35 hover:text-white active:scale-[0.97]"
-                    >
+                    <Button to="/">Back to Home</Button>
+                    <Button to="/menu" variant="outline-dark">
                         See the Menu
-                    </Link>
+                    </Button>
                 </div>
 
                 <p className="mt-12 text-xs text-white/35">
