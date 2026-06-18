@@ -1,7 +1,7 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
 import { ADDRESS, BUSINESS, CATERING, HOURS_SUMMARY, PHONE } from '../../app/constants/site'
 import Button from '../../app/components/ui/Button'
+import ArrowLink from '../../app/components/ui/ArrowLink'
 import Eyebrow from '../../app/components/ui/Eyebrow'
 import NumberPlate from '../../app/components/ui/NumberPlate'
 import Marquee from '../../app/components/ui/Marquee'
