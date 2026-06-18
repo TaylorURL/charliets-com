@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { ADDRESS, BUSINESS, EMAIL, HOURS, PHONE, SOCIAL } from '../../constants/site'
+import Button from '../ui/Button'
 
 const FOOTER_NAV = [
     { label: 'Menu', path: '/menu' },
