@@ -2,6 +2,8 @@ import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import MENU_CATEGORIES from '../../app/constants/menu'
 import { PHONE } from '../../app/constants/site'
 import { useCart } from '../../app/context/CartContext'
+import Button from '../../app/components/ui/Button'
+import Eyebrow from '../../app/components/ui/Eyebrow'
 
 /* ──────────────────────────────────────────────
    Components
