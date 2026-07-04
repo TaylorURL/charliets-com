@@ -1,21 +1,21 @@
-<p align="center">
-  <img src="public/logo.webp" alt="Charlie T's Crawfish Shack" width="200">
-</p>
+<p align="center"><img src="public/logo.webp" width="200" alt="Charlie T's Crawfish Shack" /></p>
 
 <h1 align="center">Charlie T's Crawfish Shack</h1>
 
-<p align="center">
-  Front end for <a href="https://charliets.com">charliets.com</a> — fresh boiled crawfish and Cajun seafood in Dayton, Texas. <em>Seasoning heavy, napkins useless.</em>
-</p>
+<p align="center"><b>Fresh boiled crawfish and Cajun seafood in Dayton, Texas.</b></p>
+
+<p align="center">Front end for <a href="https://charliets.com">charliets.com</a> — <em>seasoning heavy, napkins useless.</em></p>
 
 <p align="center">
-  <img alt="React" src="https://img.shields.io/badge/React-19-61DAFB?logo=react&logoColor=black&style=flat-square">
-  <img alt="React Router" src="https://img.shields.io/badge/React_Router-7-CA4245?logo=reactrouter&logoColor=white&style=flat-square">
-  <img alt="Create React App via react-app-rewired" src="https://img.shields.io/badge/CRA-react--app--rewired-09D3AC?logo=createreactapp&logoColor=white&style=flat-square">
-  <img alt="Tailwind CSS" src="https://img.shields.io/badge/Tailwind_CSS-3-38BDF8?logo=tailwindcss&logoColor=white&style=flat-square">
-  <img alt="Stripe" src="https://img.shields.io/badge/Stripe-Elements-635BFF?logo=stripe&logoColor=white&style=flat-square">
-  <img alt="Vercel" src="https://img.shields.io/badge/Vercel-deployed-000000?logo=vercel&logoColor=white&style=flat-square">
+  <img alt="React" src="https://img.shields.io/badge/React-19-e85d26?style=for-the-badge&logo=react&logoColor=white" />
+  <img alt="React Router" src="https://img.shields.io/badge/React_Router-7-e85d26?style=for-the-badge&logo=reactrouter&logoColor=white" />
+  <img alt="Create React App via react-app-rewired" src="https://img.shields.io/badge/CRA-react--app--rewired-e85d26?style=for-the-badge&logo=createreactapp&logoColor=white" />
+  <img alt="Tailwind CSS" src="https://img.shields.io/badge/Tailwind_CSS-3-e85d26?style=for-the-badge&logo=tailwindcss&logoColor=white" />
+  <img alt="Stripe" src="https://img.shields.io/badge/Stripe-Elements-e85d26?style=for-the-badge&logo=stripe&logoColor=white" />
+  <img alt="Vercel" src="https://img.shields.io/badge/Vercel-deployed-e85d26?style=for-the-badge&logo=vercel&logoColor=white" />
 </p>
+
+<br />
 
 - **Front end only, no backend** — the whole site is a static React SPA on Vercel; the cart lives in memory and the contact form opens the visitor's own email client.
 - **Order online for pickup** — a six-section menu feeds a cart drawer and a three-step Stripe Elements checkout: contact, pickup time, then card.
