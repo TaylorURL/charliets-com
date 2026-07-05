@@ -13,12 +13,12 @@
 </p>
 
 <p align="center">
-  <img alt="React 19" src="https://img.shields.io/badge/React-19-FF5A1F?style=for-the-badge&logo=react&logoColor=white" />
-  <img alt="React Router 7" src="https://img.shields.io/badge/React_Router-7-FF5A1F?style=for-the-badge&logo=reactrouter&logoColor=white" />
-  <img alt="Create React App via react-app-rewired" src="https://img.shields.io/badge/CRA-react--app--rewired-FF5A1F?style=for-the-badge&logo=createreactapp&logoColor=white" />
-  <img alt="Tailwind CSS 3" src="https://img.shields.io/badge/Tailwind_CSS-3-FF5A1F?style=for-the-badge&logo=tailwindcss&logoColor=white" />
-  <img alt="Stripe Elements" src="https://img.shields.io/badge/Stripe-Elements-FF5A1F?style=for-the-badge&logo=stripe&logoColor=white" />
-  <img alt="Vercel" src="https://img.shields.io/badge/Vercel-deployed-FF5A1F?style=for-the-badge&logo=vercel&logoColor=white" />
+  <img alt="React 19" src="https://img.shields.io/badge/React-19-2563eb?style=for-the-badge&logo=react&logoColor=white" />
+  <img alt="React Router 7" src="https://img.shields.io/badge/React_Router-7-2563eb?style=for-the-badge&logo=reactrouter&logoColor=white" />
+  <img alt="Create React App via react-app-rewired" src="https://img.shields.io/badge/CRA-react--app--rewired-2563eb?style=for-the-badge&logo=createreactapp&logoColor=white" />
+  <img alt="Tailwind CSS 3" src="https://img.shields.io/badge/Tailwind_CSS-3-3b82f6?style=for-the-badge&logo=tailwindcss&logoColor=white" />
+  <img alt="Stripe Elements" src="https://img.shields.io/badge/Stripe-Elements-1f56cf?style=for-the-badge&logo=stripe&logoColor=white" />
+  <img alt="Vercel" src="https://img.shields.io/badge/Vercel-deployed-2563eb?style=for-the-badge&logo=vercel&logoColor=white" />
 </p>
 
 <br />
@@ -100,7 +100,7 @@ Six sections, all defined in `src/app/constants/menu.js` (prices in cents):
 - **Plates** — fried/blackened catfish, fried shrimp, crawfish etouffee, gumbo, red beans & rice
 - **Sandwiches** — shrimp, catfish, roast beef, and hot sausage po'boys
 - **Sides** — Cajun fries, slaw, collard greens, corn, dirty rice, mac & cheese
-- **Drinks** — sweet/unsweet tea, lemonade, and sodas
+- **Drinks** — sweet/unsweet tea, lemonade, sodas, and beer (Abita, craft, domestic)
 
 Whole Boiled Crawfish is market-price (`marketPrice: true`) and seasonal — January through June, minimum 3 lbs — so it shows a "Call to order" link instead of an add-to-cart button.
 
@@ -149,4 +149,3 @@ Private project — all rights reserved. Made by [TaylorURL](https://taylorurl.c
 <p align="center">
   <sub>Seasoning heavy, napkins useless.</sub>
 </p>
-</content>
