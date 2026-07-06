@@ -9,3 +9,6 @@ build/
 *.log
 .idea/
 .claude/
+.vscode/
+*.iml
+*.sql
