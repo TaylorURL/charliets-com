@@ -18,20 +18,20 @@
   <img alt="Create React App via react-app-rewired" src="https://img.shields.io/badge/CRA-react--app--rewired-2563eb?style=for-the-badge&logo=createreactapp&logoColor=white" />
   <img alt="Tailwind CSS 3" src="https://img.shields.io/badge/Tailwind_CSS-3-3b82f6?style=for-the-badge&logo=tailwindcss&logoColor=white" />
   <img alt="Stripe Elements" src="https://img.shields.io/badge/Stripe-Elements-1f56cf?style=for-the-badge&logo=stripe&logoColor=white" />
-  <img alt="Vercel" src="https://img.shields.io/badge/Vercel-deployed-2563eb?style=for-the-badge&logo=vercel&logoColor=white" />
+  <img alt="Static SPA" src="https://img.shields.io/badge/static-SPA-2563eb?style=for-the-badge" />
 </p>
 
 <br />
 
 ## Why Charlie T's
 
-A crawfish shack does not need a server farm. This is the entire front end for charliets.com — a single-page React app that runs on Vercel with nothing behind it. The menu, hours, address, and social links live in two data files; the cart lives in browser memory; the contact form opens the visitor's own email client. Guests browse the menu, fill a cart, and walk through a Stripe Elements checkout for pickup, all client-side.
+A crawfish shack does not need a server farm. This is the entire front end for charliets.com — a single-page React app that runs on any static host with nothing behind it. The menu, hours, address, and social links live in two data files; the cart lives in browser memory; the contact form opens the visitor's own email client. Guests browse the menu, fill a cart, and walk through a Stripe Elements checkout for pickup, all client-side.
 
 <table width="100%">
   <tr>
     <td width="33%" valign="top">
       <h3 align="center">Front end only</h3>
-      <p align="center">A static React SPA on Vercel — no backend, no database. The cart lives in memory and the contact form is a plain <code>mailto:</code>.</p>
+      <p align="center">A static React SPA on any host — no backend, no database. The cart lives in memory and the contact form is a plain <code>mailto:</code>.</p>
     </td>
     <td width="33%" valign="top">
       <h3 align="center">Order for pickup</h3>
@@ -55,7 +55,7 @@ A crawfish shack does not need a server farm. This is the entire front end for c
 | Styling    | Tailwind CSS 3 + PostCSS + Autoprefixer                                                  |
 | Payments   | Stripe Elements — `@stripe/react-stripe-js` + `@stripe/stripe-js`                        |
 | Cart state | In-memory React context + reducer (not persisted)                                       |
-| Hosting    | Vercel                                                                                   |
+| Hosting    | Any static host — the build is a plain SPA bundle                                        |
 
 Not a Vite project — the build runs through **react-app-rewired**, whose `config-overrides.js` swaps in browser polyfills for Node core modules (e.g. `path-browserify`).
 
@@ -64,13 +64,13 @@ Not a Vite project — the build runs through **react-app-rewired**, whose `conf
 ```bash
 npm install
 npm start          # react-app-rewired dev server on localhost:3000
-npm run build      # production build — what Vercel runs
+npm run build      # production build — the static bundle to deploy
 npm test           # react-app-rewired test runner
 npm run lint       # eslint src/
 npm run format     # prettier --write "src/**/*.{js,jsx,css}"
 ```
 
-`npm run build` pins `CI=false` (via `cross-env`), so lint warnings don't fail the Vercel deploy. To reproduce Create React App's strict "warnings are errors" gate before pushing, run `CI=true npx react-app-rewired build`.
+`npm run build` pins `CI=false` (via `cross-env`), so lint warnings don't fail the production build. To reproduce Create React App's strict "warnings are errors" gate before pushing, run `CI=true npx react-app-rewired build`.
 
 Stripe card entry needs a publishable key — set one to exercise real checkout locally:
 
