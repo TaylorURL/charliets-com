@@ -3,10 +3,6 @@ import { ADDRESS, BUSINESS, CATERING, EMAIL, HOURS, PHONE, SOCIAL } from '../../
 import Button from '../../app/components/ui/Button'
 import Eyebrow from '../../app/components/ui/Eyebrow'
 
-/* ──────────────────────────────────────────────
-   Data
-   ────────────────────────────────────────────── */
-
 const FAQ_ITEMS = [
     {
         question: 'Do you take reservations?',
@@ -41,10 +37,6 @@ const FAQ_ITEMS = [
         answer: 'Cash, all major credit cards, Apple Pay, and Google Pay. The ATM up the road in Dayton has a $3 fee — fair warning.'
     }
 ]
-
-/* ──────────────────────────────────────────────
-   Components
-   ────────────────────────────────────────────── */
 
 function FAQItem({ question, answer }) {
     const [isOpen, setIsOpen] = useState(false)
@@ -111,10 +103,6 @@ function SocialBlock() {
         </div>
     )
 }
-
-/* ──────────────────────────────────────────────
-   Sections
-   ────────────────────────────────────────────── */
 
 function HeroSection() {
     return (
@@ -569,10 +557,6 @@ function FAQSection() {
         </section>
     )
 }
-
-/* ──────────────────────────────────────────────
-   Page
-   ────────────────────────────────────────────── */
 
 function ContactView() {
     return (

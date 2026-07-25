@@ -1,11 +1,5 @@
 import React from 'react'
 
-/* ──────────────────────────────────────────────
-   CheckeredBand — a finish-line divider. Drop it
-   between sections for a race-track seam. Color is
-   driven by text color so it adapts to any ground.
-   ────────────────────────────────────────────── */
-
 /**
  * @param {object} props
  * @param {string} [props.className] height + text color (the check color)

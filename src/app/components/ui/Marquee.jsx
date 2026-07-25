@@ -1,18 +1,11 @@
 import React from 'react'
 
-/* ──────────────────────────────────────────────
-   Marquee — the start-line sponsor banner. A
-   single track of phrases scrolled on loop. The
-   list is duplicated so the -50% translate wraps
-   seamlessly; pauses on hover, calms under
-   reduced-motion via the global media query.
-   ────────────────────────────────────────────── */
-
 /**
  * @param {object} props
  * @param {string[]} props.items phrases to repeat across the banner
  */
 function Marquee({ items, className = '' }) {
+    // Doubled so the -50% translate lands exactly one copy over, seamlessly.
     const track = [...items, ...items]
 
     return (

@@ -8,10 +8,6 @@ import { formatCents } from '../../app/utils/FormatUtility'
 import Button from '../../app/components/ui/Button'
 import Eyebrow from '../../app/components/ui/Eyebrow'
 
-/* ──────────────────────────────────────────────
-   Stripe Setup
-   ────────────────────────────────────────────── */
-
 const STRIPE_PUBLIC_KEY = process.env.REACT_APP_STRIPE_PUBLIC_KEY || 'pk_test_placeholder'
 const stripePromise = loadStripe(STRIPE_PUBLIC_KEY)
 
@@ -34,10 +30,6 @@ const PICKUP_OPTIONS = [
     { value: '45min', label: '45 min', detail: 'Less rush' },
     { value: '1hr', label: '1 hour', detail: 'Plan it out' }
 ]
-
-/* ──────────────────────────────────────────────
-   Order Summary
-   ────────────────────────────────────────────── */
 
 function OrderSummary({ items, totalCents }) {
     const taxCents = Math.round(totalCents * TAX_RATE)
@@ -89,10 +81,6 @@ function OrderSummary({ items, totalCents }) {
     )
 }
 
-/* ──────────────────────────────────────────────
-   Pickup time picker
-   ────────────────────────────────────────────── */
-
 function PickupTimePicker({ value, onChange }) {
     return (
         <fieldset>
@@ -132,10 +120,6 @@ function PickupTimePicker({ value, onChange }) {
         </fieldset>
     )
 }
-
-/* ──────────────────────────────────────────────
-   Checkout Form
-   ────────────────────────────────────────────── */
 
 function CheckoutForm({ totalCents, onSuccess }) {
     const stripe = useStripe()
@@ -324,10 +308,6 @@ function CheckoutForm({ totalCents, onSuccess }) {
         </form>
     )
 }
-
-/* ──────────────────────────────────────────────
-   Page
-   ────────────────────────────────────────────── */
 
 function CheckoutView() {
     const { items, totalCents, clearCart } = useCart()
