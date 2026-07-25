@@ -1,14 +1,12 @@
 import React, { useEffect, useRef, useState } from 'react'
 
-/* ──────────────────────────────────────────────
-   AmbientVideo
-   ──────────────────────────────────────────────
-   Reusable muted-loop background clip:
-   - autoplays inline, silently, on first paint
-   - pauses when scrolled off-screen (battery / CPU)
-   - swaps to the poster image when the user has
-     `prefers-reduced-motion: reduce` set
-   ────────────────────────────────────────────── */
+/**
+ * Muted looping background clip. An IntersectionObserver pauses it once it
+ * scrolls out of view so off-screen decoration stops burning battery and CPU.
+ * Under `prefers-reduced-motion: reduce` the video is never mounted at all —
+ * the poster renders as a plain image instead, so there is no hidden element
+ * still decoding frames.
+ */
 
 function AmbientVideo({ src, poster, ariaLabel, className = '' }) {
     const videoRef = useRef(null)
