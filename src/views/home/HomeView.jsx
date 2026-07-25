@@ -1,5 +1,6 @@
 import React from 'react'
 import { ADDRESS, BUSINESS, CATERING, HOURS_SUMMARY, PHONE } from '../../app/constants/site'
+import AmbientVideo from '../../app/components/common/AmbientVideo'
 import Button from '../../app/components/ui/Button'
 import ArrowLink from '../../app/components/ui/ArrowLink'
 import Eyebrow from '../../app/components/ui/Eyebrow'
@@ -462,6 +463,51 @@ function AboutSection() {
     )
 }
 
+/* ──────────────────────────────────────────────
+   Off The Clock — owner-life interlude
+   ────────────────────────────────────────────── */
+
+function OffTheClockSection() {
+    return (
+        <section className="relative overflow-hidden border-t border-surface-300 bg-ink-900 py-24 lg:py-32">
+            <div className="pointer-events-none absolute -left-32 top-1/3 h-[500px] w-[500px] rounded-full bg-crawfish/[0.06] blur-[120px]" />
+            <div className="relative mx-auto max-w-7xl px-6 lg:px-10">
+                <div className="grid items-center gap-12 lg:grid-cols-12 lg:gap-16">
+                    <div className="order-2 flex justify-center lg:order-1 lg:col-span-5 lg:justify-start">
+                        <AmbientVideo
+                            src="/video/dirt-bike.mp4"
+                            poster="/video/dirt-bike-poster.jpg"
+                            ariaLabel="A rider on a dirt bike weaving through a wooded trail"
+                            className="aspect-[9/16] w-full max-w-[320px] overflow-hidden rounded-2xl shadow-[0_30px_80px_-30px_rgba(0,0,0,0.7)] ring-1 ring-white/10 lg:max-w-[360px]"
+                        />
+                    </div>
+
+                    <div className="order-1 lg:order-2 lg:col-span-7">
+                        <p className="text-xs font-semibold uppercase tracking-[0.3em] text-crawfish">Off the Clock</p>
+                        <h2 className="mt-4 font-display text-section uppercase text-white">
+                            Yeah, that crawfish
+                            <br />
+                            on the sign rides.
+                        </h2>
+                        <p className="mt-6 max-w-xl text-base leading-relaxed text-white/65">
+                            Charlie spends his Mondays in the Pineywoods, on two wheels and in the mud. The bike on the
+                            sign isn't a gimmick &mdash; it's a wink to anyone who's ever burned a Sunday chasing trail
+                            dust.
+                        </p>
+                        <p className="mt-4 max-w-xl text-base leading-relaxed text-white/50">
+                            Show up on a bike with mud on your boots. The first beer's on us.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    )
+}
+
+/* ──────────────────────────────────────────────
+   Catering callout
+   ────────────────────────────────────────────── */
+
 function CateringSection() {
     return (
         <section className="relative overflow-hidden border-t-2 border-ink-900 bg-ink-900 py-24 lg:py-32">
@@ -613,6 +659,7 @@ function HomeView() {
             <StatsSection />
             <TestimonialsSection />
             <AboutSection />
+            <OffTheClockSection />
             <CateringSection />
             <LocationSection />
         </>

@@ -1,5 +1,6 @@
 import React from 'react'
 import { ADDRESS, BUSINESS, PHONE } from '../../app/constants/site'
+import AmbientVideo from '../../app/components/common/AmbientVideo'
 import Button from '../../app/components/ui/Button'
 import Eyebrow from '../../app/components/ui/Eyebrow'
 import NumberPlate from '../../app/components/ui/NumberPlate'
@@ -197,6 +198,44 @@ function ValuesSection() {
     )
 }
 
+function BeyondTheBoilSection() {
+    return (
+        <section className="border-t border-surface-300 bg-surface-100 py-24 lg:py-32">
+            <div className="mx-auto max-w-7xl px-6 lg:px-10">
+                <div className="grid items-center gap-12 lg:grid-cols-12 lg:gap-16">
+                    <div className="flex justify-center lg:col-span-5 lg:justify-start">
+                        <AmbientVideo
+                            src="/video/dirt-bike.mp4"
+                            poster="/video/dirt-bike-poster.jpg"
+                            ariaLabel="A rider on a dirt bike weaving through a wooded trail"
+                            className="aspect-[9/16] w-full max-w-[340px] overflow-hidden rounded-2xl shadow-[0_30px_80px_-30px_rgba(0,0,0,0.25)] ring-1 ring-surface-300 lg:max-w-[400px]"
+                        />
+                    </div>
+
+                    <div className="lg:col-span-7">
+                        <p className="text-xs font-semibold uppercase tracking-[0.3em] text-crawfish">Off the Clock</p>
+                        <h2 className="mt-4 font-display text-section uppercase text-ink-900">
+                            Charlie has another
+                            <br />
+                            life on Mondays.
+                        </h2>
+                        <p className="mt-6 max-w-xl text-base leading-relaxed text-ink-600">
+                            Mondays we&rsquo;re closed. So Mondays, Charlie&rsquo;s out on the trails &mdash; Big
+                            Thicket, Sam Houston National Forest, anywhere there&rsquo;s dirt and nobody minds the
+                            noise.
+                        </p>
+                        <p className="mt-4 max-w-xl text-base leading-relaxed text-ink-600">
+                            That crawfish on our sign isn&rsquo;t a gimmick. He&rsquo;s a wink to anyone who pulls up to
+                            the shack in riding gear with mud on their boots. If that&rsquo;s you, walk right in.
+                            We&rsquo;ve got a bench, a beer, and a bag of seasoning butter with your name on it.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    )
+}
+
 function SourcingSection() {
     return (
         <section className="relative overflow-hidden border-t-2 border-ink-900 bg-ink-900 py-24 lg:py-32">
@@ -282,6 +321,7 @@ function AboutView() {
             <NumbersSection />
             <TimelineSection />
             <ValuesSection />
+            <BeyondTheBoilSection />
             <SourcingSection />
             <PullQuoteSection />
             <VisitCTASection />
