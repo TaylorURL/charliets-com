@@ -103,7 +103,7 @@ function Header() {
 
     return (
         <>
-            {/* ── Utility strip ── */}
+            {/* Utility strip */}
             <div
                 className={`fixed left-0 right-0 top-0 z-[51] flex h-8 items-center justify-center gap-4 px-4 text-[11px] font-medium tracking-wider transition-[transform,opacity,background-color] duration-500 sm:gap-6 ${
                     isTransparent
@@ -130,7 +130,7 @@ function Header() {
                 </a>
             </div>
 
-            {/* ── Main header ── */}
+            {/* Main header */}
             <header
                 className={`fixed left-0 right-0 z-50 transition-[top,background-color,box-shadow] duration-500 ${
                     scrolled ? 'top-0' : 'top-8'
@@ -154,7 +154,7 @@ function Header() {
                         />
                     </Link>
 
-                    {/* Desktop nav -- pushed to the right */}
+                    {/* Desktop nav */}
                     <nav className="ml-auto hidden items-center gap-1 md:flex" aria-label="Primary">
                         {NAV_LINKS.map(({ label, path }) => {
                             const isActive = pathname === path
@@ -228,7 +228,7 @@ function Header() {
                 />
             </header>
 
-            {/* ── Mobile fullscreen menu ── */}
+            {/* Mobile fullscreen menu */}
             <div
                 className={`fixed inset-0 z-40 bg-ink-900 transition-[opacity,visibility] duration-500 md:hidden ${
                     mobileMenuOpen ? 'visible opacity-100' : 'invisible opacity-0'

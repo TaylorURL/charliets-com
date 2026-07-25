@@ -8,10 +8,6 @@ import Marquee from '../../app/components/ui/Marquee'
 import StarRating from '../../app/components/ui/StarRating'
 import CrossedFlags from '../../app/components/ui/CrossedFlags'
 
-/* ──────────────────────────────────────────────
-   Data
-   ────────────────────────────────────────────── */
-
 const START_BANNER = [
     'Heavy Seasoning',
     'No Reservations',
@@ -135,10 +131,6 @@ const CATERING_INCLUDES = [
     'Friendly crew that has done this 1,000 times',
 ]
 
-/* ──────────────────────────────────────────────
-   Hero — the start gate
-   ────────────────────────────────────────────── */
-
 function HeroSection() {
     return (
         <section className="relative flex min-h-[100svh] items-center overflow-hidden bg-ink-900">
@@ -240,10 +232,6 @@ function HeroSection() {
     )
 }
 
-/* ──────────────────────────────────────────────
-   Start-line banner
-   ────────────────────────────────────────────── */
-
 function StartBannerSection() {
     return (
         <div className="border-y-2 border-ink-900 bg-caution py-3 text-ink-900">
@@ -251,10 +239,6 @@ function StartBannerSection() {
         </div>
     )
 }
-
-/* ──────────────────────────────────────────────
-   What We Do
-   ────────────────────────────────────────────── */
 
 function WhatWeDoSection() {
     return (
@@ -295,10 +279,6 @@ function WhatWeDoSection() {
     )
 }
 
-/* ──────────────────────────────────────────────
-   How It Works — number-plate stages
-   ────────────────────────────────────────────── */
-
 function HowItWorksSection() {
     return (
         <section className="relative overflow-hidden border-t-2 border-ink-900 bg-ink-900 py-24 lg:py-32">
@@ -333,10 +313,6 @@ function HowItWorksSection() {
         </section>
     )
 }
-
-/* ──────────────────────────────────────────────
-   Menu Highlights
-   ────────────────────────────────────────────── */
 
 function MenuSection() {
     return (
@@ -390,10 +366,6 @@ function MenuSection() {
     )
 }
 
-/* ──────────────────────────────────────────────
-   Stats Strip
-   ────────────────────────────────────────────── */
-
 function StatsSection() {
     return (
         <section className="border-y-2 border-ink-900 bg-racing">
@@ -414,10 +386,6 @@ function StatsSection() {
         </section>
     )
 }
-
-/* ──────────────────────────────────────────────
-   Testimonials
-   ────────────────────────────────────────────── */
 
 function TestimonialsSection() {
     return (
@@ -462,10 +430,6 @@ function TestimonialsSection() {
     )
 }
 
-/* ──────────────────────────────────────────────
-   About Teaser
-   ────────────────────────────────────────────── */
-
 function AboutSection() {
     return (
         <section className="bg-surface-100 py-24 lg:py-32">
@@ -497,10 +461,6 @@ function AboutSection() {
         </section>
     )
 }
-
-/* ──────────────────────────────────────────────
-   Catering — hazard-striped pit crew
-   ────────────────────────────────────────────── */
 
 function CateringSection() {
     return (
@@ -580,10 +540,6 @@ function CateringSection() {
     )
 }
 
-/* ──────────────────────────────────────────────
-   Location
-   ────────────────────────────────────────────── */
-
 function LocationSection() {
     return (
         <section className="bg-surface-200 py-24 lg:py-32">
@@ -645,10 +601,6 @@ function LocationSection() {
         </section>
     )
 }
-
-/* ──────────────────────────────────────────────
-   Home
-   ────────────────────────────────────────────── */
 
 function HomeView() {
     return (

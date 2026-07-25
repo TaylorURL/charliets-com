@@ -1,9 +1,5 @@
-/* ──────────────────────────────────────────────
-   Menu Data — single source of truth
-   Prices in cents. Items with `marketPrice: true`
-   cannot be ordered online.
-   ────────────────────────────────────────────── */
-
+// Prices are in cents. Items with `marketPrice: true` have no fixed price and
+// cannot be ordered online.
 const MENU_CATEGORIES = [
     {
         id: 'boil',

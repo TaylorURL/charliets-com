@@ -1,12 +1,5 @@
 import React from 'react'
 
-/* ──────────────────────────────────────────────
-   CrossedFlags — the house crest. A checkered race
-   flag crossed with a Cajun boil paddle: the two
-   worlds in one mark. Poles inherit currentColor;
-   the flag check + paddle carry their own paint.
-   ────────────────────────────────────────────── */
-
 const CHECKER_ID = 'charliets-flag-check'
 
 /**

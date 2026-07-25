@@ -1,9 +1,5 @@
 import React from 'react'
 
-/* ──────────────────────────────────────────────
-   StarRating — caution-yellow rating row.
-   ────────────────────────────────────────────── */
-
 /**
  * @param {object} props
  * @param {number} props.count number of filled stars (1–5)
