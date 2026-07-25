@@ -5,41 +5,37 @@
 <h1 align="center">Charlie T's Crawfish Shack</h1>
 
 <p align="center">
-  <b>Fresh boiled crawfish and Cajun seafood in Dayton, Texas — order online for pickup.</b>
+  <b>Fresh boiled crawfish and Cajun seafood in Dayton, Texas.</b>
 </p>
 <p align="center">
-  A static React storefront for <a href="https://charliets.com">charliets.com</a>: a six-section menu,<br />
-  an in-browser cart, and a three-step Stripe Elements checkout — no backend to run.
+  The restaurant site for Charlie T's — menu, story, and online pickup ordering.<br />
+  Heavy seasoning, communal tables, no reservations.
 </p>
 
 <p align="center">
-  <img alt="React 19" src="https://img.shields.io/badge/React-19-2563eb?style=for-the-badge&logo=react&logoColor=white" />
-  <img alt="React Router 7" src="https://img.shields.io/badge/React_Router-7-2563eb?style=for-the-badge&logo=reactrouter&logoColor=white" />
-  <img alt="Create React App via react-app-rewired" src="https://img.shields.io/badge/CRA-react--app--rewired-2563eb?style=for-the-badge&logo=createreactapp&logoColor=white" />
-  <img alt="Tailwind CSS 3" src="https://img.shields.io/badge/Tailwind_CSS-3-3b82f6?style=for-the-badge&logo=tailwindcss&logoColor=white" />
-  <img alt="Stripe Elements" src="https://img.shields.io/badge/Stripe-Elements-1f56cf?style=for-the-badge&logo=stripe&logoColor=white" />
-  <img alt="Static SPA" src="https://img.shields.io/badge/static-SPA-2563eb?style=for-the-badge" />
+  <img src="https://img.shields.io/badge/version-0.1.9-E85D26?style=for-the-badge" alt="Version 0.1.9" />
+  <img src="https://img.shields.io/badge/React-19-E85D26?style=for-the-badge&logo=react&logoColor=white" alt="React 19" />
+  <img src="https://img.shields.io/badge/Create_React_App-5-1A1816?style=for-the-badge&logo=createreactapp&logoColor=white" alt="Create React App 5" />
+  <img src="https://img.shields.io/badge/Tailwind_CSS-3-E85D26?style=for-the-badge&logo=tailwindcss&logoColor=white" alt="Tailwind CSS 3" />
+  <img src="https://img.shields.io/badge/React_Router-7-C74A1A?style=for-the-badge&logo=reactrouter&logoColor=white" alt="React Router 7" />
+  <img src="https://img.shields.io/badge/Stripe-E85D26?style=for-the-badge&logo=stripe&logoColor=white" alt="Stripe" />
 </p>
 
 <br />
 
 ## Why Charlie T's
 
-A crawfish shack does not need a server farm. This is the entire front end for charliets.com — a single-page React app that runs on any static host with nothing behind it. The menu, hours, address, and social links live in two data files; the cart lives in browser memory; the contact form opens the visitor's own email client. Guests browse the menu, fill a cart, and walk through a Stripe Elements checkout for pickup, all client-side.
+A seafood shack's site has one job: show what's in the pot today and let people order it without a phone call. Every price, hour, and address on this site comes from two constants files, so a menu change is one edit and never a hunt through JSX. The whole thing is a static React bundle — no CMS, no database, nothing to keep running.
 
 <table width="100%">
   <tr>
-    <td width="33%" valign="top">
-      <h3 align="center">Front end only</h3>
-      <p align="center">A static React SPA on any host — no backend, no database. The cart lives in memory and the contact form is a plain <code>mailto:</code>.</p>
+    <td width="50%" valign="top">
+      <h3 align="center">One source of truth</h3>
+      <p align="center">Menu items, prices in cents, hours, address, and social handles live in <code>constants/menu.js</code> and <code>constants/site.js</code> — the views only render them.</p>
     </td>
-    <td width="33%" valign="top">
-      <h3 align="center">Order for pickup</h3>
-      <p align="center">A six-section menu feeds a cart drawer and a three-step Stripe Elements checkout — contact, pickup time, then card.</p>
-    </td>
-    <td width="33%" valign="top">
-      <h3 align="center">Content as data</h3>
-      <p align="center">Menu items, prices, hours, address, and social links all sit in <code>menu.js</code> and <code>site.js</code> — most edits are data, not markup.</p>
+    <td width="50%" valign="top">
+      <h3 align="center">Market price, handled</h3>
+      <p align="center">Items flagged <code>marketPrice</code> — crawfish by the pound — display their label but cannot be added to the cart, so the online order never quotes a price the kitchen has not set.</p>
     </td>
   </tr>
 </table>
@@ -48,104 +44,103 @@ A crawfish shack does not need a server farm. This is the entire front end for c
 
 ## Stack
 
-| Layer      | Choice                                                                                  |
-| :--------- | :-------------------------------------------------------------------------------------- |
-| Framework  | React 19 + React Router 7                                                                |
-| Build      | Create React App (`react-scripts` 5) via **react-app-rewired** (`config-overrides.js`)  |
-| Styling    | Tailwind CSS 3 + PostCSS + Autoprefixer                                                  |
-| Payments   | Stripe Elements — `@stripe/react-stripe-js` + `@stripe/stripe-js`                        |
-| Cart state | In-memory React context + reducer (not persisted)                                       |
-| Hosting    | Any static host — the build is a plain SPA bundle                                        |
-
-Not a Vite project — the build runs through **react-app-rewired**, whose `config-overrides.js` swaps in browser polyfills for Node core modules (e.g. `path-browserify`).
+| Layer | Technology |
+| :--- | :--- |
+| UI | React 19 + React Router 7 |
+| Build & dev | Create React App 5 through `react-app-rewired` |
+| Styling | Tailwind CSS 3 (custom `crawfish` / `ink` / `surface` palette) |
+| Cart state | React context (`CartContext`) |
+| Payments | Stripe Elements (`@stripe/react-stripe-js`) |
+| Media | Muted ambient background video with reduced-motion fallback |
 
 ## Getting started
 
 ```bash
 npm install
-npm start          # react-app-rewired dev server on localhost:3000
-npm run build      # production build — the static bundle to deploy
-npm test           # react-app-rewired test runner
-npm run lint       # eslint src/
-npm run format     # prettier --write "src/**/*.{js,jsx,css}"
+npm start             # dev server on http://localhost:3000
+npm run build         # production build to build/
 ```
 
-`npm run build` pins `CI=false` (via `cross-env`), so lint warnings don't fail the production build. To reproduce Create React App's strict "warnings are errors" gate before pushing, run `CI=true npx react-app-rewired build`.
+The site runs with no configuration — Stripe falls back to a placeholder publishable key, and card entry stays in test mode until a real one is supplied.
 
-Stripe card entry needs a publishable key — set one to exercise real checkout locally:
+| Variable | Purpose |
+| :--- | :--- |
+| `REACT_APP_STRIPE_PUBLIC_KEY` | Stripe publishable key for the checkout card element. Defaults to `pk_test_placeholder`. |
 
-```bash
-# .env.local
-REACT_APP_STRIPE_PUBLIC_KEY=pk_test_xxx
-```
+### Scripts
+
+| Script | Does |
+| :--- | :--- |
+| `npm start` | Start the dev server. |
+| `npm run build` | Production build (`CI=false`, so warnings don't fail it). |
+| `npm test` | Run the CRA test runner. |
+| `npm run lint` | Lint `src/` with ESLint. |
+| `npm run format` | Format `src/**` with Prettier. |
 
 ## Routes
 
-| Route            | What it is                                                                                |
-| :--------------- | :---------------------------------------------------------------------------------------- |
-| `/`              | Home — hero, what-we-do, how-it-works, menu highlights, testimonials, catering, location  |
-| `/menu`          | Full six-section menu with add-to-cart; market-price items switch to a "Call to order" link |
-| `/about`         | Charlie's story — timeline, values, sourcing                                              |
-| `/contact`       | Address, hours, embedded map, catering details, mailto contact form, FAQ                  |
-| `/checkout`      | Cart summary + three-step Stripe Elements form (pickup only)                              |
-| `/order-success` | Order confirmation with pickup details                                                    |
-| `*`              | 404 fallback                                                                              |
+| Path | View |
+| :--- | :--- |
+| `/` | Home — hero, ambient video, highlights |
+| `/menu` | Full menu by category |
+| `/about` | The shack's story |
+| `/contact` | Hours, address, phone, catering |
+| `/checkout` | Cart, pickup time, card entry |
+| `/order-success` | Order confirmation |
+| `*` | Not found |
 
-## Menu
+## Architecture
 
-Six sections, all defined in `src/app/constants/menu.js` (prices in cents):
-
-- **The Boil** — crawfish, head-on Gulf shrimp, snow crab, blue crab, the Charlie T Combo, and fixins
-- **Starters** — boudin balls, fried pickles, peel & eat shrimp, crawfish dip, hushpuppies
-- **Plates** — fried/blackened catfish, fried shrimp, crawfish etouffee, gumbo, red beans & rice
-- **Sandwiches** — shrimp, catfish, roast beef, and hot sausage po'boys
-- **Sides** — Cajun fries, slaw, collard greens, corn, dirty rice, mac & cheese
-- **Drinks** — sweet/unsweet tea, lemonade, sodas, and beer (Abita, craft, domestic)
-
-Whole Boiled Crawfish is market-price (`marketPrice: true`) and seasonal — January through June, minimum 3 lbs — so it shows a "Call to order" link instead of an add-to-cart button.
+```mermaid
+flowchart TD
+    M["constants/menu.js — items, prices in cents"] --> V["Menu view"]
+    V -->|"add to cart"| C["CartContext — items + totals"]
+    C --> D["CartDrawer"]
+    C --> CO["Checkout — pickup details + card"]
+    CO -->|"card tokenized in Stripe's iframe"| ST["Stripe Elements"]
+    ST -->|"payment method id"| SU["Order confirmation"]
+    S["constants/site.js — hours, address, social"] --> F["Header, Footer, Contact"]
+```
 
 ## How it works
 
-- **Content is data.** Menu items, prices, hours, address, and social handles live in `src/app/constants/menu.js` and `site.js`; views render them, so most updates are one-line data edits.
-- **The cart is in memory.** `CartContext` is a React context + reducer with no persistence — it resets on refresh, and no order data leaves the browser.
-- **Checkout is three steps.** `CheckoutView` collects contact info, then a pickup time (ASAP · 45 min · 1 hour), then a Stripe `CardElement`; 8.25% tax is added at checkout.
-- **The card is tokenized, not charged.** On submit the app calls `stripe.createPaymentMethod` and routes to `/order-success`. With no backend there is no PaymentIntent, so no real charge is captured — that would need a server-side Stripe step this front end does not include.
+- **Prices are integers.** Everything in `menu.js` is stored in cents and formatted through `FormatUtility`, so no float rounding creeps into a total.
+- **Tax is applied at checkout.** The order summary adds 8.25% Texas sales tax on top of the cart subtotal.
+- **Pickup only.** Checkout collects a name, email, phone, notes, and a pickup window (ASAP, 45 minutes, or 1 hour) — there is no delivery or reservation flow.
+- **Card details never touch the app.** The Stripe `CardElement` tokenizes the card in Stripe's iframe; the app only ever sees the resulting payment method id.
+- **Ambient video is polite.** `AmbientVideo` autoplays muted inline, pauses itself when scrolled out of view, and swaps to a poster image when the visitor prefers reduced motion.
 
-```mermaid
-flowchart LR
-  D[menu.js and site.js] --> M[Menu view]
-  M -->|add item| C[Cart context]
-  C -->|proceed to checkout| CO[Checkout view]
-  CO -->|card via Stripe Elements| S[Stripe.js createPaymentMethod]
-  S -->|payment method token| OK[Order confirmation]
-```
+> **Pre-launch note.** Checkout currently creates a Stripe payment method and forwards the order to the confirmation view — no server-side charge is captured yet. The contact details in `constants/site.js` are still placeholders and need swapping before launch.
 
 ## Project structure
 
 ```
-src/
-  index.js               app entry — BrowserRouter + ErrorBoundary
-  app/
-    App.js               route table
-    components/
-      common/            Header, Footer, CartDrawer, ScrollToTop
-      ui/                Button, Eyebrow, Marquee, NumberPlate, StarRating, …
-    context/             CartContext — in-memory cart (context + reducer)
-    constants/           menu.js, site.js — all site content
-    utils/               FormatUtility, ErrorBoundaryUtility
-    index.css            Tailwind layers + custom textures
-  views/                 home, menu, about, contact, checkout, not-found
-public/                  logo.webp, index.html, manifest.json, release.json
-config-overrides.js      react-app-rewired webpack overrides
-tailwind.config.js       "Race Day at the Boil" design tokens
+charliets-com/
+├── public/
+│   ├── index.html             Meta, Open Graph, LocalBusiness JSON-LD
+│   ├── logo.webp              Logo / PWA icon
+│   ├── manifest.json          PWA manifest
+│   └── video/                 Ambient clip + poster
+├── config-overrides.js        CRA webpack fallbacks (react-app-rewired)
+├── tailwind.config.js         Palette, display/body fonts, motion tokens
+└── src/
+    ├── app/
+    │   ├── App.js             Route table + layout shell
+    │   ├── components/common/ Header, Footer, CartDrawer, AmbientVideo, ScrollToTop
+    │   ├── constants/         menu.js (items, prices), site.js (hours, address, social)
+    │   ├── context/           CartContext — cart state and totals
+    │   ├── utils/             Currency formatting, error boundary
+    │   └── index.css          Tailwind entry
+    ├── views/                 home, menu, about, contact, checkout, not-found
+    └── index.js               Browser entry
 ```
 
 ## License
 
-Private project — all rights reserved. Made by [TaylorURL](https://taylorurl.com).
+Copyright (c) 2026 Trenton Taylor. All rights reserved.
 
 <br />
 
 <p align="center">
-  <sub>Seasoning heavy, napkins useless.</sub>
+  <sub>Built by <a href="https://taylorurl.com">TaylorURL</a> — custom sites for local businesses.</sub>
 </p>
