@@ -5,10 +5,6 @@ import { useCart } from '../../app/context/CartContext'
 import Button from '../../app/components/ui/Button'
 import Eyebrow from '../../app/components/ui/Eyebrow'
 
-/* ──────────────────────────────────────────────
-   Components
-   ────────────────────────────────────────────── */
-
 function CategoryNav({ categories, activeCategoryId, onSelect }) {
     return (
         <nav className="scrollbar-none -mx-1 flex gap-2 overflow-x-auto px-1 pb-1" aria-label="Menu categories">
@@ -129,10 +125,6 @@ function MenuCategory({ category, registerRef }) {
         </section>
     )
 }
-
-/* ──────────────────────────────────────────────
-   Page
-   ────────────────────────────────────────────── */
 
 function MenuView() {
     const [activeCategoryId, setActiveCategoryId] = useState(MENU_CATEGORIES[0].id)

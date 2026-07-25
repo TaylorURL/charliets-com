@@ -1,11 +1,5 @@
 import React from 'react'
 
-/* ──────────────────────────────────────────────
-   Eyebrow — the tracked kicker label above a
-   heading. A short checker tick gives it the
-   start-line feel without shouting.
-   ────────────────────────────────────────────── */
-
 /**
  * @param {object} props
  * @param {boolean} [props.tick=true] show the leading checker tick

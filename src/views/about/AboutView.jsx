@@ -5,10 +5,6 @@ import Eyebrow from '../../app/components/ui/Eyebrow'
 import NumberPlate from '../../app/components/ui/NumberPlate'
 import CrossedFlags from '../../app/components/ui/CrossedFlags'
 
-/* ──────────────────────────────────────────────
-   Data
-   ────────────────────────────────────────────── */
-
 const TIMELINE_EVENTS = [
     {
         year: 'Early Days',
@@ -81,10 +77,6 @@ const SOURCING = [
         body: 'Mixed every morning in-house. Salt, cayenne, paprika, garlic, lemon, and the part of the recipe that stays in the building.',
     },
 ]
-
-/* ──────────────────────────────────────────────
-   Sections
-   ────────────────────────────────────────────── */
 
 function HeroSection() {
     return (
@@ -282,10 +274,6 @@ function VisitCTASection() {
         </section>
     )
 }
-
-/* ──────────────────────────────────────────────
-   Page
-   ────────────────────────────────────────────── */
 
 function AboutView() {
     return (

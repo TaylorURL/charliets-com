@@ -1,9 +1,4 @@
-/* ──────────────────────────────────────────────
-   Site Info — single source of truth.
-   Swap the placeholder phone / handles below
-   with real values when launching.
-   ────────────────────────────────────────────── */
-
+// Phone numbers and social handles here are still placeholders.
 export const BUSINESS = {
     name: "Charlie T's",
     fullName: "Charlie T's Crawfish Shack",

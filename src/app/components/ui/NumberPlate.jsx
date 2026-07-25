@@ -1,11 +1,5 @@
 import React from 'react'
 
-/* ──────────────────────────────────────────────
-   NumberPlate — a motocross race plate. Bold digit
-   on caution yellow with a hard offset shadow.
-   Used for ranked steps and headline stats.
-   ────────────────────────────────────────────── */
-
 const SIZES = {
     sm: 'h-10 w-10 text-xl',
     md: 'h-14 w-14 text-3xl',

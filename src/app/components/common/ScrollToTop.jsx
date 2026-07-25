@@ -1,7 +1,6 @@
 import { useEffect } from 'react'
 import { useLocation } from 'react-router-dom'
 
-/** Scrolls to the top of the page on route change, or to a hash target if present. */
 function ScrollToTop() {
     const { pathname, hash } = useLocation()
 

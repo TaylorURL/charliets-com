@@ -1,13 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-/* ──────────────────────────────────────────────
-   Button — the throttle. One pressable primitive,
-   polymorphic across <Link>, <a>, and <button>.
-   Variants carry the race/boil palette; every
-   variant gets press feedback + a rev on hover.
-   ────────────────────────────────────────────── */
-
 const BASE =
     'group/btn relative inline-flex items-center justify-center gap-2 overflow-hidden rounded-lg font-display uppercase leading-none tracking-[0.12em] transition-[background-color,border-color,color,box-shadow,transform] duration-200 ease-out-strong active:scale-[0.97] disabled:cursor-not-allowed disabled:opacity-60'
 

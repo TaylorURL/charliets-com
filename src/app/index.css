@@ -29,24 +29,21 @@ body {
 }
 
 @layer components {
-    /* ── Checkered-flag band. Set text color = checker color. ── */
+    /* The checks take their color from `color`, so set text color on the element. */
     .checker-band {
         background-image: theme('backgroundImage.checker');
         background-size: 22px 22px;
         background-position: 0 0, 11px 11px;
     }
 
-    /* ── Diagonal hazard / caution stripes ── */
     .hazard-stripes {
         background-image: theme('backgroundImage.hazard');
     }
 
-    /* ── Tire-tread strip ── */
     .tread-strip {
         background-image: theme('backgroundImage.tread');
     }
 
-    /* ── Mud-spatter / dust grain over dark surfaces ── */
     .mud-texture {
         background-image:
             radial-gradient(circle at 18% 24%, rgba(138, 90, 43, 0.16) 0, transparent 9%),
@@ -55,7 +52,6 @@ body {
             radial-gradient(circle at 32% 88%, rgba(224, 30, 43, 0.08) 0, transparent 11%);
     }
 
-    /* ── Race number plate ── */
     .number-plate {
         background-color: #ffc21a;
         color: #16110b;
@@ -71,7 +67,6 @@ body {
     .scrollbar-none::-webkit-scrollbar {
         display: none;
     }
-    /* Hard-edged display stroke for headline pop on dark grounds */
     .text-stroke-ink {
         -webkit-text-stroke: 2px #16110b;
         color: transparent;

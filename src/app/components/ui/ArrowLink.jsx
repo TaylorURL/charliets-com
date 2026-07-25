@@ -1,12 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-/* ──────────────────────────────────────────────
-   ArrowLink — a "more →" affordance. Underlined
-   label with an arrow that revs forward on hover.
-   Renders <Link> for routes, <a> for everything else.
-   ────────────────────────────────────────────── */
-
 const CLASSES =
     'group inline-flex items-center gap-2 text-sm font-medium text-ink-600 underline decoration-surface-400 underline-offset-4 transition-colors duration-200 hover:text-crawfish hover:decoration-crawfish'
 
