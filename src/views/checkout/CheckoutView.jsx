@@ -325,7 +325,6 @@ function CheckoutView() {
 
     return (
         <>
-            {/* Hero */}
             <section className="relative overflow-hidden border-b-2 border-ink-900 bg-ink-900 pb-12 pt-32 lg:pb-16 lg:pt-40">
                 <div className="mud-texture pointer-events-none absolute inset-0" aria-hidden="true" />
                 <div className="relative mx-auto max-w-7xl px-6 lg:px-10">
@@ -334,7 +333,6 @@ function CheckoutView() {
                 </div>
             </section>
 
-            {/* Checkout content */}
             <section className="bg-surface-100 py-16 lg:py-24">
                 <div className="mx-auto max-w-7xl px-6 lg:px-10">
                     {!hasItems ? (

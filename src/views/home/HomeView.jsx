@@ -171,7 +171,6 @@ function HeroSection() {
                     </Eyebrow>
                 </div>
 
-                {/* Headline */}
                 <h1 className="mt-8 animate-slide-up font-display uppercase leading-[0.82] text-white">
                     <span className="block text-[clamp(3.2rem,13vw,11rem)]">{BUSINESS.name}</span>
                     <span className="mt-1 flex items-baseline gap-4">
@@ -182,7 +181,6 @@ function HeroSection() {
                     </span>
                 </h1>
 
-                {/* Sub content */}
                 <div
                     className="mt-12 flex animate-slide-up flex-col gap-10 lg:mt-16 lg:flex-row lg:items-end lg:justify-between"
                     style={{ animationDelay: '0.15s' }}
