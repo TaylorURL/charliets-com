@@ -1,6 +1,5 @@
 {
   "version": "0.1.7",
   "projectName": "charliets",
-  "branch": "main",
-  "provider": "claude-code"
+  "branch": "main"
 }
