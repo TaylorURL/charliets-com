@@ -103,7 +103,6 @@ function Header() {
 
     return (
         <>
-            {/* Utility strip */}
             <div
                 className={`fixed left-0 right-0 top-0 z-[51] flex h-8 items-center justify-center gap-4 px-4 text-[11px] font-medium tracking-wider transition-[transform,opacity,background-color] duration-500 sm:gap-6 ${
                     isTransparent
@@ -130,7 +129,6 @@ function Header() {
                 </a>
             </div>
 
-            {/* Main header */}
             <header
                 className={`fixed left-0 right-0 z-50 transition-[top,background-color,box-shadow] duration-500 ${
                     scrolled ? 'top-0' : 'top-8'
@@ -141,7 +139,6 @@ function Header() {
                 }`}
             >
                 <div className="mx-auto flex h-16 max-w-7xl items-center px-6 lg:h-[72px] lg:px-10">
-                    {/* Logo */}
                     <Link
                         to="/"
                         className="shrink-0 transition-opacity duration-200 hover:opacity-90 active:opacity-75"
@@ -154,7 +151,6 @@ function Header() {
                         />
                     </Link>
 
-                    {/* Desktop nav */}
                     <nav className="ml-auto hidden items-center gap-1 md:flex" aria-label="Primary">
                         {NAV_LINKS.map(({ label, path }) => {
                             const isActive = pathname === path
@@ -189,7 +185,6 @@ function Header() {
                         </a>
                     </nav>
 
-                    {/* Mobile controls */}
                     <div className="ml-auto flex items-center gap-2 md:hidden">
                         <CartButton count={itemCount} onClick={openCart} variant="light" />
                         <button
@@ -228,7 +223,6 @@ function Header() {
                 />
             </header>
 
-            {/* Mobile fullscreen menu */}
             <div
                 className={`fixed inset-0 z-40 bg-ink-900 transition-[opacity,visibility] duration-500 md:hidden ${
                     mobileMenuOpen ? 'visible opacity-100' : 'invisible opacity-0'

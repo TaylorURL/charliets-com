@@ -84,7 +84,6 @@ function Footer() {
             <div className="checker-band h-3 w-full bg-[length:16px_16px] text-ink-900/85" aria-hidden="true" />
             <div className="mx-auto max-w-7xl px-4 pb-8 pt-16 md:px-6">
                 <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-12">
-                    {/* Logo & info */}
                     <div className="lg:col-span-5">
                         <Link
                             to="/"
@@ -121,7 +120,6 @@ function Footer() {
                             </a>
                         </address>
 
-                        {/* Social */}
                         <div className="mt-6 flex items-center gap-2">
                             {SOCIAL.map(({ label, href }) => (
                                 <a
@@ -150,7 +148,6 @@ function Footer() {
                         </div>
                     </div>
 
-                    {/* Navigate */}
                     <div className="lg:col-span-3">
                         <h3 className="mb-4 font-display text-xs uppercase tracking-[0.2em] text-ink-900">Navigate</h3>
                         <ul className="space-y-2.5">
@@ -167,7 +164,6 @@ function Footer() {
                         </ul>
                     </div>
 
-                    {/* Hours */}
                     <div className="lg:col-span-4">
                         <h3 className="mb-4 font-display text-xs uppercase tracking-[0.2em] text-ink-900">Hours</h3>
                         <dl className="space-y-2 text-sm text-ink-600">
@@ -184,7 +180,6 @@ function Footer() {
                     </div>
                 </div>
 
-                {/* Bottom bar */}
                 <div className="mt-12 border-t border-surface-300 pt-8 text-center sm:text-left">
                     <p className="text-xs text-ink-400">
                         &copy; {currentYear} {BUSINESS.fullName}. All rights reserved.
