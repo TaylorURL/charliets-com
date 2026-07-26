@@ -170,7 +170,6 @@ function MenuView() {
 
     return (
         <>
-            {/* Hero */}
             <section className="border-b border-surface-300 bg-ink-900 pb-16 pt-32 lg:pb-20 lg:pt-40">
                 <div className="relative mx-auto max-w-7xl px-6 lg:px-10">
                     <div className="mud-texture pointer-events-none absolute inset-0" aria-hidden="true" />

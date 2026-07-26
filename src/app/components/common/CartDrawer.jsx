@@ -92,7 +92,6 @@ function CartDrawer({ isOpen, onClose }) {
 
     return (
         <div className="fixed inset-0 z-[60]" role="dialog" aria-label="Shopping cart" aria-modal="true">
-            {/* Backdrop */}
             <div
                 className={`absolute inset-0 bg-ink-900/40 backdrop-blur-sm transition-opacity duration-300 ${
                     animating ? 'opacity-100' : 'opacity-0'
@@ -101,13 +100,11 @@ function CartDrawer({ isOpen, onClose }) {
                 aria-hidden="true"
             />
 
-            {/* Drawer */}
             <aside
                 className={`absolute bottom-0 right-0 top-0 flex w-full max-w-md flex-col bg-surface-50 shadow-2xl transition-transform duration-[320ms] ease-drawer will-change-transform ${
                     animating ? 'translate-x-0' : 'translate-x-full'
                 }`}
             >
-                {/* Header */}
                 <div className="flex items-center justify-between border-b border-surface-300 px-6 py-5">
                     <div>
                         <p className="text-[10px] font-semibold uppercase tracking-[0.25em] text-crawfish">
@@ -136,7 +133,6 @@ function CartDrawer({ isOpen, onClose }) {
                     </button>
                 </div>
 
-                {/* Body */}
                 <div className="flex-1 overflow-y-auto px-6">
                     {items.length === 0 ? (
                         <div className="flex h-full flex-col items-center justify-center text-center">
@@ -181,7 +177,6 @@ function CartDrawer({ isOpen, onClose }) {
                     )}
                 </div>
 
-                {/* Footer */}
                 {items.length > 0 && (
                     <div className="border-t border-surface-300 px-6 pb-6 pt-5">
                         <div className="flex items-center justify-between">
