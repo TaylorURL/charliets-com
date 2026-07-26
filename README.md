@@ -13,12 +13,12 @@
 </p>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/version-0.1.9-E85D26?style=for-the-badge" alt="Version 0.1.9" />
-  <img src="https://img.shields.io/badge/React-19-E85D26?style=for-the-badge&logo=react&logoColor=white" alt="React 19" />
+  <img src="https://img.shields.io/badge/version-0.1.11-FF5A1F?style=for-the-badge" alt="Version 0.1.11" />
+  <img src="https://img.shields.io/badge/React-19-FF5A1F?style=for-the-badge&logo=react&logoColor=white" alt="React 19" />
   <img src="https://img.shields.io/badge/Create_React_App-5-1A1816?style=for-the-badge&logo=createreactapp&logoColor=white" alt="Create React App 5" />
-  <img src="https://img.shields.io/badge/Tailwind_CSS-3-E85D26?style=for-the-badge&logo=tailwindcss&logoColor=white" alt="Tailwind CSS 3" />
-  <img src="https://img.shields.io/badge/React_Router-7-C74A1A?style=for-the-badge&logo=reactrouter&logoColor=white" alt="React Router 7" />
-  <img src="https://img.shields.io/badge/Stripe-E85D26?style=for-the-badge&logo=stripe&logoColor=white" alt="Stripe" />
+  <img src="https://img.shields.io/badge/Tailwind_CSS-3-FF5A1F?style=for-the-badge&logo=tailwindcss&logoColor=white" alt="Tailwind CSS 3" />
+  <img src="https://img.shields.io/badge/React_Router-7-E03E00?style=for-the-badge&logo=reactrouter&logoColor=white" alt="React Router 7" />
+  <img src="https://img.shields.io/badge/Stripe-1A1816?style=for-the-badge&logo=stripe&logoColor=white" alt="Stripe" />
 </p>
 
 <br />
@@ -49,6 +49,7 @@ A seafood shack's site has one job: show what's in the pot today and let people 
 | UI | React 19 + React Router 7 |
 | Build & dev | Create React App 5 through `react-app-rewired` |
 | Styling | Tailwind CSS 3 (custom `crawfish` / `ink` / `surface` palette) |
+| Type | Anton (display), Permanent Marker (paint), DM Sans (body) |
 | Cart state | React context (`CartContext`) |
 | Payments | Stripe Elements (`@stripe/react-stripe-js`) |
 | Media | Muted ambient background video with reduced-motion fallback |
@@ -73,7 +74,7 @@ The site runs with no configuration — Stripe falls back to a placeholder publi
 | :--- | :--- |
 | `npm start` | Start the dev server. |
 | `npm run build` | Production build (`CI=false`, so warnings don't fail it). |
-| `npm test` | Run the CRA test runner. |
+| `npm test` | Run the CRA test runner (passes with no tests). |
 | `npm run lint` | Lint `src/` with ESLint. |
 | `npm run format` | Format `src/**` with Prettier. |
 
@@ -109,8 +110,9 @@ flowchart TD
 - **Pickup only.** Checkout collects a name, email, phone, notes, and a pickup window (ASAP, 45 minutes, or 1 hour) — there is no delivery or reservation flow.
 - **Card details never touch the app.** The Stripe `CardElement` tokenizes the card in Stripe's iframe; the app only ever sees the resulting payment method id.
 - **Ambient video is polite.** `AmbientVideo` autoplays muted inline, pauses itself when scrolled out of view, and swaps to a poster image when the visitor prefers reduced motion.
+- **The look is dirt-track, not tablecloth.** Checkered bands, number plates, hazard stripes, and crossed flags are generated from Tailwind `backgroundImage` gradients in `components/ui`, so there are no decorative image assets to ship.
 
-> **Pre-launch note.** Checkout currently creates a Stripe payment method and forwards the order to the confirmation view — no server-side charge is captured yet. The contact details in `constants/site.js` are still placeholders and need swapping before launch.
+> **Pre-launch note.** Checkout currently creates a Stripe payment method and forwards the order to the confirmation view — no server-side charge is captured yet. The phone number and social handles in `constants/site.js` are still placeholders and need swapping before launch.
 
 ## Project structure
 
@@ -127,6 +129,7 @@ charliets-com/
     ├── app/
     │   ├── App.js             Route table + layout shell
     │   ├── components/common/ Header, Footer, CartDrawer, AmbientVideo, ScrollToTop
+    │   ├── components/ui/     Button, Eyebrow, Marquee, NumberPlate, CheckeredBand, …
     │   ├── constants/         menu.js (items, prices), site.js (hours, address, social)
     │   ├── context/           CartContext — cart state and totals
     │   ├── utils/             Currency formatting, error boundary
