@@ -461,10 +461,6 @@ function AboutSection() {
     )
 }
 
-/* ──────────────────────────────────────────────
-   Off The Clock — owner-life interlude
-   ────────────────────────────────────────────── */
-
 function OffTheClockSection() {
     return (
         <section className="relative overflow-hidden border-t border-surface-300 bg-ink-900 py-24 lg:py-32">
@@ -501,10 +497,6 @@ function OffTheClockSection() {
         </section>
     )
 }
-
-/* ──────────────────────────────────────────────
-   Catering callout
-   ────────────────────────────────────────────── */
 
 function CateringSection() {
     return (

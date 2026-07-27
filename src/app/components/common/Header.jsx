@@ -228,7 +228,6 @@ function Header() {
                     mobileMenuOpen ? 'visible opacity-100' : 'invisible opacity-0'
                 }`}
             >
-                {/* Decorative glow */}
                 <div className="pointer-events-none absolute bottom-0 left-1/2 h-[400px] w-[400px] -translate-x-1/2 translate-y-1/2 rounded-full bg-crawfish/5 blur-[100px]" />
 
                 <nav

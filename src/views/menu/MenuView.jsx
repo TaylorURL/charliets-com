@@ -203,7 +203,6 @@ function MenuView() {
                 </div>
             </section>
 
-            {/* Sticky category nav + menu items */}
             <section className="bg-surface-100 pb-16 pt-8 lg:pb-24 lg:pt-12">
                 <div className="mx-auto max-w-7xl px-6 lg:px-10">
                     <div className="sticky top-16 z-30 -mx-6 border-b border-surface-300 bg-surface-100/95 px-6 py-4 backdrop-blur-md lg:-mx-10 lg:top-[72px] lg:px-10">
@@ -226,7 +225,6 @@ function MenuView() {
                 </div>
             </section>
 
-            {/* Bottom CTA */}
             <section className="border-t-2 border-ink-900 bg-surface-200 py-20">
                 <div className="mx-auto max-w-3xl px-6 text-center">
                     <h2 className="font-display text-2xl uppercase tracking-wide text-ink-900 md:text-3xl">
