@@ -10,6 +10,7 @@ Thumbs.db
 *.log
 .idea/
 .claude/
+CLAUDE.md
 .vscode/
 *.iml
 .fleet/
