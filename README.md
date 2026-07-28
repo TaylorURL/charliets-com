@@ -13,7 +13,7 @@
 </p>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/version-0.1.11-FF5A1F?style=for-the-badge" alt="Version 0.1.11" />
+  <img src="https://img.shields.io/badge/version-0.1.15-FF5A1F?style=for-the-badge" alt="Version 0.1.15" />
   <img src="https://img.shields.io/badge/React-19-FF5A1F?style=for-the-badge&logo=react&logoColor=white" alt="React 19" />
   <img src="https://img.shields.io/badge/Create_React_App-5-1A1816?style=for-the-badge&logo=createreactapp&logoColor=white" alt="Create React App 5" />
   <img src="https://img.shields.io/badge/Tailwind_CSS-3-FF5A1F?style=for-the-badge&logo=tailwindcss&logoColor=white" alt="Tailwind CSS 3" />
