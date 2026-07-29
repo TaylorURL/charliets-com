@@ -1,4 +1,5 @@
-// Phone numbers and social handles here are still placeholders.
+// The phone number and social handles are placeholders, not the shack's real
+// contacts — anything that dials or links out from here goes nowhere.
 export const BUSINESS = {
     name: "Charlie T's",
     fullName: "Charlie T's Crawfish Shack",
