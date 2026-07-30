@@ -122,6 +122,7 @@ charliets-com/
 │   ├── index.html             Meta, Open Graph, LocalBusiness JSON-LD
 │   ├── logo.webp              Logo / PWA icon
 │   ├── manifest.json          PWA manifest
+│   ├── release.json           Deployed version marker
 │   └── video/                 Ambient clip + poster
 ├── config-overrides.js        CRA webpack fallbacks (react-app-rewired)
 ├── tailwind.config.js         Palette, display/body fonts, motion tokens
