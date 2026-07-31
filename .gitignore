@@ -7,6 +7,7 @@ build/
 .env.production.local
 .DS_Store
 Thumbs.db
+desktop.ini
 *.log
 .idea/
 .claude/
@@ -14,6 +15,7 @@ CLAUDE.md
 .vscode/
 *.iml
 .fleet/
+.junie/
 *.sql
 
 # Secrets and local tooling state — never commit
